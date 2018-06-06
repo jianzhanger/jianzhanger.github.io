@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Oracle常用语句合集 | jianzhanger 的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="表空间操作1、创建表空间1234create tablespace asom nologging datafile &amp;apos;D:\oracle\product\10.2.0\oradata\orcl\asom01.dbf&amp;apos; size 1000M autoextend on next 100M maxsize 20G, &amp;apos;D:\oracle\product\10.2.0\o">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle常用语句合集">
+<meta property="og:url" content="http://yoursite.com/2018/06/06/Oracle常用语句合集/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="表空间操作1、创建表空间1234create tablespace asom nologging datafile &amp;apos;D:\oracle\product\10.2.0\oradata\orcl\asom01.dbf&amp;apos; size 1000M autoextend on next 100M maxsize 20G, &amp;apos;D:\oracle\product\10.2.0\o">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-06T02:48:06.798Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle常用语句合集">
+<meta name="twitter:description" content="表空间操作1、创建表空间1234create tablespace asom nologging datafile &amp;apos;D:\oracle\product\10.2.0\oradata\orcl\asom01.dbf&amp;apos; size 1000M autoextend on next 100M maxsize 20G, &amp;apos;D:\oracle\product\10.2.0\o">
+  
+    <link rel="alternate" href="/atom.xml" title="jianzhanger 的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">jianzhanger 的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Oracle常用语句合集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/06/Oracle常用语句合集/" class="article-date">
+  <time datetime="2018-06-06T01:37:58.000Z" itemprop="datePublished">2018-06-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/原创/">原创</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Oracle常用语句合集
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<h2 id="表空间操作"><a href="#表空间操作" class="headerlink" title="表空间操作"></a><center><font color="#dd0000">表空间操作</font></center></h2><h2 id="1、创建表空间"><a href="#1、创建表空间" class="headerlink" title="1、创建表空间"></a>1、创建表空间</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create tablespace asom nologging datafile</span><br><span class="line"> &apos;D:\oracle\product\10.2.0\oradata\orcl\asom01.dbf&apos; size 1000M autoextend on next 100M maxsize 20G,</span><br><span class="line"> &apos;D:\oracle\product\10.2.0\oradata\orcl\asom02.dbf&apos; size 1000M autoextend on next 100M maxsize 20G,</span><br><span class="line"> &apos;D:\oracle\product\10.2.0\oradata\orcl\asom03.dbf&apos; size 1000M autoextend on next 100M maxsize 20G</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="2、新增表空间数据文件"><a href="#2、新增表空间数据文件" class="headerlink" title="2、新增表空间数据文件"></a>2、新增表空间数据文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">alter tablespace asom add datafile </span><br><span class="line"> &apos;D:\oracle\product\10.2.0\oradata\orcl\asom04.dbf&apos; size 1000M autoextend on next 100M maxsize 20G,</span><br><span class="line"> &apos;D:\oracle\product\10.2.0\oradata\orcl\asom05.dbf&apos; size 1000M autoextend on next 100M maxsize 20G,</span><br><span class="line"> &apos;D:\oracle\product\10.2.0\oradata\orcl\asom06.dbf&apos; size 1000M autoextend on next 100M maxsize 20G,</span><br><span class="line"> &apos;D:\oracle\product\10.2.0\oradata\orcl\asom07.dbf&apos; size 1000M autoextend on next 100M maxsize 20G,</span><br><span class="line"> &apos;D:\oracle\product\10.2.0\oradata\orcl\asom08.dbf&apos; size 1000M autoextend on next 100M maxsize 20G</span><br></pre></td></tr></table></figure>
+<h2 id="3、查询表空间对应的数据文件"><a href="#3、查询表空间对应的数据文件" class="headerlink" title="3、查询表空间对应的数据文件"></a>3、查询表空间对应的数据文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select tablespace_name,file_id,bytes,file_name from dba_data_files</span><br></pre></td></tr></table></figure>
+<h2 id="4、查询表空间利用率"><a href="#4、查询表空间利用率" class="headerlink" title="4、查询表空间利用率"></a>4、查询表空间利用率</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT a.tablespace_name as tablespace_name,</span><br><span class="line">       to_char(b.total/1024/1024,999999.99) as Total,</span><br><span class="line">       to_char((b.total-a.free)/1024/1024,999999.99) as Used,</span><br><span class="line">       to_char(a.free/1024/1024,999999.99) as Free,</span><br><span class="line">       to_char(round((total-free)/total,4)*100,999.99) as Used_Rate</span><br><span class="line">FROM (SELECT tablespace_name, sum(bytes) free FROM DBA_FREE_SPACE GROUP BY tablespace_name) a,</span><br><span class="line">     (SELECT tablespace_name, sum(bytes) total FROM DBA_DATA_FILES GROUP BY tablespace_name ) b</span><br><span class="line">WHERE a.tablespace_name=b.tablespace_name</span><br><span class="line">ORDER BY a.tablespace_name;</span><br></pre></td></tr></table></figure>
+<h2 id="5、查询各表的表空间使用情况"><a href="#5、查询各表的表空间使用情况" class="headerlink" title="5、查询各表的表空间使用情况"></a>5、查询各表的表空间使用情况</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select t.table_name,t.tablespace_name,t.num_rows,a.bytes/1024/1024 &quot;物理空间(M)&quot;, </span><br><span class="line">	round(t.num_rows*t.avg_row_len/1024/1024,2) &quot;实际使用(M)&quot;,</span><br><span class="line">	a.bytes/1024/1024-round(t.num_rows*t.avg_row_len/1024/1024,2) &quot;差值(M)&quot;</span><br><span class="line">from all_tables t,user_segments a</span><br><span class="line">where t.owner=&apos;ASOM&apos; /*and t.table_name like &apos;MTR%&apos;*/ and t.num_rows&gt;200*10000 </span><br><span class="line">	and t.table_name=a.segment_name and a.segment_type = &apos;TABLE&apos;</span><br><span class="line">order by t.table_name;</span><br></pre></td></tr></table></figure>
+<h2 id="6、释放表空间"><a href="#6、释放表空间" class="headerlink" title="6、释放表空间"></a>6、释放表空间</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">alter table TABLE_NAME enable row movement;</span><br><span class="line">alter table TABLE_NAME shrink space;</span><br><span class="line"></span><br><span class="line">alter table TABLE_NAME shrink space cascade;   索引也能缩小，效率很低，慎重。</span><br></pre></td></tr></table></figure>
+<h2 id="7、导入表时指定表空间"><a href="#7、导入表时指定表空间" class="headerlink" title="7、导入表时指定表空间"></a>7、导入表时指定表空间</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; create user user01 identified by password default tablespace ts01;</span><br><span class="line"></span><br><span class="line">SQL&gt; grant resource,connect to user01;</span><br><span class="line"></span><br><span class="line">SQL&gt; grant dba to user01;//赋DBA权限</span><br><span class="line"></span><br><span class="line">SQL&gt; revoke unlimited tablespace from user01;//撤销此权限</span><br><span class="line"></span><br><span class="line">SQL&gt; alter user user01 quota 0 on system;//将用户在System表空间的配额置为0</span><br><span class="line"></span><br><span class="line">SQL&gt; alter user user01 quota unlimited on ts01;//设置在用户在myhuang表空间配额不受限。</span><br></pre></td></tr></table></figure>
+<p>经过上述设置后，就可以用imp导入数据，数据将会进入指定的ts01表空间<br><br><br></p>
+<hr>
+<p><br></p>
+<h2 id="物化视图操作"><a href="#物化视图操作" class="headerlink" title="物化视图操作"></a><center><font color="#dd0000">物化视图操作</font></center></h2><h2 id="1、创建物化视图"><a href="#1、创建物化视图" class="headerlink" title="1、创建物化视图"></a>1、创建物化视图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create materialized view V_MTR_STATIONEQU</span><br><span class="line">refresh force on demand</span><br><span class="line">start with to_date(&apos;04-06-2013 10:27:06&apos;, &apos;dd-mm-yyyy hh24:mi:ss&apos;) next sysdate + 3/(24*6) </span><br><span class="line">as</span><br><span class="line">select * from table_name;</span><br></pre></td></tr></table></figure>
+<h2 id="2、手动刷新物化视图"><a href="#2、手动刷新物化视图" class="headerlink" title="2、手动刷新物化视图"></a>2、手动刷新物化视图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec dbms_mview.refresh(&apos;v_mtr_stationequ&apos;);</span><br></pre></td></tr></table></figure>
+<h2 id="3、删除物化视图"><a href="#3、删除物化视图" class="headerlink" title="3、删除物化视图"></a>3、删除物化视图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop materialized view V_MTR_STATIONEQU</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/06/Oracle常用语句合集/" data-id="cji2irlbj0008xgtis1slc187" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/05/Git知识（四）：细节篇/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Git知识（四）：细节篇</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/原创/">原创</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像识别/">图像识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应急/">应急</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物联网/">物联网</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 20px;">Git</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/图像识别/" style="font-size: 10px;">图像识别</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/应急/" style="font-size: 10px;">应急</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/物联网/" style="font-size: 10px;">物联网</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/06/Oracle常用语句合集/">Oracle常用语句合集</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/05/Git知识（四）：细节篇/">Git知识（四）：细节篇</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/05/Git知识（三）：分支篇/">Git知识（三）：分支篇</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/05/Git知识（二）：实战篇/">Git知识（二）：实战篇</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/05/Git知识（一）：基础篇/">Git知识（一）：基础篇</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 jianzhanger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
