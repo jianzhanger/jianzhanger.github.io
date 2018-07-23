@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Serverless 架构的优缺点 | jianzhanger 的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Serverless 的优势在我使用 Serverless Framework 开发 AWS Serverless 应用的过程中，最方便的莫过于，第一次部署和第二次、第三次部署没有什么区别。只需要执行  serverless deploy，几分钟后，我们代码就运行在线上。如果是一个传统的 AWS 应用，我需要 SSH 到我的服务器上部署，这样才能写好我的自动部署脚本。除此，我还需要担忧这个过程中，">
+<meta name="keywords" content="微服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Serverless 架构的优缺点">
+<meta property="og:url" content="http://yoursite.com/2018/07/12/Serverless-架构的优缺点/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="Serverless 的优势在我使用 Serverless Framework 开发 AWS Serverless 应用的过程中，最方便的莫过于，第一次部署和第二次、第三次部署没有什么区别。只需要执行  serverless deploy，几分钟后，我们代码就运行在线上。如果是一个传统的 AWS 应用，我需要 SSH 到我的服务器上部署，这样才能写好我的自动部署脚本。除此，我还需要担忧这个过程中，">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://serverless.ink/images/aws-lambda-monitoring-functions-chart.png">
+<meta property="og:image" content="http://serverless.ink/images/times.png">
+<meta property="og:updated_time" content="2018-07-12T09:07:18.091Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Serverless 架构的优缺点">
+<meta name="twitter:description" content="Serverless 的优势在我使用 Serverless Framework 开发 AWS Serverless 应用的过程中，最方便的莫过于，第一次部署和第二次、第三次部署没有什么区别。只需要执行  serverless deploy，几分钟后，我们代码就运行在线上。如果是一个传统的 AWS 应用，我需要 SSH 到我的服务器上部署，这样才能写好我的自动部署脚本。除此，我还需要担忧这个过程中，">
+<meta name="twitter:image" content="http://serverless.ink/images/aws-lambda-monitoring-functions-chart.png">
+  
+    <link rel="alternate" href="/atom.xml" title="jianzhanger 的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">jianzhanger 的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Serverless-架构的优缺点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/12/Serverless-架构的优缺点/" class="article-date">
+  <time datetime="2018-07-12T09:03:06.000Z" itemprop="datePublished">2018-07-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/转载/">转载</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Serverless 架构的优缺点
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Serverless-的优势"><a href="#Serverless-的优势" class="headerlink" title="Serverless 的优势"></a>Serverless 的优势</h2><p>在我使用 Serverless Framework 开发 AWS Serverless 应用的过程中，最方便的莫过于，第一次部署和第二次、第三次部署没有什么区别。只需要执行  <code>serverless deploy</code>，几分钟后，我们代码就运行在线上。如果是一个传统的 AWS 应用，我需要 SSH 到我的服务器上部署，这样才能写好我的自动部署脚本。除此，我还需要担忧这个过程中，有哪些用户有使用。</p>
+<p>除了，我觉得的部署方便，还有就是价格合理。我的 AWS EC2 实例上运行着我的博客、以及其他的一些网络。然而，我那 PV 只有 500 左右的博客，大部分时间都是在空转。便觉得有些浪费，可是运行才收费的 Serverless 就不会有这样的问题。可以让我大胆地去使用这些服务。当然了，还有其它一些显著的优势。</p>
+<h3 id="1-降低启动成本"><a href="#1-降低启动成本" class="headerlink" title="1. 降低启动成本"></a>1. 降低启动成本</h3><p>当我们作为一家公司开发一个 Web 应用时，在开发的时候，我们需要版本管理服务器、持续集成服务器、测试服务器、应用版本管理仓库等作为基础的服务。线上运行的时候，为了应对大量的请求，我们需要一个好的数据库服务器。当我们的应用面向了普通的用户时，我们需要：<br><a id="more"></a></p>
+<ul>
+<li>邮件服务，用于发送提醒、注册等服务</li>
+<li>短信服务（依国家实名规定），用于注册、登录等用户授权操作</li>
+</ul>
+<p>对于大公司而言，这些都是现成的基础设施。可对于新创企业来说，这都是一些启动成本。</p>
+<h4 id="减少运营成本"><a href="#减少运营成本" class="headerlink" title="减少运营成本"></a>减少运营成本</h4><p>对于初创公司来说，他们没有基础设施，也没有财力，也可能没有能力去建设基础设施。采用云服务往往是最好的选择，可以节省大量的资金。他们可以将注意力放在：创造对用户有价值的产品上。如果一家创业公司采用云服务，而不是自己搭建服务器。那么，他就会拥有<strong>更多的时间</strong>开发业务功能，而不是关注在这些。只需要为运行时的软件付钱。</p>
+<p>而采用<strong>函数计算</strong>的 Serverless 与云服务器最大的不同之处在于：<strong>云服务器需要一直运行，而函数计算是按需计算</strong>。按需计算就意味着，在请求到来的时候，才运行函数。没有请求的时候，是不算钱的。</p>
+<p>项目初期，其用户数往往是缓慢增长的，而我们在选择服务器的时候，往往会依可能出现的用户来估算。在这个时候，往往会浪费一些不必要的成本。不过，就算用户突然间爆发，Serverless 应用也可以轻松处理。只需要修改一下数据库配置，再重新部署一份。</p>
+<h4 id="降低开发成本"><a href="#降低开发成本" class="headerlink" title="降低开发成本"></a>降低开发成本</h4><p>一个成功的 Serverless 服务供应商，应该能提供一系列的<strong>配套服务</strong>。这意味着，你只需要在配置文件上写下，这个数据库的表名，那么我们的数据就会存储到对应的数据库里。甚至于，**如果一个当服务提供者提供一系列的函数计算模板，那么我们只需要写好我们的配置即可。这一系列的东西都可以自动、高效的完成。</p>
+<p>在这种情况下，<strong>使用某一个云服务，就会调用某一个系统自带的 API 一样简单</strong>。</p>
+<p>当然，将应用设计成无状态应用，对于早期的系统，可能是一种挑战。除此，诸如 AWS 这样庞大的系统，对于新手程序员来说，也不能容易消化掉的一个系统。</p>
+<h3 id="2-实现快速上线"><a href="#2-实现快速上线" class="headerlink" title="2. 实现快速上线"></a>2. 实现快速上线</h3><p>对于一个 Web 项目来说，启动一个项目需要一系列的 hello, world。当我们在本地搭建环境的时候，是一个 hello, world，当我们将程序部署到开发环境时，也是一个部署相关的 hello, world。虽然看上去有些不同，但是总的来说，都是 it works!。</p>
+<p>Serverless 在部署上的优势，使得你可以轻松地实现上线。</p>
+<h4 id="更快的部署流水线"><a href="#更快的部署流水线" class="headerlink" title="更快的部署流水线"></a>更快的部署流水线</h4><p>实际上，Serverless 应用之所以在部署上有优势，是因为其相当于<strong>内建自动化部署</strong>——我们在开发应用的时候，已经在不断地增强部署功能。</p>
+<p>在我们日常的开发中，为了实现自动化部署，我们需要先手动部署，以设计出一个相关无错的部署配置，如 Docker 的 Dockerfile，又或者是 Ansible 的 playbook。除此，我们还需要设计好蓝绿发布等等的功能。</p>
+<p>而在函数计算、Serverless 应用里，这些都是由供应商提供的功能。每次我们写完代码，只需要运行一下：<code>sls deploy</code>  就足够了。在诸如 AWS Lambda 的函数计算里，函数一般在上传后几秒钟内，就能做好调用准备。</p>
+<p>这就意味着，当我们和日常一样，使用一个模板来开发我们的应用。我们就可以在 Clone 完代码后的几分钟内，完成第一次部署。</p>
+<p>唯一的难点，可能是要选用什么配置类型的服务，如选用哪个级别吞吐量的 DynamoDB、哪个内存大小的 Lambda 计算。</p>
+<h4 id="更快的开发速度"><a href="#更快的开发速度" class="headerlink" title="更快的开发速度"></a>更快的开发速度</h4><p>由于 Serverless 服务提供者，已经准备好了一系列的基础服务。作为开发人员的我们，只需要关注于如何更好去实现业务，而非技术上的一些限制。</p>
+<p>服务提供者已经向我们准备，并测试好了这一系列的服务。它们基本上是稳定、可靠的，不会遇上特别大的问题。事实上，当我们拥有足够强大的代码，如使用测试来保证健壮性，那么结合持续集成，我们就可以在 PUSH 代码的时候，直接部署到生产环境。当然，可能不需要这么麻烦，我们只需要添加一个 predeploy 的 hook，在这个 hook 里做一些自动测试的工作，就可以在本地直接发布新的版本。</p>
+<p>这个过程里，我们并不需要考虑太多的发布事宜。</p>
+<h3 id="3-系统安全性更高"><a href="#3-系统安全性更高" class="headerlink" title="3. 系统安全性更高"></a>3. 系统安全性更高</h3><p>依我维护我博客的经验来看，要保持服务器一直运行不是一件容易的事。在不经意的时候，总会发现有 Cracker 在攻击你网站。我们需要防范不同类型的攻击，如在我的服务器里一直有黑客在尝试密码登录，可是我的博客的服务器是要密钥才能登录的。在一次神奇的尝试登录攻击后，我的 SSH 守护进程崩溃了。这意味着，我只能从 EC2 后台重启服务器。</p>
+<p>有了 Serverless，我不再需要担心有人尝试登录系统，因为我都不知道怎么登录服务器。</p>
+<p>我不再需要考虑系统底层安全问题，每次登录 AWS EC2，我总需要更新一遍软件；每当我看到某个软件有漏洞时，如之前的 OpenSSH，我就登录上去看一下版本，更新一下软件。真 TM 费时又费力，还没有一点好处。</p>
+<p>唯一需要担心的，可能是有人发起 DDOS 攻击。而根据<a href="https://thenewstack.io/zombie-toasters-eat-startup/" target="_blank" rel="noopener">Could Zombie Toasters DDoS My Serverless Deployment?</a>的计算，每百万的请求，大概是 0.2 刀，每小时 360000000 个请求，也就 72 刀。</p>
+<h3 id="4-适应微服务架构"><a href="#4-适应微服务架构" class="headerlink" title="4. 适应微服务架构"></a>4. 适应微服务架构</h3><p>如我们所见在最近几年里看到的那样，微服务并不没有大量地替换掉单体应用——毕竟使用新的架构来替换旧的系统，在业务上的价值并不大。因此，对于很多企业来说，并没有这样的强烈需求及紧迫性。活着，才是一件更紧迫的事。</p>
+<p>而 Serverless 天生就与微服务架构是<strong>相辅相成</strong>的。一个 Serverless 应用拥有自己的网关、数据库、接口，你可还以使用自己喜欢的语言（受限于服务提供者）来开发服务。换句话来说，在这种情形下，一个 Serverless 可能是一个完美的微服务实例。</p>
+<p>在可见的一二年里，Serverless 将替换到某些系统中的一些组件、服务。</p>
+<h3 id="5-自动扩展能力"><a href="#5-自动扩展能力" class="headerlink" title="5. 自动扩展能力"></a>5. 自动扩展能力</h3><p>Serverless 的背后是 诸如 AWS Lambda 这样的 FaaS（Function as a Services）。</p>
+<p>对于传统应用来说，要应对更多的请求的方式，就是部署更多的实例。然而，这个时候往往已经来不及了。而对于 FaaS 来说，我们并不需要这么做，FaaS 会自动的扩展。它可以在需要时尽可能多地启动实例副本，而不会发生冗长的部署和配置延迟。</p>
+<p>这依赖于我们的服务是无状态的，我们才能次无忌惮地不断运行起新的实例。</p>
+<h2 id="Serverless-的问题"><a href="#Serverless-的问题" class="headerlink" title="Serverless 的问题"></a>Serverless 的问题</h2><p>作为一个运行时，才启动的应用来说，Serverless 也存在着一个个我们所需要的问题。</p>
+<h3 id="1-不适合长时间运行应用"><a href="#1-不适合长时间运行应用" class="headerlink" title="1. 不适合长时间运行应用"></a>1. 不适合长时间运行应用</h3><p>Serverless 在请求到来时才运行。这意味着，当应用不运行的时候就会进入 “休眠状态”，下次当请求来临时，应用将会需要一个启动时间，即<strong>冷启动</strong>。这个时候，可以结合 CRON 的方式或者 CloudWatch 来定期唤醒应用。</p>
+<p>如果你的应用需要一直长期不间断的运行、处理大量的请求，那么你可能就不适合采用 Serverless 架构。在这种情况下，采用 EC2 这样的云服务器往往是一种更好的选择。因为 EC2 从价格上来说，更加便宜。</p>
+<p>引用  <a href="https://www.zhihu.com/people/lu-zou-36" target="_blank" rel="noopener">Lu Zou</a>  在 《<a href="https://zhuanlan.zhihu.com/p/31122433" target="_blank" rel="noopener">花了 1000G，我终于弄清楚了 Serverless 是什么（上）：什么是 Serverless 架构？</a>》上的评论：</p>
+<blockquote>
+<p>EC2 相当于你买了一辆车，而 Lambda 相当于你租了你一辆车。</p>
+</blockquote>
+<p>长期租车的成本肯定比买车贵，但是你就少掉了一部分的维护成本。因此，这个问题实际上是一个值得深入计算的问题。</p>
+<h3 id="2-完全依赖于第三方服务"><a href="#2-完全依赖于第三方服务" class="headerlink" title="2. 完全依赖于第三方服务"></a>2. 完全依赖于第三方服务</h3><p>是的，当你决定使用某个云服务的时候，也就意味着你可能走了一条不归路。在这种情况下，只能将不重要的 API 放在 Serverless 上。</p>
+<p>当你已经有大量的基础设施的时候，Serverless 对于你来说，并不是一个好东西。当我们采用 Serverless 架构的时候，我们就和特别的服务供应商绑定了。我们使用了 AWS 家的服务，那么我们再将服务迁到 Google Cloud 上就没有那么容易了。</p>
+<p>我们需要修改一下系列的底层代码，能采取的应对方案，便是建立隔离层。这意味着，在设计应用的时候，就需要：</p>
+<ul>
+<li>隔离 API 网关</li>
+<li>隔离数据库层，考虑到市面上还没有成熟的 ORM 工具，让你即支持 Firebase，又支持 DynamoDB</li>
+<li>等等</li>
+</ul>
+<p>这些也将带给我们一些额外的成本，可能<strong>带来的问题会比解决的问题多</strong>。</p>
+<h3 id="3-冷启动时间"><a href="#3-冷启动时间" class="headerlink" title="3. 冷启动时间"></a>3. 冷启动时间</h3><p>如上所说，Serverless 应用存在一个冷启动时间的问题。</p>
+<p>据 New Relic 官方博客《<a href="https://blog.newrelic.com/2017/01/11/aws-lambda-cold-start-optimization/" target="_blank" rel="noopener">Understanding AWS Lambda Performance—How Much Do Cold Starts Really Matter?</a>》称，AWS Lambda 的冷启动时间。</p>
+<p><img src="http://serverless.ink/images/aws-lambda-monitoring-functions-chart.png" alt="AWS 启动时间"></p>
+<p>AWS 启动时间</p>
+<p>又或者是我之前统计的请求响应时间：</p>
+<p><img src="http://serverless.ink/images/times.png" alt="Serverless 请求时间"></p>
+<p>Serverless 请求时间</p>
+<p>尽管这个冷启动时间大部分情况下，可以在 50ms 以内。而这是对于 Node.js 应用来说，对于拥有虚拟机的 Java 和 C# 可能就没有那么幸运了。</p>
+<h3 id="4-缺乏调试和开发工具"><a href="#4-缺乏调试和开发工具" class="headerlink" title="4. 缺乏调试和开发工具"></a>4. 缺乏调试和开发工具</h3><p>当我使用 Serverless Framework 的时候，遇到了这样的问题：缺乏调试和开发工具。后来，我发现了 serverless-offline、dynamodb-local 等一系列插件之后，问题有一些改善。</p>
+<p>然而，对于日志系统来说，这仍然是一个艰巨的挑战。</p>
+<p>每次你调试的时候，你需要一遍又一遍地上传代码。而每次上传的时候，你就好像是在部署服务器。然后 Fuck 了，我并不能总是快速地定位出问题在哪。于是，我修改了一下代码，添加了一行  <code>console.log</code>，然后又一次地部署了下代码。问题解决了，挺好的，我删了一下  <code>console.log</code>，然后又一次地部署了下代码。</p>
+<p>后来，我学乖了，找了一个类似于 log4j 这样的可以分级别纪录日志的 Node.js 库  <code>winston</code>。它可以支持 error、warn、info、verbose、debug、silly 六个不同级别的日志。</p>
+<h3 id="5-构建复杂"><a href="#5-构建复杂" class="headerlink" title="5. 构建复杂"></a>5. 构建复杂</h3><p>Serverless 很便宜，但是这并不意味着它很简单。</p>
+<p>早先，在知道 AWS Lambda 之后，我本来想进行一些尝试。但是 CloudForamtion 让我觉得太难了，它的配置是如此的复杂，并且难以阅读及编写（JSON 格式）。</p>
+<p>考虑到 CloudForamtion 的复杂度，我是在接触了 Serverless Framework 之后，才重新燃起了一些信心。</p>
+<p>Serverless Framework 的配置更加简单，采用的是 YAML 格式。在部署的时候，Serverless Framework 会根据我们的配置生成 CloudForamtion 配置。</p>
+<p>在那篇《<a href="https://www.phodal.com/blog/serverless-development-guide-use-kinesis-firehose-stream-data-s3/" target="_blank" rel="noopener">Kinesis Firehose 持久化数据到 S3</a>》想着的数据统计文章里，我们介绍了 Serverless 框架的配置。与一般的 Lambda 配置来说，这里的配置就稍微复杂一些。然而，这也并非是一个真正用于生产的配置。我的意思是，真实的应用场景远远比这复杂。</p>
+<h3 id="6-语言版本落后"><a href="#6-语言版本落后" class="headerlink" title="6. 语言版本落后"></a>6. 语言版本落后</h3><p>在 Node.js 6 出来的时候，AWS Lambda 只支持 Node.js 4.3.2；在 Node.js 9.0 出来的时候，AWS Lambda 支持到 6.10.3。</p>
+<p>如下是 AWS Lambda 支持以下运行时版本：</p>
+<ul>
+<li>Node.js – v4.3.2 和 6.10.3</li>
+<li>Java - Java 8</li>
+<li>Python – Python 3.6 和 2.7</li>
+<li>.NET 内核 – .NET 内核 1.0.1 (C#)</li>
+</ul>
+<p>对于 Java 和 Python 来说，他们的版本上可能基本都是够用的，我不知道 C# 怎么样。但是 Node.js 的版本显然是有点老旧的，但是都 Node.js 9.2.0 了。不过，话说来说，这可能与版本帝 Chrome 带来的前端版本潮有一点关系。</p>
+<p>节选自《<a href="https://github.com/phodal/serverless" target="_blank" rel="noopener">Serverless 架构应用开发指南</a> 》</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/12/Serverless-架构的优缺点/" data-id="cjjy2chgv000hrotiyfn8lrk9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微服务/">微服务</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/12/Serverless-的适用场景/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Serverless 的适用场景
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/12/什么是-Serverless-架构？/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">什么是 Serverless 架构？</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/原创/">原创</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品经理/">产品经理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像识别/">图像识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应急/">应急</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物联网/">物联网</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 20px;">Git</a> <a href="/tags/产品经理/" style="font-size: 10px;">产品经理</a> <a href="/tags/人工智能/" style="font-size: 10px;">人工智能</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/图像识别/" style="font-size: 10px;">图像识别</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/应急/" style="font-size: 10px;">应急</a> <a href="/tags/微服务/" style="font-size: 20px;">微服务</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/物联网/" style="font-size: 10px;">物联网</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/23/以YouTube产品为例：为你解读交互7大定律/">以YouTube产品为例：为你解读交互7大定律</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/12/Serverless-的适用场景/">Serverless 的适用场景</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/12/Serverless-架构的优缺点/">Serverless 架构的优缺点</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/12/什么是-Serverless-架构？/">什么是 Serverless 架构？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/11/知识图谱在人工智能中的应用/">知识图谱在人工智能中的应用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 jianzhanger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Serverless 的适用场景 | jianzhanger 的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="尽管 Serverless 在编写传统的 Web 应用上，有一定的缺点。然而，它的事件驱动及运行时计算，使得它在某些场景上相当的合适。 发送通知由我们在上一节中提到的，对于诸如 PUSH Notification、邮件通知接口、短信，这一类服务来说，他们都需要基础设施来搭建。并且，他们对实时性的要求相对没有那么高。 即使在时间上晚来几秒钟，用户还是能接受的。在我们所见到的短信发送的例子里，一般都会">
+<meta name="keywords" content="微服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Serverless 的适用场景">
+<meta property="og:url" content="http://yoursite.com/2018/07/12/Serverless-的适用场景/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="尽管 Serverless 在编写传统的 Web 应用上，有一定的缺点。然而，它的事件驱动及运行时计算，使得它在某些场景上相当的合适。 发送通知由我们在上一节中提到的，对于诸如 PUSH Notification、邮件通知接口、短信，这一类服务来说，他们都需要基础设施来搭建。并且，他们对实时性的要求相对没有那么高。 即使在时间上晚来几秒钟，用户还是能接受的。在我们所见到的短信发送的例子里，一般都会">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://serverless.ink/images/launch-page.jpg">
+<meta property="og:updated_time" content="2018-07-12T10:52:19.360Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Serverless 的适用场景">
+<meta name="twitter:description" content="尽管 Serverless 在编写传统的 Web 应用上，有一定的缺点。然而，它的事件驱动及运行时计算，使得它在某些场景上相当的合适。 发送通知由我们在上一节中提到的，对于诸如 PUSH Notification、邮件通知接口、短信，这一类服务来说，他们都需要基础设施来搭建。并且，他们对实时性的要求相对没有那么高。 即使在时间上晚来几秒钟，用户还是能接受的。在我们所见到的短信发送的例子里，一般都会">
+<meta name="twitter:image" content="http://serverless.ink/images/launch-page.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="jianzhanger 的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">jianzhanger 的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Serverless-的适用场景" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/12/Serverless-的适用场景/" class="article-date">
+  <time datetime="2018-07-12T09:32:09.000Z" itemprop="datePublished">2018-07-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/转载/">转载</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Serverless 的适用场景
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>尽管 Serverless 在编写传统的 Web 应用上，有一定的缺点。然而，它的事件驱动及运行时计算，使得它在某些场景上相当的合适。</p>
+<h3 id="发送通知"><a href="#发送通知" class="headerlink" title="发送通知"></a>发送通知</h3><p>由我们在上一节中提到的，对于诸如 PUSH Notification、<a href="https://www.phodal.com/blog/serverless-development-guide-aws-simple-email-service/" target="_blank" rel="noopener">邮件通知接口</a>、短信，这一类服务来说，他们都需要基础设施来搭建。并且，他们对实时性的要求相对没有那么高。</p>
+<p>即使在时间上晚来几秒钟，用户还是能接受的。在我们所见到的短信发送的例子里，一般都会假设用户能在 60 秒内收到短信。因此，在这种时间 1s 的误差，用户也不会恼火的。而对于 APP 的消息推送而言，这种要求就更低了，用户反而不太希望能收到这样的推送<br><a id="more"></a></p>
+<h3 id="WebHook"><a href="#WebHook" class="headerlink" title="WebHook"></a>WebHook</h3><p>当我们没有服务器，又想要一个 Webhook 来触发我们一系列的操作的时候。我们就可以考虑使用 Serverless，我们不需要一直就这么支付一个服务器的费用。通过 Serverless，我们就可以轻松完成这样的工作，并且节省大量的费用。</p>
+<p>一个比较明显的例子，就如  <a href="https://www.phodal.com/blog/serverless-development-guide-create-github-hooks/" target="_blank" rel="noopener">GitHub Hooks</a></p>
+<blockquote>
+<p>GitHub 上的 Webhook 允许我们构建或设置在 GitHub.com 上订阅某些事件的 GitHub 应用程序。当触发这些事件之一时，我们将向 webhook 配置的 URL 发送 HTTP POST 有效内容。</p>
+</blockquote>
+<p>比如说，当我们 PUSH 了代码，我们想触发我们的持续集成。这个时候，就可以通过一个 Webhook 来做这样的事情。</p>
+<h3 id="轻量级-API"><a href="#轻量级-API" class="headerlink" title="轻量级 API"></a>轻量级 API</h3><p>Serverless 特别适合于，轻量级快速变化地 API。</p>
+<p>其实，我一直没有想到一个合适的例子。在我的假想里，一个 AutoSuggest 的 API 可能就是这样的 API，但是这种 API 在有些时候，往往会伴随着相当复杂的业务。</p>
+<p>于是，便想举一个 Featrue Toggle 的例子，尽管有一些不合适。但是，可能是最有价值的部分。</p>
+<h3 id="物联网"><a href="#物联网" class="headerlink" title="物联网"></a>物联网</h3><p>当我们谈及物联网的时候，我们会讨论事件触发、传输协议、海量数据（数据存储、数据分析）。而有了 Serverless，那么再多的数据，处理起来也是相当容易的一件事。</p>
+<p>对于一个物联网应用的服务端来说，系统需要收集来自各个地方的数据，并创建一个个 pipeline 来处理、过滤、转换这些数据，并将数据存储到数据库中。</p>
+<p>对于硬件开发人员来说，对接不同的硬件，本身就是一种挑战。而直接使用诸如 AWS IoT 这样国，可以在某种程度上，帮助我们更好地开发出写服务端连接的应用。</p>
+<p>同时，对于物联网应用的客户端来说，则需要从数据库抽取数据进行展示。这部分，可能算不上是一个挑战点。</p>
+<h3 id="数据统计分析"><a href="#数据统计分析" class="headerlink" title="数据统计分析"></a>数据统计分析</h3><p>数据统计本身只需要很少的计算量，但是生成图表，则可以定期生成。</p>
+<p>在接收数据的时候，我们不需要考虑任何延时带来的问题。50~200 ms 的延时，并不会对我们的系统造成什么影响。</p>
+<h3 id="Trigger-及定时任务"><a href="#Trigger-及定时任务" class="headerlink" title="Trigger 及定时任务"></a>Trigger 及定时任务</h3><p>对于哪些需要爬虫来抓取和生成的程序来说，Serverless  <strong>可能</strong>是一个不错的舞台。</p>
+<p>尽管，这样的工作也可以由云服务器来做，我们只需要定时的启动一下服务器。通过服务器中的自启动脚本来做相应的事，但是当我们完成了一系列的工作之后。我们需要将数据存储在一个远程的服务器上。而为了让系统中的其它应用，也能直接访问这些数据。那么，我们可能会考虑使用一个云数据库。这个时候，Serverless 应用看上去更具有吸引力。</p>
+<p>在那篇《CRON 定时执行 Lambda 任务》中，我们也可以看到 AWS Lambda 可以支持 Lambda 计算，定时启动服务，并计算。</p>
+<h3 id="精益创业"><a href="#精益创业" class="headerlink" title="精益创业"></a>精益创业</h3><p><img src="http://serverless.ink/images/launch-page.jpg" alt="Landing Page"></p>
+<p>Landing Page</p>
+<p>Serverless 的快速上线、开发，意味着它可以快速验证一个想法 MVP。如 Dropbox 在开始的时候，只创造了一个 Landing Page。作为一个想使用这个服务的用户，我们会在其中填上我们的邮箱。</p>
+<p>而如果是使用 Serverless 来构建这样的应用，那么我们只需要创建一个静态页面，然后用一个 Serverless 服务来保存用户的邮箱到数据库中，如我在 GitHub 上的  <a href="https://github.com/phodal/serverless-landingpage" target="_blank" rel="noopener">serverless-landingpage</a>  所做的那样。</p>
+<h3 id="Chat-机器人"><a href="#Chat-机器人" class="headerlink" title="Chat 机器人"></a>Chat 机器人</h3><p>聊天机器人，也是一个相当好的应用场景。</p>
+<p>But，由于国内的条件限制（信息监管），这并不是一件容易的事。因此，从渠道（如微信、blabla）上，都在尽可能地降低这方面的可能性。</p>
+<p>但是，我们还可以做一个微信公众号的服务。当用户输入一个关键词时，做出相应的回复，这实质上和聊天机器人是差不多的。只需要结合《<a href="https://www.phodal.com/blog/serverless-development-guide-serverless-lambda-wechat-public-platform/" target="_blank" rel="noopener">基于 Serverless 与 Lambda 的微信公共平台</a>》 就可以轻松实现，并实现快速上线。</p>
+<p>节选自《<a href="https://github.com/phodal/serverless" target="_blank" rel="noopener">Serverless 架构应用开发指南</a> 》</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/12/Serverless-的适用场景/" data-id="cjjy2chgr000droti6su8lfy9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微服务/">微服务</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/23/以YouTube产品为例：为你解读交互7大定律/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          以YouTube产品为例：为你解读交互7大定律
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/12/Serverless-架构的优缺点/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Serverless 架构的优缺点</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/原创/">原创</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品经理/">产品经理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像识别/">图像识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应急/">应急</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物联网/">物联网</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 20px;">Git</a> <a href="/tags/产品经理/" style="font-size: 10px;">产品经理</a> <a href="/tags/人工智能/" style="font-size: 10px;">人工智能</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/图像识别/" style="font-size: 10px;">图像识别</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/应急/" style="font-size: 10px;">应急</a> <a href="/tags/微服务/" style="font-size: 20px;">微服务</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/物联网/" style="font-size: 10px;">物联网</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/23/以YouTube产品为例：为你解读交互7大定律/">以YouTube产品为例：为你解读交互7大定律</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/12/Serverless-的适用场景/">Serverless 的适用场景</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/12/Serverless-架构的优缺点/">Serverless 架构的优缺点</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/12/什么是-Serverless-架构？/">什么是 Serverless 架构？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/11/知识图谱在人工智能中的应用/">知识图谱在人工智能中的应用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 jianzhanger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

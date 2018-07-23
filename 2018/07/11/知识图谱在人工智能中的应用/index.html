@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>知识图谱在人工智能中的应用 | jianzhanger 的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="随着互联网的发展，网络数据内容呈现爆炸式增长的态势。由于互联网内容的大规模、异质多元、组织结构松散的特点，给人们有效获取信息和知识提出了挑战。 知识图谱（Knowledge Graph）以其强大的语义处理能力和开放组织能力，为互联网时代的知识化组织和智能应用奠定了基础。 知识图谱是知识工程的一个分支，以知识工程中语义网络作为理论基础，并且结合了机器学习，自然语言处理和知识表示和推理的最新成果，在大">
+<meta name="keywords" content="人工智能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识图谱在人工智能中的应用">
+<meta property="og:url" content="http://yoursite.com/2018/07/11/知识图谱在人工智能中的应用/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="随着互联网的发展，网络数据内容呈现爆炸式增长的态势。由于互联网内容的大规模、异质多元、组织结构松散的特点，给人们有效获取信息和知识提出了挑战。 知识图谱（Knowledge Graph）以其强大的语义处理能力和开放组织能力，为互联网时代的知识化组织和智能应用奠定了基础。 知识图谱是知识工程的一个分支，以知识工程中语义网络作为理论基础，并且结合了机器学习，自然语言处理和知识表示和推理的最新成果，在大">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlR9F4XsFX9fHSXmzRfR6jpvAJcr1SyHwGicR7vRfU9iaK2YENMzQ6MdNw/640?wx_fmt=png">
+<meta property="og:image" content="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlNhtic5dS1nTF84Ka36GiaG0KwbUF9LH2qyTEwfoRjttN0AL56iaZHRztQ/640?wx_fmt=png">
+<meta property="og:image" content="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlIU7JUUKULcJg3VrB0f4GdR77RzpC767jjBsgXSmYib5zHm0TJsTGAQA/640?wx_fmt=png">
+<meta property="og:image" content="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlXZ8WotiaAMMdiclDib8fianE4otfq2pY7A1efL2aVM1TyeLQvSzKejI74w/640?wx_fmt=png">
+<meta property="og:image" content="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIld8Xx74zYNC1fMXRAoicEAFj4kkEHDvKjhxELUgib2SsHaBhYPs5qV6iaw/640?wx_fmt=png">
+<meta property="og:image" content="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlLRRZLK9emjj89VQfa209Vf0q90d8TvicQHibpwdqgxThIxfvmZicT2OrQ/640?wx_fmt=png">
+<meta property="og:image" content="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlAvmGNiajAYR9RXBMcEoOGwYm1NWVSg1ux7fZQoX5affPCJQA1QVicibag/640?wx_fmt=png">
+<meta property="og:image" content="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlABTG3K16ibLUxKE76U0ta4hLHtGat2xibx2lhricwSYU3icvHcI26lNvVQ/640?wx_fmt=png">
+<meta property="og:image" content="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlXOkdDmicpsZDBKuZJMDb6yqYtHgz6BbP3zf7ZpnxQpa716qYFjRNAMQ/640?wx_fmt=png">
+<meta property="og:updated_time" content="2018-07-11T02:01:22.292Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="知识图谱在人工智能中的应用">
+<meta name="twitter:description" content="随着互联网的发展，网络数据内容呈现爆炸式增长的态势。由于互联网内容的大规模、异质多元、组织结构松散的特点，给人们有效获取信息和知识提出了挑战。 知识图谱（Knowledge Graph）以其强大的语义处理能力和开放组织能力，为互联网时代的知识化组织和智能应用奠定了基础。 知识图谱是知识工程的一个分支，以知识工程中语义网络作为理论基础，并且结合了机器学习，自然语言处理和知识表示和推理的最新成果，在大">
+<meta name="twitter:image" content="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlR9F4XsFX9fHSXmzRfR6jpvAJcr1SyHwGicR7vRfU9iaK2YENMzQ6MdNw/640?wx_fmt=png">
+  
+    <link rel="alternate" href="/atom.xml" title="jianzhanger 的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">jianzhanger 的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-知识图谱在人工智能中的应用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/11/知识图谱在人工智能中的应用/" class="article-date">
+  <time datetime="2018-07-11T01:51:31.000Z" itemprop="datePublished">2018-07-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/转载/">转载</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      知识图谱在人工智能中的应用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>随着互联网的发展，网络数据内容呈现爆炸式增长的态势。由于互联网内容的大规模、异质多元、组织结构松散的特点，给人们有效获取信息和知识提出了挑战。</p>
+<p>知识图谱（Knowledge Graph）以其强大的语义处理能力和开放组织能力，为互联网时代的知识化组织和智能应用奠定了基础。</p>
+<p>知识图谱是知识工程的一个分支，以知识工程中语义网络作为理论基础，并且结合了机器学习，自然语言处理和知识表示和推理的最新成果，在大数据的推动下受到了业界和学术界的广泛关注。</p>
+<p>本文从知识图谱出发，分别浅述了知识图谱的基本概念、知识图谱与人工智能的关系、知识图谱构建技术、知识图谱的在行业中的典型应用，最后对目前的知识图谱技术做出总结并展望。<br><a id="more"></a></p>
+<h3 id="1-知识图谱（Knowledge-Graph）的基本概念"><a href="#1-知识图谱（Knowledge-Graph）的基本概念" class="headerlink" title="1. 知识图谱（Knowledge Graph）的基本概念"></a>1. 知识图谱（Knowledge Graph）的基本概念</h3><font color="#dd0000">知识图谱（Knowledge Graph），是结构化的语义知识库，用于以符号形式描述物理世界中的概念及其相互关系，其基本组成单位是『实体-关系-实体』三元组，以及实体及其相关属性-值对，实体之间通过关系相互联结，构成网状的知识结构。</font>
+
+<p>其中：</p>
+<ul>
+<li><p>实体：对应现实世界的语义本体</p>
+</li>
+<li><p>关系：对应本体间的关系，连接了不同类型的实体</p>
+</li>
+<li><p>属性：描述一类实体的 common 特性，实体被属性所标注</p>
+</li>
+</ul>
+<p>The world is not made of strings , but is made of things. 知识图谱旨在描述真实世界中存在的各种实体或概念。即知识图谱实现对客观世界从字符串描述到结构化语义描述，是对客观世界的知识映射（mapping world knowledge）。</p>
+<p><strong>知识图谱的核心：知识库</strong></p>
+<p>通过知识图谱，可以实现 Web 从网页链接向概念链接转变，支持用户按主题而不是字符串检索，从而实现真正的语义检索，基于知识图谱的搜索引擎，能够以图形方式向用户反馈结构化的知识，用户不必浏览大量网页，就可以准确定位和深度获取知识。</p>
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlR9F4XsFX9fHSXmzRfR6jpvAJcr1SyHwGicR7vRfU9iaK2YENMzQ6MdNw/640?wx_fmt=png" alt="640?wx_fmt=png"></p>
+<center>图1 知识图谱示例</center>
+
+<h3 id="2-知识图谱与人工智能的关系"><a href="#2-知识图谱与人工智能的关系" class="headerlink" title="2. 知识图谱与人工智能的关系"></a>2. 知识图谱与人工智能的关系</h3><p>知识图谱对于人工智能的重要价值在于，知识是人工智能的基石。机器可以模仿人类的视觉、听觉等感知能力，但这种感知能力不是人类的专属，动物也具备感知能力，甚至某些感知能力比人类更强，比如狗的嗅觉。</p>
+<p>而 “认知语言是人区别于其他动物的能力，同时，知识也使人不断地进步，不断地凝练、传承知识，是推动人不断进步的重要基础。” 而知识对于人工智能的价值就在于，让机器具备认知能力。</p>
+<p>知识对于 AI 的价值，有了知识的人工智能会变得更强大，可以做更多的事情。反过来，因为更强大的人工智能，可以帮我们更好地从客观世界中去挖掘、获取和沉淀知识，这些知识和人工智能系统形成正循环，两者共同进步。</p>
+<p>机器通过人工智能技术与用户的互动，从中获取数据、优化算法，更重要的是构建和完善知识图谱，认知和理解世界，进而服务于这个世界，让人类的生活更加美好。</p>
+<h3 id="3-知识图谱构建技术"><a href="#3-知识图谱构建技术" class="headerlink" title="3. 知识图谱构建技术"></a>3. 知识图谱构建技术</h3><p>目前知识大量存在于非结构化的文本数据、大量半结构化的表格和网页以及生产系统的结构化数据中。构建知识图谱的主要目的是获取大量的、让计算机可读的知识。</p>
+<p>为了阐述如何构建知识图谱，本节首先给出了构建知识图谱的技术图，如下图所示：</p>
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlNhtic5dS1nTF84Ka36GiaG0KwbUF9LH2qyTEwfoRjttN0AL56iaZHRztQ/640?wx_fmt=png" alt="640?wx_fmt=png"></p>
+<center>图2 构建知识图谱技术图</center>
+
+<p>整个技术图主要分为三个部分：</p>
+<ul>
+<li><p>知识获取：如何从非结构化、半结构化以及结构化数据中获取知识 ；</p>
+</li>
+<li><p>数据融合：如何将不同数据源获取的知识进行融合构建数据之间的关联；</p>
+</li>
+<li><p>知识计算及应用：基于知识图谱计算功能以及知识图谱的应用。</p>
+</li>
+</ul>
+<h4 id="3-1-知识获取"><a href="#3-1-知识获取" class="headerlink" title="3.1 知识获取"></a>3.1 知识获取</h4><p>在处理<strong>非结构化数据</strong>方面，常见的非结构化数据主要是文本类的文章，因此需要通过自然语言技术识别文章中的实体。常见的实体识别方法有两种，分别是：</p>
+<ul>
+<li><p>用户本身有一个知识库则可以使用实体链接到用户的知识库上；</p>
+</li>
+<li><p>当用户没有知识库则需要命名实体识别技术识别文章中的实体。</p>
+</li>
+</ul>
+<p>当用户获得实体后，则需要关注实体间的关系，即实体关系识别。其中有些实体关系识别的方法会利用到句法结构来帮助确定两个实体的关系，因此有些算法中会利用依存分析或者语义解析。</p>
+<p>如果用户不仅仅想获取实体间的关系，还想获取一个事件的详细内容，那么则需要确定事件的触发词并获取事件相应描述的句子，同时识别事件描述句子中实体对应事件的角色。</p>
+<p>在处理<strong>半结构化数据</strong>方面，主要的工作是通过包装器学习半结构化数据的抽取规则。</p>
+<p>由于半结构化数据具有大量的重复性的结构，因此对数据进行少量的标注，可以让机器学出一定的规则进而在整个站点下使用规则对同类型或者符合某种关系的数据进行抽取。</p>
+<p>最后当用户的数据存储在生产系统的数据库中时，需要通过 ETL 工具对用户生产系统下的数据进行重新组织、清洗、检测最后得到符合用户使用目的数据。</p>
+<h4 id="3-2-知识融合"><a href="#3-2-知识融合" class="headerlink" title="3.2 知识融合"></a>3.2 知识融合</h4><p>当知识从各个数据源下获取时需要提供统一的术语将各个数据源获取的知识融合成一个庞大的知识库。</p>
+<p>提供统一术语的结构或者数据被称为<strong>本体</strong>，本体不仅提供了统一的术语字典，还构建了各个术语间的关系以及限制。本体可以让用户非常方便和灵活的根据自己的业务建立或者修改数据模型。</p>
+<p>通过数据映射技术建立本体中术语和不同数据源抽取知识中词汇的映射关系，进而将不同数据源的数据融合在一起。</p>
+<p>同时不同源的实体可能会指向现实世界的同一个客体，这时需要使用实体匹配将不同数据源相同客体的数据进行融合。</p>
+<p>不同本体间也会存在某些术语描述同一类数据，那么对这些本体间则需要本体融合技术把不同的本体融合。最后融合而成的知识库需要一个存储、管理的解决方案。</p>
+<p>知识存储和管理的解决方案会根据用户查询场景的不同采用不同的存储架构如 NoSQL 或者关系数据库。同时大规模的知识库也符合大数据的特征，因此需要传统的大数据平台如 Spark 或者 Hadoop 提供高性能计算能力，支持快速运算。</p>
+<h4 id="3-3-知识计算及应用"><a href="#3-3-知识计算及应用" class="headerlink" title="3.3 知识计算及应用"></a>3.3 知识计算及应用</h4><p>知识计算主要是根据图谱提供的信息得到更多隐含的知识，如通过本体或者规则推理技术可以获取数据中存在的隐含知识；而链接预测则可预测实体间隐含的关系；同时使用社会计算的不同算法在知识网络上计算获取知识图谱上存在的社区，提供知识间关联的路径；通过不一致检测技术发现数据中的噪声和缺陷。</p>
+<p>通过知识计算知识图谱可以产生大量的智能应用如可以提供精确的用户画像为精准营销系统提供潜在的客户；</p>
+<p>提供领域知识给专家系统提供决策数据，给律师、医生、公司 CEO 等提供辅助决策的意见；</p>
+<p>提供更智能的检索方式，使用户可以通过自然语言进行搜索；当然知识图谱也是问答必不可少的重要组建。</p>
+<h3 id="4-知识图谱的在行业中的典型应用"><a href="#4-知识图谱的在行业中的典型应用" class="headerlink" title="4. 知识图谱的在行业中的典型应用"></a>4. 知识图谱的在行业中的典型应用</h3><p>目前，随着人工智能的不断发展，知识图谱已经在搜索引擎、聊天机器人、问答系统、临床决策支持等方面有了一些应用。</p>
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlIU7JUUKULcJg3VrB0f4GdR77RzpC767jjBsgXSmYib5zHm0TJsTGAQA/640?wx_fmt=png" alt="640?wx_fmt=png"></p>
+<center>图3 知识图谱在商业中的应用</center>
+
+<p>同时为了应对大数据应用的不同挑战，借助知识图谱，实现不同的业务需求。</p>
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlXZ8WotiaAMMdiclDib8fianE4otfq2pY7A1efL2aVM1TyeLQvSzKejI74w/640?wx_fmt=png" alt="640?wx_fmt=png"></p>
+<center>图4 知图谱助力数据分析实现商业智能</center>
+
+<h4 id="4-1-金融领域"><a href="#4-1-金融领域" class="headerlink" title="4.1 金融领域"></a>4.1 金融领域</h4><ul>
+<li>反欺诈</li>
+</ul>
+<p>通过融合来自不同数据源的信息构成知识图谱，同时引入领域专家建立业务专家规则。我们通过数据不一致性检测，利用绘制出的知识图谱可以识别潜在的欺诈风险。</p>
+<p>比如借款人 UserC 和借款人 UserA 填写信息为同事，但是两个人填写的公司名却不一样, 以及同一个电话号码属于两个借款人，这些不一致性很可能有欺诈行为 。</p>
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIld8Xx74zYNC1fMXRAoicEAFj4kkEHDvKjhxELUgib2SsHaBhYPs5qV6iaw/640?wx_fmt=png" alt="640?wx_fmt=png"></p>
+<center>图5 知图谱在反欺诈中的应用</center>
+
+<ul>
+<li>智能投顾</li>
+</ul>
+<p>通过知识图谱相关技术从招股书、年报、公司公告、券商研究报告、新闻等半结构化表格和非结构化文本数据中批量自动抽取公司的股东、子公司、供应商、客户、合作伙伴、竞争对手等信息，构建出公司的知识图谱。</p>
+<p>在某个宏观经济事件或者企业相关事件发生的时候，券商分析师、交易员、基金公司基金经理等投资研究人员可以通过此图谱做更深层次的分析和更好的投资决策。</p>
+<p>比如在美国限制向中兴通讯出口的消息发布之后，如果我们有中兴通讯的客户供应商、合作伙伴以及竞争对手的关系图谱，就能在中兴通讯停牌的情况下快速地筛选出受影响的国际国内上市公司从而挖掘投资机会或者进行投资组合风险控制。</p>
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlLRRZLK9emjj89VQfa209Vf0q90d8TvicQHibpwdqgxThIxfvmZicT2OrQ/640?wx_fmt=png" alt="640?wx_fmt=png"></p>
+<center>图6 知图谱在智能投顾中的应用</center>
+
+<h4 id="4-2-商业搜索引擎的应用：如百度、搜狗等，国外谷歌"><a href="#4-2-商业搜索引擎的应用：如百度、搜狗等，国外谷歌" class="headerlink" title="4.2 商业搜索引擎的应用：如百度、搜狗等，国外谷歌"></a>4.2 商业搜索引擎的应用：如百度、搜狗等，国外谷歌</h4><ul>
+<li>查询理解</li>
+</ul>
+<p>搜索引擎借助知识图谱来识别查询中涉及到的实体（概念）及其属性等，并根据实体的重要性展现相应的知识卡片。</p>
+<p>搜索引擎并非展现实体的全部属性，而是根据当前输入的查询自动选择最相关的属性及属性值来显示。</p>
+<p>此外，搜索引擎仅当知识卡片所涉及的知识的正确性很高（通常超过 95%，甚至达到 99%）时，才会展现。当要展现的实体被选中之后，利用相关实体挖掘来推荐其他用户可能感兴趣的实体供进一步浏览。</p>
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlAvmGNiajAYR9RXBMcEoOGwYm1NWVSg1ux7fZQoX5affPCJQA1QVicibag/640?wx_fmt=png" alt="640?wx_fmt=png"></p>
+<center>图7 知图谱在搜索引擎（百度）中的应用</center>
+
+<h4 id="4-3-问答系统的应用：苹果的-Siri"><a href="#4-3-问答系统的应用：苹果的-Siri" class="headerlink" title="4.3 问答系统的应用：苹果的 Siri"></a>4.3 问答系统的应用：苹果的 Siri</h4><p>自动问答目前也是一个非常热门的方向，这可能是面向应用最直接的方式，目前不管是学术界还是工业界都在做相关的研究，这里有两个例子，左边是百度的度秘，右边是苹果的 Siri，可以看到自然语言问答的结果。</p>
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlABTG3K16ibLUxKE76U0ta4hLHtGat2xibx2lhricwSYU3icvHcI26lNvVQ/640?wx_fmt=png" alt="640?wx_fmt=png"></p>
+<center>图8 知图谱在问答系统中的应用</center>
+
+<h4 id="4-4-社交网络运用：FB"><a href="#4-4-社交网络运用：FB" class="headerlink" title="4.4 社交网络运用：FB"></a>4.4 社交网络运用：FB</h4><p>社交网站 Facebook 于 2013 年推出了 GraphSearch 产品，其核心技术就是通过知识图谱将人、地点、事情等联系在一起，并以直观的方式支持精确的自然语言查询。</p>
+<p>例如输入查询式：“我朋友喜欢的餐厅”“住在纽约并且喜欢篮球和中国电影的朋友”等，知识图谱会帮助用户在庞大的社交网络中找到与自己最具相关性的人、照片、地点和兴趣等。</p>
+<p>Graph Search 提供的上述服务贴近个人的生活，满足了用户发现知识以及寻找最具相关性的人的需求。</p>
+<p>其中主要功能就是<strong>兴趣推荐</strong>和<strong>用户聚类</strong>。</p>
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/0vU1ia3htaaMuUibzXmF4xKgxkCM3k1wIlXOkdDmicpsZDBKuZJMDb6yqYtHgz6BbP3zf7ZpnxQpa716qYFjRNAMQ/640?wx_fmt=png" alt="640?wx_fmt=png"></p>
+<center>图9 知识图谱在社交领域中的应用</center>
+
+<h4 id="4-5-电商平台运用：淘宝"><a href="#4-5-电商平台运用：淘宝" class="headerlink" title="4.5 电商平台运用：淘宝"></a>4.5 电商平台运用：淘宝</h4><p>电商网站的主要目的之一就是通过对商品的文字描述、图片展示、相关信息罗列等可视化的知识展现，为消费者提供最满意的购物服务与体验。通过知识图谱，可以提升电商平台的技术性、易用性、交互性等影响用户体验的因素。</p>
+<p>阿里巴巴是应用知识图谱的代表电商网站之一，它旗下的一淘网不仅包含了淘宝数亿的商品，更建立了商品间关联的信息以及从互联网抽取的相关信息，通过整合所有信息，形成了阿里巴巴知识库和产品库，构建了它自身的知识图谱。</p>
+<p>当用户输入关键词查看商品时，知识图谱会为用户提供此次购物方面最相关的信息，包括整合后分类罗列的商品结果、使用建议、搭配等。</p>
+<h4 id="4-6-其他领域"><a href="#4-6-其他领域" class="headerlink" title="4.6 其他领域"></a>4.6 其他领域</h4><p>如教育科研，医疗，生物医疗以及需要进行大数据分析的一些行业。这些行业对整合性和关联性的资源需求迫切，知识图谱可以为其提供更加精确规范的行业数据以及丰富的表达，帮助用户更加便捷地获取行业知识。</p>
+<h3 id="5-知识图谱的总结与展望"><a href="#5-知识图谱的总结与展望" class="headerlink" title="5. 知识图谱的总结与展望"></a>5. 知识图谱的总结与展望</h3><p>知识图谱是知识工程的一个分支，以知识工程中语义网络作为理论基础，并且结合了机器学习，自然语言处理和知识表示和推理的最新成果，在大数据的推动下受到了业界和学术界的广泛关注。</p>
+<p>知识图谱对于解决大数据中文本分析和图像理解问题发挥重要作用。</p>
+<p>当前知识图谱发展还处于初级阶段，面临众多挑战和难题，如：知识库的自动扩展、异构知识处理、推理规则学习、跨语言检索等。</p>
+<p>知识图谱的构建是多学科的结合，需要知识库、自然语言理解，机器学习和数据挖掘等多方面知识的融合。有很多开放性问题需要学术界和业界一起解决。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/11/知识图谱在人工智能中的应用/" data-id="cjjy2chhi001crotiv4slmoe8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/人工智能/">人工智能</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/12/什么是-Serverless-架构？/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          什么是 Serverless 架构？
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/06/Oracle常用语句合集/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Oracle常用语句合集</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/原创/">原创</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品经理/">产品经理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像识别/">图像识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应急/">应急</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物联网/">物联网</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 20px;">Git</a> <a href="/tags/产品经理/" style="font-size: 10px;">产品经理</a> <a href="/tags/人工智能/" style="font-size: 10px;">人工智能</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/图像识别/" style="font-size: 10px;">图像识别</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/应急/" style="font-size: 10px;">应急</a> <a href="/tags/微服务/" style="font-size: 20px;">微服务</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/物联网/" style="font-size: 10px;">物联网</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/23/以YouTube产品为例：为你解读交互7大定律/">以YouTube产品为例：为你解读交互7大定律</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/12/Serverless-的适用场景/">Serverless 的适用场景</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/12/Serverless-架构的优缺点/">Serverless 架构的优缺点</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/12/什么是-Serverless-架构？/">什么是 Serverless 架构？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/11/知识图谱在人工智能中的应用/">知识图谱在人工智能中的应用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 jianzhanger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
