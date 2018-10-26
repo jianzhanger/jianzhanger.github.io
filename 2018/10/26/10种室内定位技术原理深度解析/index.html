@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>10种室内定位技术原理深度解析 | jianzhanger 的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1  起源人类为了不让自己迷失在茫茫大自然中，先后发明罗盘、指南针等工具，卫星定位的问世，解决了“我在哪里”的问题。在高度城市化的今天，室内空间越来越庞大复杂。人类战胜了大自然，却在自己构筑的钢筋水泥中迷了路。">
+<meta name="keywords" content="物联网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10种室内定位技术原理深度解析">
+<meta property="og:url" content="http://yoursite.com/2018/10/26/10种室内定位技术原理深度解析/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="1  起源人类为了不让自己迷失在茫茫大自然中，先后发明罗盘、指南针等工具，卫星定位的问世，解决了“我在哪里”的问题。在高度城市化的今天，室内空间越来越庞大复杂。人类战胜了大自然，却在自己构筑的钢筋水泥中迷了路。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/091945J45-1.gif">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/0919454451-2.gif">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/0919455420-3.png">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/0919455312-4.gif">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/091945AT-5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/10/26/10种室内定位技术原理深度解析/01.png">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/091945J50-6.jpg">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/0919453029-7.jpg">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/09194541W-8.jpg">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/09194541S-9.jpg">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/0919455C4-10.gif">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/09194535X-11.jpg">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/0919453124-12.jpg">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/0919454105-13.jpg">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/0919454M2-14.jpg">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/0919455U2-15.png">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/0919452318-16.png">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/0919454C5-17.png">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/0919452135-18.gif">
+<meta property="og:image" content="http://yoursite.com/2018/10/26/10种室内定位技术原理深度解析/02.png">
+<meta property="og:image" content="http://www.elecfans.com/uploads/allimg/171126/091945J54-19.jpg">
+<meta property="og:updated_time" content="2018-10-26T07:03:33.173Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10种室内定位技术原理深度解析">
+<meta name="twitter:description" content="1  起源人类为了不让自己迷失在茫茫大自然中，先后发明罗盘、指南针等工具，卫星定位的问世，解决了“我在哪里”的问题。在高度城市化的今天，室内空间越来越庞大复杂。人类战胜了大自然，却在自己构筑的钢筋水泥中迷了路。">
+<meta name="twitter:image" content="http://www.elecfans.com/uploads/allimg/171126/091945J45-1.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="jianzhanger 的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">jianzhanger 的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-10种室内定位技术原理深度解析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/26/10种室内定位技术原理深度解析/" class="article-date">
+  <time datetime="2018-10-26T06:48:50.000Z" itemprop="datePublished">2018-10-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/转载/">转载</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      10种室内定位技术原理深度解析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1</strong></p>
+<p><strong><a href="http://www.elecfans.com/uploads/allimg/171126/091945J45-1.gif" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/091945J45-1.gif" alt=""></a></strong></p>
+<h3 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h3><p>人类为了不让自己迷失在茫茫大自然中，先后发明罗盘、指南针等工具，卫星定位的问世，解决了“我在哪里”的问题。在高度城市化的今天，室内空间越来越庞大复杂。人类战胜了大自然，却在自己构筑的钢筋水泥中迷了路。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/0919454451-2.gif" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/0919454451-2.gif" alt=""></a><br><a id="more"></a><br>在医院，即使有楼层分布图以及引导标志，但看病的大部分时间仍然会浪费在寻找科室上。在停车场，找不着停车位而四处乱转的人也比比皆是。</p>
+<p>在越来越迫切的需求下，近年室内定位引起了高度的关注。</p>
+<p>室内定位顾名思义就是在室内环境中实现定位。其意义，诺基亚在多年前阐述他们为什么要做室内定位时，把问题说得很明白了。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/0919455420-3.png" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/0919455420-3.png" alt=""></a></p>
+<p>数据来源：诺基亚</p>
+<p>卫星无法在室内定位，人们大部分的时间又在室内度过，而相关服务并未普及，可以说室内定位隐藏着巨大商机。</p>
+<p>商业应用中，根据不同的应用场景，室内定位技术又分消费级和工业级。</p>
+<p>消费市场应用有：商场导购、停车场反向寻车、家人防走散等。对定位精度要求不高，1m的精度已经可以满足大多数应用，不过它要求系统兼容现已普及的移动智能终端。</p>
+<p>企业市场应用有：人流监控和分析、智能制造、紧急救援和人员资产管理等。工业级技术的定位精度要求更高，要区分操作对象、人群中的个人等，与专用标签和<a href="http://www.elecfans.com/tags/%E4%BC%A0%E6%84%9F%E5%99%A8/" target="_blank" rel="noopener">传感器</a>配套使用，一般不考虑与现有智能终端的兼容性。</p>
+<p><strong>2</strong></p>
+<p><strong><a href="http://www.elecfans.com/uploads/allimg/171126/0919455312-4.gif" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/0919455312-4.gif" alt=""></a></strong></p>
+<h3 id="技术门派"><a href="#技术门派" class="headerlink" title="技术门派"></a>技术门派</h3><p>与室外卫星定位一统天下的情况不一样，室内定位各种技术呈现出百花齐放的场景。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/091945AT-5.jpg" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/091945AT-5.jpg" alt=""></a></p>
+<p>室内定位百花齐放</p>
+<p>室内定位的商业价值跟精度成正比。当精度是3-5米的时候，能判定你是站在7-11便利店门口还是杰克琼斯门口。当精度是1米的时候，则能判定你是站在可口可乐的货架前还是杜蕾斯的货架前。</p>
+<p>目前，室内定位常用的定位方法，从原理上来说，主要分为：邻近探测法、质心法、极点法、多边定位法、指纹法和航位推算法。</p>
+<p>主要室内定位方法对比</p>
+<p><img src="/2018/10/26/10种室内定位技术原理深度解析/01.png" alt="定位方法对比"></p>
+<p>各种原理各有优劣，在不同应用场景、不同预算要求下，也可将不同的原理组合使用。主流技术有以下几种：</p>
+<p><strong>WiFi定位技术</strong></p>
+<p>目前WiFi是相对成熟且应用较多的技术，这几年有不少公司投入到了这个领域。WiFi室内定位技术主要有两种。</p>
+<p>WiFi定位一般采用“近邻法”判断，即最靠近哪个热点或基站，即认为处在什么位置，如附近有多个信源，则可以通过交叉定位（三边定位），提高定位精度。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/091945J50-6.jpg" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/091945J50-6.jpg" alt=""></a></p>
+<p>由于WiFi已普及，因此不需要再铺设专门的设备用于定位。用户在使用智能手机时开启过<a href="http://www.elecfans.com/tags/wi-fi/" target="_blank" rel="noopener">Wi-Fi</a>、移动蜂窝网络，就可能成为数据源。该技术具有便于扩展、可自动更新数据、成本低的优势，因此最先实现了规模化。</p>
+<p>不过，WiFi热点受到周围环境的影响会比较大，精度较低。为了做得准一点有公司就做了WiFi指纹采集，事先记录巨量的确定位置点的信号强度，通过用新加入的设备的信号强度对比拥有巨量数据的数据库，来确定位置。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/0919453029-7.jpg" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/0919453029-7.jpg" alt=""></a></p>
+<p>由于采集工作需要大量的人员来进行，并且要定期进行维护，技术难以扩展，很少有公司能把国内的这么多商场定期的更新指纹数据。</p>
+<p>WiFi定位可以实现复杂的大范围定位，但精度只能达到2米左右，无法做到精准定位。因此适用于对人或者车的定位导航，可以于医疗机构、主题公园、工厂、商场等各种需要定位导航的场合。</p>
+<p><strong>代表公司有：WIFISLAM、Sensewhere、图聚智能</strong></p>
+<p>另，地磁定位技术是利用室内不同位置的地磁场差异，来确定室内位置。与WiFi指纹类似，故不再作介绍。</p>
+<p><strong>惯性导航技术</strong></p>
+<p>这是一种纯客户端的技术，主要利用终端惯性传感器采集的运动数据，如加速度传感器、<a href="http://www.elecfans.com/tags/%E9%99%80%E8%9E%BA%E4%BB%AA/" target="_blank" rel="noopener">陀螺仪</a>等测量物体的速度、方向、加速度等信息，基于航位推测法，经过各种运算得到物体的位置信息。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/09194541W-8.jpg" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/09194541W-8.jpg" alt=""></a></p>
+<p>随着行走时间增加，惯性导航定位的误差也在不断累积。需要外界更高精度的数据源对其进行校准。所以现在惯性导航一般和WiFi指纹结合在一起， 每过一段时间通过WiFi请求室内位置，以此来对MEMS产生的误差进行修正。该技术目前的商用得也比较成熟，在扫地机器人中得到广泛应用。</p>
+<p><strong><a href="http://www.elecfans.com/tags/%E8%93%9D%E7%89%99/" target="_blank" rel="noopener">蓝牙</a>信标技术</strong></p>
+<p>蓝牙信标技术目前部署的也比较多，也是相对比较成熟的技术。蓝牙跟WiFi的区别不是太大，精度会比WiFi稍微高一点。</p>
+<p>该技术最先由诺基亚最先发起，但影响不大。2013年，苹果发布了基于蓝牙4.0低功耗协议（BLE）的iBeacon协议，主要针对零售业应用，引起广泛关注。</p>
+<p>iBeacon蓝牙信标技术的正常运作，需要蓝牙信标硬件、智能终端上的应用、云端上的应用后台协同工作。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/09194541S-9.jpg" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/09194541S-9.jpg" alt=""></a></p>
+<p>信标通过蓝牙向周围广播自身的ID，终端上的应用在获得附近信标的ID后会采取相应行动，如从云端后台拉取此ID对应的位置信息、营销资讯等。终端可以测量其所在处的接收信号强度，以此估算与信标间的距离。因此，只要终端附近有三个或以上信标，就可以用三边定位方法计算出终端的位置。</p>
+<p>在苹果强大的号召力影响下，大量创业公司争先恐后涌入iBeacon应用的开发和推广。目前主要问题在于beacon电池更换，如果一个厂家部署了几万个beacon装置，一年之后或者电池耗尽之后的电池更换工作量是很繁重的。</p>
+<p><strong>代表公司：Es<a href="http://www.elecfans.com/tags/%E5%BE%B7%E5%B7%9E%E4%BB%AA%E5%99%A8/" target="_blank" rel="noopener">ti</a>mo<a href="http://www.elecfans.com/tags/te/" target="_blank" rel="noopener">te</a>、寻息电子</strong></p>
+<p>另，<a href="http://www.elecfans.com/tags/zigbee/" target="_blank" rel="noopener">ZigBee</a>技术和蓝牙类似，故不再作介绍。</p>
+<p><strong><a href="http://www.elecfans.com/tags/rfid/" target="_blank" rel="noopener">RFID</a>技术</strong></p>
+<p>RFID定位的基本原理是，通过一组固定的阅读器读取目标RFID标签的特征信息（如身份ID、接收信号强度等），同样可以采用近邻法、多边定位法、接收信号强度等方法确定标签所在位置。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/0919455C4-10.gif" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/0919455C4-10.gif" alt=""></a></p>
+<p>射频识别室内定位技术作用距离很近，但它可以在几毫秒内得到厘米级定位精度的信息，且由于电磁场非视距等优点，传输范围很大，而且标识的体积比较小，造价比较低。但其不具有通信能力，抗干扰能力较差，不便于整合到其他系统之中，且用户的安全隐私保障和国际标准化都不够完善。</p>
+<p>目前有大量成熟的商用定位方案基于RFID技术，广泛应用于紧急救援、资产管理、人员追踪等领域。</p>
+<p><strong>红外技术</strong></p>
+<p>红外定位主要有两种具体实现方法，一种是将定位对象附上一个会发射红外线的电子标签，通过室内安放的多个红外传感器测量信号源的距离或角度，从而计算出对象所在的位置。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/09194535X-11.jpg" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/09194535X-11.jpg" alt=""></a></p>
+<p>这种方法在空旷的室内容易实现较高精度，可实现对红外辐射源的被动定位，但红外很容易被障碍物遮挡，传输距离也不长，因此需要大量密集部署传感器，造成较高的硬件和施工成本。此外红外易受热源、灯光等干扰，造成定位精度和准确度下降。</p>
+<p>该技术目前主要用于军事上对飞行器、坦克、导弹等红外辐射源的被动定位，此外也用于室内自走机器人的位置定位。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/0919453124-12.jpg" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/0919453124-12.jpg" alt=""></a></p>
+<p>另一种红外定位的方法是红外织网，即通过多对发射器和接收器织成的红外线网覆盖待测空间，直接对运动目标进行定位。</p>
+<p>这种方式的优势在于不需要定位对象携带任何终端或标签，隐蔽性强，常用于安防领域。劣势在于要实现精度较高的定位需要部署大量红外接收和发射器，成本非常高，因此只有高等级的安防才会采用此技术。</p>
+<p><strong>超声波技术</strong></p>
+<p>超声波定位主要采用反射式测距法，通过多边定位等方法确定物体位置，系统由一个主测距器和若干接收器组成，主测距仪可放置在待测目标上，接收器固定于室内环境中。定位时，向接收器发射同频率的信号，接收器接收后又反射传输给主测距器，根据回波和发射波的时间差计算出距离，从而确定位置。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/0919454105-13.jpg" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/0919454105-13.jpg" alt=""></a></p>
+<p>超声波定位整体定位精度较高，结构简单，但超声波受多径效应和非视距传播影响很大，且超声波频率受多普勒效应和温度影响，同时也需要大量基础硬件设施，成本较高。</p>
+<p><strong>代表公司：Shopkick</strong></p>
+<p><strong>超宽带技术</strong></p>
+<p>超宽带（UWB）定位技术利用事先布置好的已知位置的锚节点和桥节点，与新加入的盲节点进行通讯，并利用三角定位或者“指纹”定位方式来确定位置。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/0919454M2-14.jpg" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/0919454M2-14.jpg" alt=""></a></p>
+<p>从技术上看，无论是从定位精度、安全性、抗干扰、功耗等角度来分析，UWB无疑是最理想的工业定位技术之一。</p>
+<p>UWB其他几种技术的综合比较：</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/0919455U2-15.png" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/0919455U2-15.png" alt=""></a></p>
+<p>不过UWB的劣势也很突出，一方面难以实现大范围室内覆盖，另一方面系统建设成本远高于RFID、蓝牙信标等技术，这也限制了该技术的推广和普及。</p>
+<p><strong>代表公司：Ubisense、中海达子公司联睿电子、清华系公司清研讯科。</strong></p>
+<p><strong>LED可见光技术</strong></p>
+<p>可见光是一个新兴领域，通过对每个LED灯进行编码，将ID调制在灯光上，灯会不断发射自己的ID，通过利用手机的前置摄像头来识别这些编码。利用所获取的识别信息在地图数据库中确定对应的位置信息，完成定位。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/0919452318-16.png" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/0919452318-16.png" alt=""></a></p>
+<p>根据灯光到达的角度进一步细化定位的结果，<a href="http://www.elecfans.com/tags/%E9%AB%98%E9%80%9A/" target="_blank" rel="noopener">高通</a>公司做到了厘米级定位精度。由于不需要额外部署基础设施，终端数量的扩大对性能没有任何的影响，并且可以达到一个非常高的精度，该技术被高通公司所看好。</p>
+<p>目前，可见光技术在北美有很多商场已经在部署。用户下载应用后，到达商场里的某一个货架，通过检测货架周围的灯光即可知晓具体位置，商家在通过这样的方法向消费者推动商品的折扣等信息。</p>
+<p><strong>代表企业：华策光通信</strong></p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/0919454C5-17.png" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/0919454C5-17.png" alt=""></a></p>
+<p><strong>3</strong></p>
+<p><strong><a href="http://www.elecfans.com/uploads/allimg/171126/0919452135-18.gif" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/0919452135-18.gif" alt=""></a></strong></p>
+<h3 id="技术融合是趋势"><a href="#技术融合是趋势" class="headerlink" title="技术融合是趋势"></a>技术融合是趋势</h3><p>室内定位技术处在不断的发展中，是当前热门研究领域，有着良好的应用前景。不过，当前还缺乏特别大规模的商用案例。行业主要存在以下难点：</p>
+<p><strong>1. 室内环境复杂</strong></p>
+<p>室内环境布局复杂多变，障碍物很多，包括家具、房间和行人等。同时室内环境干扰源多，灯光、温度、声音等干扰源都会对定位造成一定影响。</p>
+<p>各技术综合比较</p>
+<p><img src="/2018/10/26/10种室内定位技术原理深度解析/02.png" alt="各技术综合比较"></p>
+<p><strong>2. 缺乏统一的规范</strong></p>
+<p>室内定位技术众多，各种技术都有自己的局限性，彼此间又在一定程度上存在互相竞争。市场相对混乱，极大地影响了室内定位行业的发展。如室外定位卫星定位成为事实上的标准，目前没有其他技术可以和卫星定位进行竞争。</p>
+<p><strong>3. 精度与成本难以兼顾</strong></p>
+<p>目前的高精度室内定位技术均需要比较昂贵的额外辅助设备或前期大量的人工处理，这些都大大制约了技术的推广普及。低成本的定位技术则在定位精度上需要提高。在提供高精度定位的基础上降低成本也是室内定位的一个方向。</p>
+<p><a href="http://www.elecfans.com/uploads/allimg/171126/091945J54-19.jpg" target="_blank" rel="noopener"><img src="http://www.elecfans.com/uploads/allimg/171126/091945J54-19.jpg" alt=""></a></p>
+<p>天下大势，分久必合，合久必分。目前，室内定位技术实在太多，已严重阻碍行业发展，未来的趋势一定是多种技术融合使用，实现优势互补，以面对复杂环境。其中成本越低、兼容性越好、精度越高的技术越容易普及。</p>
+<p>原文地址：<a href="http://www.elecfans.com/d/586741.html" target="_blank" rel="noopener">http://www.elecfans.com/d/586741.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/10/26/10种室内定位技术原理深度解析/" data-id="cjnporn8w0003a4tircm6oavy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/物联网/">物联网</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/25/2018年最值得关注的15大技术趋势/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2018年最值得关注的15大技术趋势</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/原创/">原创</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品经理/">产品经理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像识别/">图像识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应急/">应急</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物联网/">物联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科普阅读/">科普阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动开发/">移动开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 17.5px;">Git</a> <a href="/tags/产品经理/" style="font-size: 12.5px;">产品经理</a> <a href="/tags/人工智能/" style="font-size: 10px;">人工智能</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/图像识别/" style="font-size: 10px;">图像识别</a> <a href="/tags/大数据/" style="font-size: 12.5px;">大数据</a> <a href="/tags/应急/" style="font-size: 10px;">应急</a> <a href="/tags/微服务/" style="font-size: 20px;">微服务</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/物联网/" style="font-size: 15px;">物联网</a> <a href="/tags/科普阅读/" style="font-size: 10px;">科普阅读</a> <a href="/tags/移动开发/" style="font-size: 10px;">移动开发</a> <a href="/tags/系统架构/" style="font-size: 12.5px;">系统架构</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/10/26/10种室内定位技术原理深度解析/">10种室内定位技术原理深度解析</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/25/2018年最值得关注的15大技术趋势/">2018年最值得关注的15大技术趋势</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/22/大数据工程师必备技能（转载）/">大数据工程师必备技能（转载）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/28/假如有1亿用户的访问量-你的服务器架构是怎样的/">假如有1亿用户的访问量,你的服务器架构是怎样的</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/27/从单机到2000万QPS：如何搭建高可用Redis平台/">从单机到2000万QPS：如何搭建高可用Redis平台</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 jianzhanger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

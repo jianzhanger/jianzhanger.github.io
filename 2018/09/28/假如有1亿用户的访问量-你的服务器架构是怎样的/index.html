@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>假如有1亿用户的访问量,你的服务器架构是怎样的 | jianzhanger 的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我们以淘宝架构为例，了解下大型电商项目的服务端架构是怎样的，如图1所示： 上面是一些安全体系系统，如数据安全体系、应用安全体系、前端安全体系等。中间是业务运营服务系统，如会员服务、商品服务、店铺服务、交易服务等。还有共享业务，如分布式数据层、数据分析服务、配置服务、数据搜索服务等。最下面是中间件服务，如MQS即队列服务，OCS即缓存服务等。 图中也有一些看不到，例如高可用的体现、实现双机房容灾和异">
+<meta name="keywords" content="系统架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="假如有1亿用户的访问量,你的服务器架构是怎样的">
+<meta property="og:url" content="http://yoursite.com/2018/09/28/假如有1亿用户的访问量-你的服务器架构是怎样的/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="我们以淘宝架构为例，了解下大型电商项目的服务端架构是怎样的，如图1所示： 上面是一些安全体系系统，如数据安全体系、应用安全体系、前端安全体系等。中间是业务运营服务系统，如会员服务、商品服务、店铺服务、交易服务等。还有共享业务，如分布式数据层、数据分析服务、配置服务、数据搜索服务等。最下面是中间件服务，如MQS即队列服务，OCS即缓存服务等。 图中也有一些看不到，例如高可用的体现、实现双机房容灾和异">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://s3.51cto.com/oss/201809/28/fb7aaa44433103f4ce10a5666994b912.jpeg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201809/28/c384331f1705fee3287b0f703f38defc.jpeg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201809/28/8cb357bd58b77d24a94a017f28b51aaa.jpeg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201809/28/e7e60c54105b29e4da72b6b039921062.jpeg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201809/28/03a119c5a3decdb6e5bfbd46e4edab25.jpeg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201809/28/a6733109939500f5645fb149a2899d52.jpeg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201809/28/f2eafb0f10cab28d1f78fe3aa5796da6.jpeg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201809/28/29a13f7139949cfcc797fbbaa368a2a3.jpeg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201809/28/afcbaf1989859ea6e5689787ae616f3d.jpeg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201809/28/9b6fc3e509ee6f6b0d41ac532d83225a.jpeg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201809/28/c749a3c5863b417b8612791a5055c290.jpeg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201809/28/5f677161a6af2b65e53a815bc2071aa7.jpeg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201809/28/a521c7a94b4c19768ced766e453e6788.jpeg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201809/28/87723ed760a1b81962949b6757e099f4.jpeg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201809/28/71e56768bebce092c94726da693e123d.jpeg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201809/28/97271280e93e510abc0717b370740fc8.jpeg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201809/28/0cb238821fabe21429110bc39c1105d0.jpeg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201809/28/fb6fe1668eb7c2d5086f1123310da3fa.jpeg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201809/28/97b39fde63ca219231d9cc14a454c75d.jpeg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201809/28/881e578e6cd663be59a5bece835581ba.jpeg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201809/28/6b8c00b25c53faddc49de029c036ac0f.jpeg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201809/28/7c25855b8902747e1b22cc2995e87684.jpeg">
+<meta property="og:updated_time" content="2018-09-28T08:55:38.474Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="假如有1亿用户的访问量,你的服务器架构是怎样的">
+<meta name="twitter:description" content="我们以淘宝架构为例，了解下大型电商项目的服务端架构是怎样的，如图1所示： 上面是一些安全体系系统，如数据安全体系、应用安全体系、前端安全体系等。中间是业务运营服务系统，如会员服务、商品服务、店铺服务、交易服务等。还有共享业务，如分布式数据层、数据分析服务、配置服务、数据搜索服务等。最下面是中间件服务，如MQS即队列服务，OCS即缓存服务等。 图中也有一些看不到，例如高可用的体现、实现双机房容灾和异">
+<meta name="twitter:image" content="http://s3.51cto.com/oss/201809/28/fb7aaa44433103f4ce10a5666994b912.jpeg">
+  
+    <link rel="alternate" href="/atom.xml" title="jianzhanger 的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">jianzhanger 的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-假如有1亿用户的访问量-你的服务器架构是怎样的" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/28/假如有1亿用户的访问量-你的服务器架构是怎样的/" class="article-date">
+  <time datetime="2018-09-28T08:45:53.000Z" itemprop="datePublished">2018-09-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/转载/">转载</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      假如有1亿用户的访问量,你的服务器架构是怎样的
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们以淘宝架构为例，了解下大型电商项目的服务端架构是怎样的，如图1所示：</p>
+<p>上面是一些安全体系系统，如数据安全体系、应用安全体系、前端安全体系等。中间是业务运营服务系统，如会员服务、商品服务、店铺服务、交易服务等。还有共享业务，如分布式数据层、数据分析服务、配置服务、数据搜索服务等。最下面是中间件服务，如MQS即队列服务，OCS即缓存服务等。</p>
+<p>图中也有一些看不到，例如高可用的体现、实现双机房容灾和异地机房单元化部署，为淘宝业务提供稳定、高效和易于维护的基础架构支撑。</p>
+<p><img src="http://s3.51cto.com/oss/201809/28/fb7aaa44433103f4ce10a5666994b912.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？"><br><a id="more"></a></p>
+<center>图1</center>
+
+<p>这是一个含金量非常高的架构，也是一个非常复杂而庞大的架构。当然这个架构不是一天两天演进而成，也不是一上来就设计并开发成这么高大上的。</p>
+<p>这边我想说的是，小型公司要怎么做架构呢?对很多创业公司而言，很难在初期就预估到流量十倍、百倍以及千倍以后的网站架构会是一个怎样的状况。同时，如果系统初期就设计一个千万级并发的流量架构，也很难有公司可以支撑这个成本。</p>
+<p>因此，一个大型服务系统都是从一步一步走过来的，在每个阶段，找到对应该阶段网站架构所面临的问题，然后在不断解决这些问题，在这个过程中整个架构会一直演进。</p>
+<p><strong>一、单服务器-俗称all in one</strong></p>
+<p><img src="http://s3.51cto.com/oss/201809/28/c384331f1705fee3287b0f703f38defc.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p>从一个小网站说起。一台服务器也就足够了。文件服务器，数据库，还有应用都部署在一台机器，俗称ALL IN ONE。</p>
+<p>随着我们用户越来越多，访问越来越大，硬盘、CPU、内存等都开始吃紧，一台服务器已经满足不了。这时看到下一步演进。</p>
+<p><strong>二、数据服务与应用服务分离</strong></p>
+<p><img src="http://s1.51cto.com/oss/201809/28/8cb357bd58b77d24a94a017f28b51aaa.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？"></p>
+<p><img src="http://s3.51cto.com/oss/201809/28/e7e60c54105b29e4da72b6b039921062.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p><strong>三、使用缓存</strong></p>
+<p>包括本地缓存、远程缓存、远程分布式缓存。</p>
+<p><img src="http://s2.51cto.com/oss/201809/28/03a119c5a3decdb6e5bfbd46e4edab25.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p>因为 80% 的业务访问都集中在 20% 的数据上，也就是我们经常说的28法则。如果能将这部分数据缓存下来，性能一下子就上来了。而缓存又分为两种：本地缓存和远程缓存缓存，以及远程分布式缓存，我们这里面的远程缓存图上画的是分布式的缓存集群(Cluster)。</p>
+<p>思考的点</p>
+<ul>
+<li>具有哪种业务特点数据使用缓存?</li>
+<li>具有哪种业务特点的数据使用本地缓存?</li>
+<li>具有哪种务特点的数据使用远程缓存?</li>
+<li>分布式缓存在扩容时会碰到什么问题?如何解决?分布式缓存的算法都有哪几种?各有什么优缺点?</li>
+</ul>
+<p><img src="http://s3.51cto.com/oss/201809/28/a6733109939500f5645fb149a2899d52.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？"></p>
+<p><strong>四、使用负载均衡，进行服务器集群</strong></p>
+<p><img src="http://s2.51cto.com/oss/201809/28/f2eafb0f10cab28d1f78fe3aa5796da6.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？"></p>
+<p>增加了负载均衡、服务器集群之后，我们可以横向扩展服务器，解决了服务器处理能力的瓶颈。</p>
+<p>思考的点</p>
+<ul>
+<li>负载均衡的调度策略都有哪些?</li>
+<li>各有什么优缺点?</li>
+<li>各适合什么场景?</li>
+</ul>
+<p>打个比方，我们有轮询、权重、地址散列，地址散列又分为原ip地址散列hash、目标ip地址散列hash，最少连接，加权最少连接，还有继续升级的很多种策略……我们都来分析一下。</p>
+<p><strong>典型负载均衡策略分析</strong></p>
+<ul>
+<li>轮询：优点-实现简单，缺点-不考虑每台服务器处理能力</li>
+<li>权重：优点-考虑了服务器处理能力的不同</li>
+<li>地址散列：优点-能实现同一个用户访问同一个服务器</li>
+<li>最少连接：优点-使集群中各个服务器负载更加均匀</li>
+<li>加权最少连接：在最少连接的基础上，为每台服务器加上权值。算法为(活动连接数*256+非活动连接数)/权重，计算出来的值小的服务器优先被选择。</li>
+</ul>
+<p><strong>继续引出问题的场景</strong></p>
+<p><img src="http://s2.51cto.com/oss/201809/28/29a13f7139949cfcc797fbbaa368a2a3.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p><strong>Session管理-Session Sticky粘滞会话</strong></p>
+<p><img src="http://s4.51cto.com/oss/201809/28/afcbaf1989859ea6e5689787ae616f3d.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p>打个比方，如果我们每次吃饭都要保证用的是自己的碗筷，只要我们在一家饭店里存着自己的碗筷，并且每次去这家饭店吃饭就好了。</p>
+<p>对于同一个连接中的数据包，负载均衡会将其转发至后端固定的服务器进行处理。</p>
+<p>解决了我们session共享的问题，但是它有什么缺点呢?</p>
+<p>一台服务器运行的服务挂掉，或者重启，上面的 session 都没了。</p>
+<p>负载均衡器成了有状态的机器，为以后实现容灾造成了羁绊。</p>
+<p><strong>Session管理-Session 复制</strong></p>
+<p><img src="http://s5.51cto.com/oss/201809/28/9b6fc3e509ee6f6b0d41ac532d83225a.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p>就像我们在所有的饭店里都存一份自己的碗筷。这样随意去哪一家饭店吃饭都OK，不适合做大规模集群，适合机器不多的情况。</p>
+<p><strong>解决了我们session共享的问题，但是它有什么缺点呢?</strong></p>
+<p>应用服务器间带宽问题，因为需要不断同步session数据。</p>
+<p>大量用户在线时，服务器占用内存过多。</p>
+<p><strong>Session管理-基于Cookie</strong></p>
+<p><img src="http://s4.51cto.com/oss/201809/28/c749a3c5863b417b8612791a5055c290.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p>打个比方，就是我们每次去饭店吃饭，都带着自己的碗筷去。</p>
+<p>解决了我们session共享的问题，但是它有什么缺点呢?</p>
+<p>cookie 的长度限制。</p>
+<p>cookie存于浏览器，安全性是一个问题。</p>
+<p><strong>Session管理-Session 服务器</strong></p>
+<p><img src="http://s5.51cto.com/oss/201809/28/5f677161a6af2b65e53a815bc2071aa7.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p>打个比方，就是我们的碗筷都存在了一个庞大的橱柜里，我们去任何一家饭店吃饭，都可以从橱柜中拿到属于我们自己的碗筷。</p>
+<p>解决了我们session共享的问题，这种方案需要思考哪些问题呢?</p>
+<p><strong>保证 session 服务器的可用性，session服务器单点如何解决?</strong></p>
+<p>我们在写应用时需要做调整存储session的业务逻辑。</p>
+<p>打个比方，为了提高session server的可用性，我们可以继续给session server做集群。</p>
+<p><strong>五、中间总结</strong></p>
+<p>所以网站架构在遇到某些指标瓶颈、演进的过程中，都有哪些解决方案?它们都有什么优缺点?业务功能上如何取舍?如何做出选择?这个过程才是最重要的。</p>
+<p>在解决了横向扩展应用服务器之后，我们继续回到目前的架构图：</p>
+<p><img src="http://s2.51cto.com/oss/201809/28/a521c7a94b4c19768ced766e453e6788.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p>数据库的读及写操作都还需要经过数据库。当用户量达到一定量，数据库将会成为瓶颈。又该如何解决呢?</p>
+<p><strong>六、数据库读写分离</strong></p>
+<p><img src="http://s2.51cto.com/oss/201809/28/87723ed760a1b81962949b6757e099f4.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">   </p>
+<p><img src="http://s2.51cto.com/oss/201809/28/71e56768bebce092c94726da693e123d.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p>思考的点</p>
+<ul>
+<li>如何支持多数据源?</li>
+<li>如何封装对业务没有侵入?</li>
+<li>如何使用目前业务的ORM框架完成主从读写分离?是否需要更4. 换ORM模型?ORM模型之间各有什么优缺点?</li>
+<li>如何取舍?</li>
+</ul>
+<p><strong>数据库读写分离会遇到如下问题：</strong></p>
+<ul>
+<li>在master和slave复制的时候，考虑延时问题、数据库的支持、复制条件的支持。</li>
+<li>当为了提高可用性，将数据库分机房后，跨机房传输同步数据，这个更是问题。</li>
+<li>应用对于数据源的路由问题。</li>
+</ul>
+<p><strong>七、使用反向代理和CDN加速网站响应</strong></p>
+<p><img src="http://s2.51cto.com/oss/201809/28/97271280e93e510abc0717b370740fc8.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p><img src="http://s1.51cto.com/oss/201809/28/0cb238821fabe21429110bc39c1105d0.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p><strong>八、分布式文件系统</strong></p>
+<p><img src="http://s2.51cto.com/oss/201809/28/fb6fe1668eb7c2d5086f1123310da3fa.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p>思考的点</p>
+<ul>
+<li>分布式文件系统如何不影响已部署在线上的业务访问?不能让某个图片突然访问不到呀。</li>
+<li>是否需要业务部门清洗数据?</li>
+<li>是否需要重新做域名解析?</li>
+</ul>
+<p>这时数据库又出现了瓶颈。</p>
+<p><strong>九、数据垂直拆分</strong></p>
+<p><img src="http://s4.51cto.com/oss/201809/28/97b39fde63ca219231d9cc14a454c75d.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p>数据库专库专用，如图Products、Users、Deal库。解决写数据时并发量大的问题。</p>
+<p>思考的点</p>
+<ul>
+<li>跨业务的事务如何解决?使用分布式事务、去掉事务或不追求强事务。</li>
+<li>应用的配置项多了。</li>
+<li>如何跨库进行数据的join操作?</li>
+</ul>
+<p>这个时候，某个业务的数据表的数据量或者更新量达到了单个数据库的瓶颈。</p>
+<p><strong>十、数据水平拆分</strong></p>
+<p><img src="http://s5.51cto.com/oss/201809/28/881e578e6cd663be59a5bece835581ba.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p>如图，我们把User拆成了User1和User2，将同一个表的数据拆分到两个数据库中，解决了单数据库的瓶颈。</p>
+<p>思考的点</p>
+<ul>
+<li>水平拆分的策略都有哪些?各有什么优缺点?</li>
+<li>水平拆分的时候如何清洗数据?</li>
+<li>SQL的路由问题，需要知道某个User在哪个数据库上。</li>
+<li>主键的策略会有不同。</li>
+</ul>
+<p>假设系统中需要查询2017年4月份已经下单过的用户名的明细，而这些用户分布在user1和user2上，我们后台运营系统在展示时如何分页?</p>
+<p>这个时候，公司对外部做了流量导入，我们应用中的搜索量飙升，继续演进。</p>
+<p><strong>十一、拆分搜索引擎</strong></p>
+<p><img src="http://s1.51cto.com/oss/201809/28/6b8c00b25c53faddc49de029c036ac0f.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">   </p>
+<p><img src="http://s4.51cto.com/oss/201809/28/7c25855b8902747e1b22cc2995e87684.jpeg" alt="假如有1亿用户的访问量，你的服务器架构是怎样的？">  </p>
+<p><strong>总结</strong></p>
+<p>本文只是一个举例演示，各个服务的技术架构需要根据自己业务特点进行优化和演进，所以大家的过程也不完全相同。</p>
+<p>最后的这个示例也不是完美的，例如负载均衡还是一个单点，也需要集群，我们这个架构也只是冰山一角。因为在架构演进的过程中，还要考虑系统的安全性、数据分析、监控、反作弊等，同时往后继续发展，也要考虑到SOA架构、服务化、消息队列、任务调度、多机房等。</p>
+<p>从以上对架构演进的讲解，也可以看出来，所有大型项目的架构和代码，都是一步一步根据实际的业务场景和发展情况发展演变而来，在不同的阶段，会使用的不同的技术，不同的架构来解决实际的问题，所以说，高大上的项目技术架构和开发设计实现不是一蹴而就的。</p>
+<p>正是所谓的万丈高楼平地起。在架构演进的过程中，小到核心模块代码，大到核心架构，都会不断演进的，这个过程值得我们去深入学习和思考。</p>
+<p>原文地址：<a href="http://server.51cto.com/sOS-584263.htm" target="_blank" rel="noopener">http://server.51cto.com/sOS-584263.htm</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/28/假如有1亿用户的访问量-你的服务器架构是怎样的/" data-id="cjnpornah001ia4timz3phphc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统架构/">系统架构</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/10/22/大数据工程师必备技能（转载）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          大数据工程师必备技能（转载）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/27/从单机到2000万QPS：如何搭建高可用Redis平台/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">从单机到2000万QPS：如何搭建高可用Redis平台</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/原创/">原创</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品经理/">产品经理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像识别/">图像识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应急/">应急</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物联网/">物联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科普阅读/">科普阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动开发/">移动开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 17.5px;">Git</a> <a href="/tags/产品经理/" style="font-size: 12.5px;">产品经理</a> <a href="/tags/人工智能/" style="font-size: 10px;">人工智能</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/图像识别/" style="font-size: 10px;">图像识别</a> <a href="/tags/大数据/" style="font-size: 12.5px;">大数据</a> <a href="/tags/应急/" style="font-size: 10px;">应急</a> <a href="/tags/微服务/" style="font-size: 20px;">微服务</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/物联网/" style="font-size: 15px;">物联网</a> <a href="/tags/科普阅读/" style="font-size: 10px;">科普阅读</a> <a href="/tags/移动开发/" style="font-size: 10px;">移动开发</a> <a href="/tags/系统架构/" style="font-size: 12.5px;">系统架构</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/10/26/10种室内定位技术原理深度解析/">10种室内定位技术原理深度解析</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/25/2018年最值得关注的15大技术趋势/">2018年最值得关注的15大技术趋势</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/22/大数据工程师必备技能（转载）/">大数据工程师必备技能（转载）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/28/假如有1亿用户的访问量-你的服务器架构是怎样的/">假如有1亿用户的访问量,你的服务器架构是怎样的</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/27/从单机到2000万QPS：如何搭建高可用Redis平台/">从单机到2000万QPS：如何搭建高可用Redis平台</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 jianzhanger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
