@@ -15,19 +15,26 @@
 <meta property="og:site_name" content="jianzhanger 的博客">
 <meta property="og:description" content="Spring Cloud由众多子项目组成，如Spring Cloud Config、Spring Cloud Netflix、Spring Cloud Consul 等，提供了搭建分布式系统及微服务常用的工具，如配置管理、服务发现、断路器、智能路由、微代理、控制总线、一次性token、全局锁、选主、分布式会话和集群状态等，满足了构建微服务所需的所有解决方案。 服务发现——Netflix Eurek">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://yqfile.alicdn.com/79f438daa7a042e999845c2cd810c8b88f87c3ed.png">
-<meta property="og:image" content="https://yqfile.alicdn.com/f7bc106fb8a9659b274e4181068be74b53a7cd4b.png">
-<meta property="og:image" content="https://yqfile.alicdn.com/27cebfba8013668f7604ae417b4cf3dfd5569c6d.png">
-<meta property="og:image" content="https://yqfile.alicdn.com/8f738dc722a957f48eeb649093803ba5d10cb5de.png">
-<meta property="og:image" content="https://yqfile.alicdn.com/065ec56ede37fb1f76244a31376fafa71f656c78.png">
-<meta property="og:image" content="https://yqfile.alicdn.com/56f0598b8ffac42d6b1adca2567388b14aa950aa.png">
-<meta property="og:image" content="https://yqfile.alicdn.com/531bcebe6136705955e996f006e06437660a4a78.png">
-<meta property="og:image" content="https://yqfile.alicdn.com/7b26ed6771f011b2f15426fbf8fc6f6272e793cd.png">
-<meta property="og:updated_time" content="2018-09-08T07:52:39.710Z">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151046924-1982054858.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151052962-2072470043.png">
+<meta property="og:image" content="https://segmentfault.com/img/bVuYWg">
+<meta property="og:image" content="https://segmentfault.com/img/bVuZSb">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151100735-1093465094.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151107786-234603606.png">
+<meta property="og:image" content="https://segmentfault.com/img/bVuZSk">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151114584-270530092.png">
+<meta property="og:image" content="https://segmentfault.com/img/bVuYWr">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151122013-721938940.png">
+<meta property="og:image" content="https://segmentfault.com/img/bVuYWl">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151127916-1134484737.png">
+<meta property="og:image" content="https://segmentfault.com/img/bVuYWw">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151133508-574110198.png">
+<meta property="og:image" content="https://segmentfault.com/img/bVuYWI">
+<meta property="og:updated_time" content="2018-10-26T07:28:08.637Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringCloud五大核心组件（转载）">
 <meta name="twitter:description" content="Spring Cloud由众多子项目组成，如Spring Cloud Config、Spring Cloud Netflix、Spring Cloud Consul 等，提供了搭建分布式系统及微服务常用的工具，如配置管理、服务发现、断路器、智能路由、微代理、控制总线、一次性token、全局锁、选主、分布式会话和集群状态等，满足了构建微服务所需的所有解决方案。 服务发现——Netflix Eurek">
-<meta name="twitter:image" content="https://yqfile.alicdn.com/79f438daa7a042e999845c2cd810c8b88f87c3ed.png">
+<meta name="twitter:image" content="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151046924-1982054858.png">
   
     <link rel="alternate" href="/atom.xml" title="jianzhanger 的博客" type="application/atom+xml">
   
@@ -109,41 +116,58 @@
 <p>客服端负载均衡——Netflix Ribbon</p>
 <p>断路器——Netflix Hystrix</p>
 <p>服务网关——Netflix Zuul</p>
-<p>分布式配置——Spring Cloud Config<br><a id="more"></a><br>Eureka<br><img src="https://yqfile.alicdn.com/79f438daa7a042e999845c2cd810c8b88f87c3ed.png" alt="2eur" title="2eur"></p>
+<p>分布式配置——Spring Cloud Config<br><a id="more"></a></p>
+<h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p><img src="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151046924-1982054858.png" alt=""></p>
 <p>一个RESTful服务，用来定位运行在AWS地区（Region）中的中间层服务。由两个组件组成：Eureka服务器和Eureka客户端。Eureka服务器用作服务注册服务器。Eureka客户端是一个java客户端，用来简化与服务器的交互、作为轮询负载均衡器，并提供服务的故障切换支持。Netflix在其生产环境中使用的是另外的客户端，它提供基于流量、资源利用率以及出错状态的加权负载均衡。</p>
-<p>Ribbon<br>Ribbon，主要提供客户侧的软件负载均衡算法。</p>
-<p><img src="https://yqfile.alicdn.com/f7bc106fb8a9659b274e4181068be74b53a7cd4b.png" alt="3ri" title="3ri"></p>
-<p>Ribbon客户端组件提供一系列完善的配置选项，比如连接超时、重试、重试算法等。Ribbon内置可插拔、可定制的负载均衡组件。下面是用到的一些负载均衡策略：</p>
-<p>简单轮询负载均衡</p>
-<p>加权响应时间负载均衡</p>
-<p>区域感知轮询负载均衡</p>
-<p>随机负载均衡</p>
+<h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><p>Ribbon，主要提供客户侧的软件负载均衡算法。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151052962-2072470043.png" alt=""><br><img src="https://segmentfault.com/img/bVuYWg" alt="">Ribbon客户端组件提供一系列完善的配置选项，比如连接超时、重试、重试算法等。Ribbon内置可插拔、可定制的负载均衡组件。下面是用到的一些负载均衡策略：</p>
+<ul>
+<li><p>简单轮询负载均衡</p>
+</li>
+<li><p>加权响应时间负载均衡</p>
+</li>
+<li><p>区域感知轮询负载均衡</p>
+</li>
+<li><p>随机负载均衡</p>
+</li>
+</ul>
 <p>Ribbon中还包括以下功能：</p>
-<p>易于与服务发现组件（比如Netflix的Eureka）集成</p>
-<p>使用Archaius完成运行时配置</p>
-<p>使用JMX暴露运维指标，使用Servo发布</p>
-<p>多种可插拔的序列化选择</p>
-<p>异步和批处理操作（即将推出）</p>
-<p>自动SLA框架（即将推出）</p>
-<p>系统管理/指标控制台（即将推出）</p>
-<p>Hystrix</p>
-<p><img src="https://yqfile.alicdn.com/27cebfba8013668f7604ae417b4cf3dfd5569c6d.png" alt="41h" title="41h"></p>
+<ul>
+<li><p>易于与服务发现组件（比如Netflix的Eureka）集成</p>
+</li>
+<li><p>使用Archaius完成运行时配置</p>
+</li>
+<li><p>使用JMX暴露运维指标，使用Servo发布</p>
+</li>
+<li><p>多种可插拔的序列化选择</p>
+</li>
+<li><p>异步和批处理操作（即将推出）</p>
+</li>
+<li><p>自动SLA框架（即将推出）</p>
+</li>
+<li><p>系统管理/指标控制台（即将推出）</p>
+</li>
+</ul>
+<h2 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h2><p><img src="https://segmentfault.com/img/bVuZSb" alt=""><img src="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151100735-1093465094.png" alt=""></p>
 <p>断路器可以防止一个应用程序多次试图执行一个操作，即很可能失败，允许它继续而不等待故障恢复或者浪费 CPU 周期，而它确定该故障是持久的。断路器模式也使应用程序能够检测故障是否已经解决。如果问题似乎已经得到纠正​​，应用程序可以尝试调用操作。欢迎大家一起学习研究相关技术愿意了解源码的朋友直接求求交流分享技术：2147775633</p>
-<p><img src="https://yqfile.alicdn.com/8f738dc722a957f48eeb649093803ba5d10cb5de.png" alt="42h" title="42h"></p>
-<p>断路器增加了稳定性和灵活性，以一个系统，提供稳定性，而系统从故障中恢复，并尽量减少此故障的对性能的影响。它可以帮助快速地拒绝对一个操作，即很可能失败，而不是等待操作超时（或者不返回）的请求，以保持系统的响应时间。如果断路器提高每次改变状态的时间的事件，该信息可以被用来监测由断路器保护系统的部件的健康状况，或以提醒管理员当断路器跳闸，以在打开状态。<br><img src="https://yqfile.alicdn.com/065ec56ede37fb1f76244a31376fafa71f656c78.png" alt="43h" title="43h"></p>
+<p><img src="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151107786-234603606.png" alt=""></p>
+<p><img src="https://segmentfault.com/img/bVuZSk" alt=""></p>
+<p>断路器增加了稳定性和灵活性，以一个系统，提供稳定性，而系统从故障中恢复，并尽量减少此故障的对性能的影响。它可以帮助快速地拒绝对一个操作，即很可能失败，而不是等待操作超时（或者不返回）的请求，以保持系统的响应时间。如果断路器提高每次改变状态的时间的事件，该信息可以被用来监测由断路器保护系统的部件的健康状况，或以提醒管理员当断路器跳闸，以在打开状态。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151114584-270530092.png" alt=""></p>
+<p><img src="https://segmentfault.com/img/bVuYWr" alt=""></p>
 <p>流程图</p>
-<p><img src="https://yqfile.alicdn.com/56f0598b8ffac42d6b1adca2567388b14aa950aa.png" alt="44h" title="44h"></p>
-<p>Zuul<br><img src="https://yqfile.alicdn.com/531bcebe6136705955e996f006e06437660a4a78.png" alt="51z" title="51z"></p>
-<p>类似nginx，反向代理的功能，不过netflix自己增加了一些配合其他组件的特性。</p>
-<p>Spring Cloud Config<br><img src="https://yqfile.alicdn.com/7b26ed6771f011b2f15426fbf8fc6f6272e793cd.png" alt="52z" title="52z"></p>
-<p>这个还是静态的，得配合Spring Cloud Bus实现动态的配置更新。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151122013-721938940.png" alt=""><br><img src="https://segmentfault.com/img/bVuYWl" alt=""></p>
+<h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><p><img src="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151127916-1134484737.png" alt=""></p>
+<p><img src="https://segmentfault.com/img/bVuYWw" alt="">类似nginx，反向代理的功能，不过netflix自己增加了一些配合其他组件的特性。</p>
+<h2 id="Spring-Cloud-Config"><a href="#Spring-Cloud-Config" class="headerlink" title="Spring Cloud Config"></a>Spring Cloud Config</h2><p><img src="https://images2018.cnblogs.com/blog/1468241/201809/1468241-20180907151133508-574110198.png" alt=""></p>
+<p><img src="https://segmentfault.com/img/bVuYWI" alt="">这个还是静态的，得配合Spring Cloud Bus实现动态的配置更新。</p>
 <p>更多详细源码参考来源：<a href="http://minglisoft.cn/honghu/technology.html" target="_blank" rel="noopener">http://minglisoft.cn/honghu/technology.html</a></p>
-<p>原文地址：<a href="https://yq.aliyun.com/articles/636875?spm=a2c4e.11157919.spm-cont-list.80.146c27aeVOIxjF" target="_blank" rel="noopener">https://yq.aliyun.com/articles/636875?spm=a2c4e.11157919.spm-cont-list.80.146c27aeVOIxjF</a></p>
+<p>原文地址：<a href="https://www.cnblogs.com/my1903832579/p/9604757.html" target="_blank" rel="noopener">https://www.cnblogs.com/my1903832579/p/9604757.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/08/SpringCloud五大核心组件（转载）/" data-id="cjnporn9z000ta4tiw5cipybv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/08/SpringCloud五大核心组件（转载）/" data-id="cjoxquv3h000t0stiur0hoym0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微服务/">微服务</a></li></ul>
@@ -192,7 +216,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品经理/">产品经理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像识别/">图像识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应急/">应急</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物联网/">物联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科普阅读/">科普阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动开发/">移动开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品经理/">产品经理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像识别/">图像识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应急/">应急</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索引擎/">搜索引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物联网/">物联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科普阅读/">科普阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动开发/">移动开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟化/">虚拟化</a></li></ul>
     </div>
   </div>
 
@@ -202,7 +226,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Git/" style="font-size: 17.5px;">Git</a> <a href="/tags/产品经理/" style="font-size: 12.5px;">产品经理</a> <a href="/tags/人工智能/" style="font-size: 10px;">人工智能</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/图像识别/" style="font-size: 10px;">图像识别</a> <a href="/tags/大数据/" style="font-size: 12.5px;">大数据</a> <a href="/tags/应急/" style="font-size: 10px;">应急</a> <a href="/tags/微服务/" style="font-size: 20px;">微服务</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/物联网/" style="font-size: 15px;">物联网</a> <a href="/tags/科普阅读/" style="font-size: 10px;">科普阅读</a> <a href="/tags/移动开发/" style="font-size: 10px;">移动开发</a> <a href="/tags/系统架构/" style="font-size: 12.5px;">系统架构</a>
+      <a href="/tags/Git/" style="font-size: 17.5px;">Git</a> <a href="/tags/产品经理/" style="font-size: 12.5px;">产品经理</a> <a href="/tags/人工智能/" style="font-size: 10px;">人工智能</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/图像识别/" style="font-size: 10px;">图像识别</a> <a href="/tags/大数据/" style="font-size: 12.5px;">大数据</a> <a href="/tags/应急/" style="font-size: 10px;">应急</a> <a href="/tags/微服务/" style="font-size: 20px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/物联网/" style="font-size: 15px;">物联网</a> <a href="/tags/科普阅读/" style="font-size: 10px;">科普阅读</a> <a href="/tags/移动开发/" style="font-size: 10px;">移动开发</a> <a href="/tags/系统架构/" style="font-size: 17.5px;">系统架构</a> <a href="/tags/虚拟化/" style="font-size: 10px;">虚拟化</a>
     </div>
   </div>
 
@@ -211,7 +235,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
     </div>
   </div>
 
@@ -224,23 +248,23 @@
       <ul>
         
           <li>
+            <a href="/2018/11/26/美团即时物流的分布式系统架构设计/">美团即时物流的分布式系统架构设计</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/详细的Docker入门总结（转载）/">详细的Docker入门总结（转载）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/如何构建一个低成本，高可用，少运维的ES平台？/">如何构建一个低成本，高可用，少运维的ES平台？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/应对大流量的一些思路（转载）/">应对大流量的一些思路（转载）</a>
+          </li>
+        
+          <li>
             <a href="/2018/10/26/10种室内定位技术原理深度解析/">10种室内定位技术原理深度解析</a>
-          </li>
-        
-          <li>
-            <a href="/2018/10/25/2018年最值得关注的15大技术趋势/">2018年最值得关注的15大技术趋势</a>
-          </li>
-        
-          <li>
-            <a href="/2018/10/22/大数据工程师必备技能（转载）/">大数据工程师必备技能（转载）</a>
-          </li>
-        
-          <li>
-            <a href="/2018/09/28/假如有1亿用户的访问量-你的服务器架构是怎样的/">假如有1亿用户的访问量,你的服务器架构是怎样的</a>
-          </li>
-        
-          <li>
-            <a href="/2018/09/27/从单机到2000万QPS：如何搭建高可用Redis平台/">从单机到2000万QPS：如何搭建高可用Redis平台</a>
           </li>
         
       </ul>

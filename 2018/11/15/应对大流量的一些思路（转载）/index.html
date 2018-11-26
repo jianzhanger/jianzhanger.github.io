@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>应对大流量的一些思路（转载） | jianzhanger 的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 首先，我们来说一下什么是大流量? 大流量，我们很可能会冒出：TPS(每秒事务量)，QPS(每秒请求量)，1W+，5W+，10W+，100W+…。其实并没有一个绝对的数字，如果这个量造成了系统的压力，影响了系统的性能，那么这个量就可以称之为大流量了。 2. 其次，应对大流量的一些常见手段是什么?  缓存：说白了，就是让数据尽早进入缓存，离程序近一点，不要大量频繁的访问DB。 降级：如果不是核心">
+<meta name="keywords" content="系统架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="应对大流量的一些思路（转载）">
+<meta property="og:url" content="http://yoursite.com/2018/11/15/应对大流量的一些思路（转载）/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="1. 首先，我们来说一下什么是大流量? 大流量，我们很可能会冒出：TPS(每秒事务量)，QPS(每秒请求量)，1W+，5W+，10W+，100W+…。其实并没有一个绝对的数字，如果这个量造成了系统的压力，影响了系统的性能，那么这个量就可以称之为大流量了。 2. 其次，应对大流量的一些常见手段是什么?  缓存：说白了，就是让数据尽早进入缓存，离程序近一点，不要大量频繁的访问DB。 降级：如果不是核心">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://s5.51cto.com/oss/201811/15/cba4b9cd595e652e0112fc5b96a150f7.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201811/15/099406f503f527d8b34c13838c4c28e1.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201811/15/22b7d88afbf7084239d7448205a7dafc.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201811/15/e7afad0707d78ae63450d21fc29a09aa.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201811/15/cd8035934966d5399072a035daedfd16.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201811/15/7c7493ad5bb7f56a2ebec871ca90bb20.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201811/15/0cf3223246b8b0a9dbd9720ab43acd80.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201811/15/642343bd1b87cd3351962928899a4fba.jpg">
+<meta property="og:updated_time" content="2018-11-15T01:08:41.711Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="应对大流量的一些思路（转载）">
+<meta name="twitter:description" content="1. 首先，我们来说一下什么是大流量? 大流量，我们很可能会冒出：TPS(每秒事务量)，QPS(每秒请求量)，1W+，5W+，10W+，100W+…。其实并没有一个绝对的数字，如果这个量造成了系统的压力，影响了系统的性能，那么这个量就可以称之为大流量了。 2. 其次，应对大流量的一些常见手段是什么?  缓存：说白了，就是让数据尽早进入缓存，离程序近一点，不要大量频繁的访问DB。 降级：如果不是核心">
+<meta name="twitter:image" content="http://s5.51cto.com/oss/201811/15/cba4b9cd595e652e0112fc5b96a150f7.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="jianzhanger 的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">jianzhanger 的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-应对大流量的一些思路（转载）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/15/应对大流量的一些思路（转载）/" class="article-date">
+  <time datetime="2018-11-15T01:05:46.000Z" itemprop="datePublished">2018-11-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/转载/">转载</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      应对大流量的一些思路（转载）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1. 首先，我们来说一下什么是大流量?</strong></p>
+<p>大流量，我们很可能会冒出：TPS(每秒事务量)，QPS(每秒请求量)，1W+，5W+，10W+，100W+…。其实并没有一个绝对的数字，如果这个量造成了系统的压力，影响了系统的性能，那么这个量就可以称之为大流量了。</p>
+<p><strong>2. 其次，应对大流量的一些常见手段是什么?</strong></p>
+<ul>
+<li>缓存：说白了，就是让数据尽早进入缓存，离程序近一点，不要大量频繁的访问DB。</li>
+<li>降级：如果不是核心链路，那么就把这个服务降级掉。打个比喻，现在的APP都讲究千人千面，拿到数据后，做个性化排序展示，如果在大流量下，这个排序就可以降级掉!</li>
+<li>限流：大家都知道，北京地铁早高峰，地铁站都会做一件事情，就是限流了!想法很直接，就是想在一定时间内把请求限制在一定范围内，保证系统不被冲垮，同时尽可能提升系统的吞吐量。<a id="more"></a>
+注意到，有些时候，缓存和降级是解决不了问题的，比如，电商的双十一，用户的购买，下单等行为，是涉及到大量写操作，而且是核心链路，无法降级的，这个时候，限流就比较重要了。</li>
+</ul>
+<p>那么接下来，我们重点说一下，限流。</p>
+<p><strong>限流的常用方式</strong></p>
+<p>限流的常用处理手段有：计数器、滑动窗口、漏桶、令牌。</p>
+<p><strong>1. 计数器</strong></p>
+<p>计数器是一种比较简单的限流算法，用途比较广泛，在接口层面，很多地方使用这种方式限流。在一段时间内，进行计数，与阀值进行比较，到了时间临界点，将计数器清0。</p>
+<p><a href="http://s5.51cto.com/oss/201811/15/cba4b9cd595e652e0112fc5b96a150f7.jpg" target="_blank" rel="noopener"><img src="http://s5.51cto.com/oss/201811/15/cba4b9cd595e652e0112fc5b96a150f7.jpg" alt=""></a></p>
+<p>代码实例</p>
+<p><a href="http://s5.51cto.com/oss/201811/15/099406f503f527d8b34c13838c4c28e1.jpg" target="_blank" rel="noopener"><img src="http://s5.51cto.com/oss/201811/15/099406f503f527d8b34c13838c4c28e1.jpg" alt=""></a></p>
+<p>这里需要注意的是，存在一个时间临界点的问题。举个栗子，在12:01:00到12:01:58这段时间内没有用户请求，然后在12:01:59这一瞬时发出100个请求，OK，然后在12:02:00这一瞬时又发出了100个请求。</p>
+<p>这里你应该能感受到，在这个临界点可能会承受恶意用户的大量请求，甚至超出系统预期的承受。</p>
+<p><strong>2. 滑动窗口</strong></p>
+<p>由于计数器存在临界点缺陷，后来出现了滑动窗口算法来解决。</p>
+<p><a href="http://s5.51cto.com/oss/201811/15/22b7d88afbf7084239d7448205a7dafc.jpg" target="_blank" rel="noopener"><img src="http://s5.51cto.com/oss/201811/15/22b7d88afbf7084239d7448205a7dafc.jpg" alt=""></a></p>
+<p>滑动窗口的意思是说把固定时间片，进行划分，并且随着时间的流逝，进行移动，这样就巧妙的避开了计数器的临界点问题。也就是说这些固定数量的可以移动的格子，将会进行计数判断阀值，因此格子的数量影响着滑动窗口算法的精度。</p>
+<p><strong>3. 漏桶</strong></p>
+<p>虽然滑动窗口有效避免了时间临界点的问题，但是依然有时间片的概念，而漏桶算法在这方面比滑动窗口而言，更加先进。</p>
+<p>有一个固定的桶，进水的速率是不确定的，但是出水的速率是恒定的，当水满的时候是会溢出的。</p>
+<p><a href="http://s4.51cto.com/oss/201811/15/e7afad0707d78ae63450d21fc29a09aa.jpg" target="_blank" rel="noopener"><img src="http://s4.51cto.com/oss/201811/15/e7afad0707d78ae63450d21fc29a09aa.jpg" alt=""></a></p>
+<p>代码实现</p>
+<p><a href="http://s2.51cto.com/oss/201811/15/cd8035934966d5399072a035daedfd16.jpg" target="_blank" rel="noopener"><img src="http://s2.51cto.com/oss/201811/15/cd8035934966d5399072a035daedfd16.jpg" alt=""></a></p>
+<p><strong>4. 令牌桶</strong></p>
+<p><a href="http://s5.51cto.com/oss/201811/15/7c7493ad5bb7f56a2ebec871ca90bb20.jpg" target="_blank" rel="noopener"><img src="http://s5.51cto.com/oss/201811/15/7c7493ad5bb7f56a2ebec871ca90bb20.jpg" alt=""></a></p>
+<p>注意到，漏桶的出水速度是恒定的，那么意味着如果瞬时大流量的话，将有大部分请求被丢弃掉(也就是所谓的溢出)。为了解决这个问题，令牌桶进行了算法改进。</p>
+<p>生成令牌的速度是恒定的，而请求去拿令牌是没有速度限制的。这意味，面对瞬时大流量，该算法可以在短时间内请求拿到大量令牌，而且拿令牌的过程并不是消耗很大的事情。(有一点生产令牌，消费令牌的意味)</p>
+<p>不论是对于令牌桶拿不到令牌被拒绝，还是漏桶的水满了溢出，都是为了保证大部分流量的正常使用，而牺牲掉了少部分流量，这是合理的，如果因为极少部分流量需要保证的话，那么就可能导致系统达到极限而挂掉，得不偿失。</p>
+<p>代码实现</p>
+<p><a href="http://s3.51cto.com/oss/201811/15/0cf3223246b8b0a9dbd9720ab43acd80.jpg" target="_blank" rel="noopener"><img src="http://s3.51cto.com/oss/201811/15/0cf3223246b8b0a9dbd9720ab43acd80.jpg" alt=""></a></p>
+<p><strong>限流神器：Guava RateLimiter</strong></p>
+<p>Guava不仅仅在集合、缓存、异步回调等方面功能强大，而且还给我们封装好了限流的API!</p>
+<p>Guava RateLimiter基于令牌桶算法，我们只需要告诉RateLimiter系统限制的QPS是多少，那么RateLimiter将以这个速度往桶里面放入令牌，然后请求的时候，通过tryAcquire()方法向RateLimiter获取许可(令牌)。</p>
+<p>代码示例</p>
+<p><a href="http://s3.51cto.com/oss/201811/15/642343bd1b87cd3351962928899a4fba.jpg" target="_blank" rel="noopener"><img src="http://s3.51cto.com/oss/201811/15/642343bd1b87cd3351962928899a4fba.jpg" alt=""></a></p>
+<p><strong>分布式场景下的限流</strong></p>
+<p>上面所说的限流的一些方式，都是针对单机而言的，其实大部分的场景，单机的限流已经足够了。分布式下限流的手段常常需要多种技术相结合，比如Nginx+Lua，Redis+Lua等去做。</p>
+<p>本文主要讨论的是单机的限流，这里就不在详细介绍分布式场景下的限流了。</p>
+<p>一句话，让系统的流量，先到队列中排队、限流，不要让流量直接打到系统上。</p>
+<p>原文地址：<a href="http://developer.51cto.com/art/201811/586948.htm" target="_blank" rel="noopener">http://developer.51cto.com/art/201811/586948.htm</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/15/应对大流量的一些思路（转载）/" data-id="cjoxquv4u00260stijlcdtl6o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统架构/">系统架构</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/15/如何构建一个低成本，高可用，少运维的ES平台？/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          如何构建一个低成本，高可用，少运维的ES平台？
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/26/10种室内定位技术原理深度解析/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">10种室内定位技术原理深度解析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/原创/">原创</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品经理/">产品经理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像识别/">图像识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应急/">应急</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索引擎/">搜索引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物联网/">物联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科普阅读/">科普阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动开发/">移动开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟化/">虚拟化</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 17.5px;">Git</a> <a href="/tags/产品经理/" style="font-size: 12.5px;">产品经理</a> <a href="/tags/人工智能/" style="font-size: 10px;">人工智能</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/图像识别/" style="font-size: 10px;">图像识别</a> <a href="/tags/大数据/" style="font-size: 12.5px;">大数据</a> <a href="/tags/应急/" style="font-size: 10px;">应急</a> <a href="/tags/微服务/" style="font-size: 20px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/物联网/" style="font-size: 15px;">物联网</a> <a href="/tags/科普阅读/" style="font-size: 10px;">科普阅读</a> <a href="/tags/移动开发/" style="font-size: 10px;">移动开发</a> <a href="/tags/系统架构/" style="font-size: 17.5px;">系统架构</a> <a href="/tags/虚拟化/" style="font-size: 10px;">虚拟化</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/26/美团即时物流的分布式系统架构设计/">美团即时物流的分布式系统架构设计</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/详细的Docker入门总结（转载）/">详细的Docker入门总结（转载）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/如何构建一个低成本，高可用，少运维的ES平台？/">如何构建一个低成本，高可用，少运维的ES平台？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/应对大流量的一些思路（转载）/">应对大流量的一些思路（转载）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/26/10种室内定位技术原理深度解析/">10种室内定位技术原理深度解析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 jianzhanger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

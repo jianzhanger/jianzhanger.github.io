@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>美团即时物流的分布式系统架构设计 | jianzhanger 的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="背景美团外卖已经发展了五年，即时物流探索也经历了3年多的时间，业务从零孵化到初具规模，在整个过程中积累了一些分布式高并发系统的建设经验。最主要的收获包括两点：  即时物流业务对故障和高延迟的容忍度极低，在业务复杂度提升的同时也要求系统具备分布式、可扩展、可容灾的能力。即时物流系统阶段性的逐步实施分布式系统的架构升级，最终解决了系统宕机的风险。  围绕成本、效率、体验核心三要素，即时物流体系大量结合">
+<meta name="keywords" content="系统架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="美团即时物流的分布式系统架构设计">
+<meta property="og:url" content="http://yoursite.com/2018/11/26/美团即时物流的分布式系统架构设计/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="背景美团外卖已经发展了五年，即时物流探索也经历了3年多的时间，业务从零孵化到初具规模，在整个过程中积累了一些分布式高并发系统的建设经验。最主要的收获包括两点：  即时物流业务对故障和高延迟的容忍度极低，在业务复杂度提升的同时也要求系统具备分布式、可扩展、可容灾的能力。即时物流系统阶段性的逐步实施分布式系统的架构升级，最终解决了系统宕机的风险。  围绕成本、效率、体验核心三要素，即时物流体系大量结合">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/01.png">
+<meta property="og:image" content="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/02.png">
+<meta property="og:image" content="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/03.png">
+<meta property="og:image" content="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/04.png">
+<meta property="og:image" content="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/05.png">
+<meta property="og:image" content="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/06.png">
+<meta property="og:image" content="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/07.png">
+<meta property="og:image" content="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/08.png">
+<meta property="og:image" content="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/09.png">
+<meta property="og:image" content="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/10.png">
+<meta property="og:image" content="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/11.png">
+<meta property="og:image" content="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/12.png">
+<meta property="og:updated_time" content="2018-11-26T02:38:20.045Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="美团即时物流的分布式系统架构设计">
+<meta name="twitter:description" content="背景美团外卖已经发展了五年，即时物流探索也经历了3年多的时间，业务从零孵化到初具规模，在整个过程中积累了一些分布式高并发系统的建设经验。最主要的收获包括两点：  即时物流业务对故障和高延迟的容忍度极低，在业务复杂度提升的同时也要求系统具备分布式、可扩展、可容灾的能力。即时物流系统阶段性的逐步实施分布式系统的架构升级，最终解决了系统宕机的风险。  围绕成本、效率、体验核心三要素，即时物流体系大量结合">
+<meta name="twitter:image" content="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="jianzhanger 的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">jianzhanger 的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-美团即时物流的分布式系统架构设计" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/26/美团即时物流的分布式系统架构设计/" class="article-date">
+  <time datetime="2018-11-26T02:32:49.000Z" itemprop="datePublished">2018-11-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/转载/">转载</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      美团即时物流的分布式系统架构设计
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>美团外卖已经发展了五年，即时物流探索也经历了3年多的时间，业务从零孵化到初具规模，在整个过程中积累了一些分布式高并发系统的建设经验。最主要的收获包括两点：</p>
+<ol>
+<li><p>即时物流业务对故障和高延迟的容忍度极低，在业务复杂度提升的同时也要求系统具备分布式、可扩展、可容灾的能力。即时物流系统阶段性的逐步实施分布式系统的架构升级，最终解决了系统宕机的风险。</p>
+</li>
+<li><p>围绕成本、效率、体验核心三要素，即时物流体系大量结合AI技术，从定价、ETA、调度、运力规划、运力干预、补贴、核算、语音交互、LBS挖掘、业务运维、指标监控等方面，业务突破结合架构升级，达到促规模、保体验、降成本的效果。</p>
+<a id="more"></a>    
+</li>
+</ol>
+<p><img src="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/01.png" alt=""></p>
+<p>本文主要介绍在美团即时物流分布式系统架构逐层演变的进展中，遇到的技术障碍和挑战：</p>
+<ul>
+<li>订单、骑手规模大，供需匹配过程的超大规模计算问题。</li>
+<li>遇到节假日或者恶劣天气，订单聚集效应，流量高峰是平常的十几倍。</li>
+<li>物流履约是线上连接线下的关键环节，故障容忍度极低，不能宕机，不能丢单，可用性要求极高。</li>
+<li>数据实时性、准确性要求高，对延迟、异常非常敏感。</li>
+</ul>
+<h2 id="美团即时物流架构"><a href="#美团即时物流架构" class="headerlink" title="美团即时物流架构"></a>美团即时物流架构</h2><p>美团即时物流配送平台主要围绕三件事展开：一是面向用户提供履约的SLA，包括计算送达时间ETA、配送费定价等；二是在多目标（成本、效率、体验）优化的背景下，匹配最合适的骑手；三是提供骑手完整履约过程中的辅助决策，包括智能语音、路径推荐、到店提醒等。</p>
+<p><img src="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/02.png" alt=""></p>
+<p>在一系列服务背后，是美团强大的技术体系的支持，并由此沉淀出的配送业务架构体系，基于架构构建的平台、算法、系统和服务。庞大的物流系统背后离不开分布式系统架构的支撑，而且这个架构更要保证高可用和高并发。</p>
+<p>分布式架构，是相对于集中式架构而言的一种架构体系。分布式架构适用CAP理论（Consistency 一致性，Availability 可用性，Partition Tolerance 分区容忍性）。在分布式架构中，一个服务部署在多个对等节点中，节点之间通过网络进行通信，多个节点共同组成服务集群来提供高可用、一致性的服务。</p>
+<p>早期，美团按照业务领域划分成多个垂直服务架构；随着业务的发展，从可用性的角度考虑做了分层服务架构。后来，业务发展越发复杂，从运维、质量等多个角度考量后，逐步演进到微服务架构。这里主要遵循了两个原则：不宜过早的进入到微服务架构的设计中，好的架构是演进出来的不是提前设计出来的。</p>
+<h2 id="分布式系统实践"><a href="#分布式系统实践" class="headerlink" title="分布式系统实践"></a>分布式系统实践</h2><p><img src="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/03.png" alt=""></p>
+<p>上图是比较典型的美团技术体系下的分布式系统结构：依托了美团公共组件和服务，完成了分区扩容、容灾和监控的能力。前端流量会通过HLB来分发和负载均衡；在分区内，服务与服务会通过OCTO进行通信，提供服务注册、自动发现、负载均衡、容错、灰度发布等等服务。当然也可以通过消息队列进行通信，例如Kafka、RabbitMQ。在存储层使用Zebra来访问分布式数据库进行读写操作。利用<a href="https://tech.meituan.com/cat_pr.html" target="_blank" rel="noopener">CAT</a>（美团开源的分布式监控系统）进行分布式业务及系统日志的采集、上报和监控。分布式缓存使用Squirrel+Cellar的组合。分布式任务调度则是通过Crane。</p>
+<p>在实践过程还要解决几个问题，比较典型的是集群的扩展性，有状态的集群可扩展性相对较差，无法快速扩容机器，无法缓解流量压力。同时，也会出现节点热点的问题，包括资源不均匀、CPU使用不均匀等等。</p>
+<p><img src="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/04.png" alt=""></p>
+<p>首先，配送后台技术团队通过架构升级，将有状态节点变成无状态节点，通过并行计算的能力，让小的业务节点去分担计算压力，以此实现快速扩容。</p>
+<p>第二是要解决一致性的问题，对于既要写DB也要写缓存的场景，业务写缓存无法保障数据一致性，美团内部主要通过Databus来解决，Databus是一个高可用、低延时、高并发、保证数据一致性的数据库变更实时传输系统。通过Databus上游可以监控业务Binlog变更，通过管道将变更信息传递给ES和其他DB，或者是其他KV系统，利用Databus的高可用特性来保证数据最终是可以同步到其他系统中。</p>
+<p><img src="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/05.png" alt=""></p>
+<p>第三是我们一直在花精力解决的事情，就是保障集群高可用，主要从三个方面来入手，事前较多的是做全链路压测评，估峰值容量；周期性的集群健康性检查；随机故障演练（服务、机器、组件）。事中做异常报警（性能、业务指标、可用性）；快速的故障定位（单机故障、集群故障、IDC故障、组件异常、服务异常）；故障前后的系统变更收集。事后重点做系统回滚；扩容、限流、熔断、降级；核武器兜底。</p>
+<p><img src="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/06.png" alt=""><br><img src="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/07.png" alt=""></p>
+<h3 id="单IDC的快速部署-amp-容灾"><a href="#单IDC的快速部署-amp-容灾" class="headerlink" title="单IDC的快速部署&amp;容灾"></a>单IDC的快速部署&amp;容灾</h3><p>单IDC故障之后，入口服务做到故障识别，自动流量切换；单IDC的快速扩容，数据提前同步，服务提前部署，Ready之后打开入口流量；要求所有做数据同步、流量分发的服务，都具备自动故障检测、故障服务自动摘除；按照IDC为单位扩缩容的能力。</p>
+<p><img src="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/08.png" alt=""></p>
+<h3 id="多中心尝试"><a href="#多中心尝试" class="headerlink" title="多中心尝试"></a>多中心尝试</h3><p>美团IDC以分区为单位，存在资源满排，分区无法扩容。美团的方案是多个IDC组成虚拟中心，以中心为分区的单位；服务无差别的部署在中心内；中心容量不够，直接增加新的IDC来扩容容量。</p>
+<p><img src="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/09.png" alt=""></p>
+<h3 id="单元化尝试"><a href="#单元化尝试" class="headerlink" title="单元化尝试"></a>单元化尝试</h3><p>相比多中心来说，单元化是进行分区容灾和扩容的更优方案。关于流量路由，美团主要是根据业务特点，采用区域或城市进行路由。数据同步上，异地会出现延迟状况。SET容灾上要保证同本地或异地SET出现问题时，可以快速把SET切换到其他SET上来承担流量。</p>
+<p><img src="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/10.png" alt=""></p>
+<h2 id="智能物流的核心技术能力和平台沉淀"><a href="#智能物流的核心技术能力和平台沉淀" class="headerlink" title="智能物流的核心技术能力和平台沉淀"></a>智能物流的核心技术能力和平台沉淀</h2><p>机器学习平台，是一站式线下到线上的模型训练和算法应用平台。之所以构建这个平台，目的是要解决算法应用场景多，重复造轮子的矛盾问题，以及线上、线下数据质量不一致。如果流程不明确不连贯，会出现迭代效率低，特征、模型的应用上线部署出现数据质量等障碍问题。</p>
+<p><img src="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/11.png" alt=""></p>
+<p>JARVIS是一个以稳定性保障为目标的智能化业务运维AIOps平台。主要用于处理系统故障时报警源很多，会有大量的重复报警，有效信息很容易被淹没等各种问题。此外，过往小规模分布式集群的运维故障主要靠人和经验来分析和定位，效率低下，处理速度慢，每次故障处理得到的预期不稳定，在有效性和及时性方面无法保证。所以需要AIOps平台来解决这些问题。</p>
+<p><img src="https://tech.meituan.com/img/Instant_Logistics_Distributed_System_Architecture/12.png" alt=""></p>
+<h2 id="未来的挑战"><a href="#未来的挑战" class="headerlink" title="未来的挑战"></a>未来的挑战</h2><p>经过复盘和Review之后，我们发现未来的挑战很大，微服务不再“微”了，业务复杂度提升之后，服务就会变得膨胀。其次，网状结构的服务集群，任何轻微的延迟，都可能导致的网络放大效应。另外复杂的服务拓扑，如何做到故障的快速定位和处理，这也是AIOps需要重点解决的难题。最后，就是单元化之后，从集群为单位的运维到以单元为单位的运维，业给美团业务部署能力带来很大的挑战。</p>
+<h2 id="作者简介"><a href="#作者简介" class="headerlink" title="作者简介"></a>作者简介</h2><p>宋斌，美团资深技术专家，长期参与分布式系统架构、高并发系统稳定性保障相关工作。目前担任即时物流团队后台技术负责人。2013年加入美团，参与过美团外卖C端、即时物流体系从零搭建。现在带领团队负责调度、清结算、LBS、定价等业务系统、算法数据平台、稳定性保障平台等技术平台的研发和运维。最近重点关注AIOps方向，探索在高并发、分布式系统架构下，如何更好的做好系统稳定性保障。</p>
+<p>原文地址：<a href="https://tech.meituan.com/Instant_Logistics_Distributed_System_Architecture.html" target="_blank" rel="noopener">https://tech.meituan.com/Instant_Logistics_Distributed_System_Architecture.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/26/美团即时物流的分布式系统架构设计/" data-id="cjoxquv57002j0stixyu307fg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统架构/">系统架构</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/15/详细的Docker入门总结（转载）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">详细的Docker入门总结（转载）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/原创/">原创</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品经理/">产品经理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像识别/">图像识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应急/">应急</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索引擎/">搜索引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物联网/">物联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科普阅读/">科普阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动开发/">移动开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟化/">虚拟化</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 17.5px;">Git</a> <a href="/tags/产品经理/" style="font-size: 12.5px;">产品经理</a> <a href="/tags/人工智能/" style="font-size: 10px;">人工智能</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/图像识别/" style="font-size: 10px;">图像识别</a> <a href="/tags/大数据/" style="font-size: 12.5px;">大数据</a> <a href="/tags/应急/" style="font-size: 10px;">应急</a> <a href="/tags/微服务/" style="font-size: 20px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/物联网/" style="font-size: 15px;">物联网</a> <a href="/tags/科普阅读/" style="font-size: 10px;">科普阅读</a> <a href="/tags/移动开发/" style="font-size: 10px;">移动开发</a> <a href="/tags/系统架构/" style="font-size: 17.5px;">系统架构</a> <a href="/tags/虚拟化/" style="font-size: 10px;">虚拟化</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/26/美团即时物流的分布式系统架构设计/">美团即时物流的分布式系统架构设计</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/详细的Docker入门总结（转载）/">详细的Docker入门总结（转载）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/如何构建一个低成本，高可用，少运维的ES平台？/">如何构建一个低成本，高可用，少运维的ES平台？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/应对大流量的一些思路（转载）/">应对大流量的一些思路（转载）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/26/10种室内定位技术原理深度解析/">10种室内定位技术原理深度解析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 jianzhanger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

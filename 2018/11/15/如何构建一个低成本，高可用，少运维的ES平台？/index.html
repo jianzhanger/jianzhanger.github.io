@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>如何构建一个低成本，高可用，少运维的ES平台？ | jianzhanger 的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文作者将从以下几个方面介绍在这两个阶段的发展中为业务解决了哪些痛点以及是如何去解决这些痛点的：  源动力  ES 平台  回看业务  搜索中台">
+<meta name="keywords" content="搜索引擎">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何构建一个低成本，高可用，少运维的ES平台？">
+<meta property="og:url" content="http://yoursite.com/2018/11/15/如何构建一个低成本，高可用，少运维的ES平台？/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="本文作者将从以下几个方面介绍在这两个阶段的发展中为业务解决了哪些痛点以及是如何去解决这些痛点的：  源动力  ES 平台  回看业务  搜索中台">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://s1.51cto.com/oss/201811/14/a8842daf08f1abad8465d6fad1844d53.jpg-wh_600x-s_184107609.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201811/14/8ff181e4e336a0ac538eedb1fe44e8e8.jpg-wh_600x-s_2302061528.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201811/14/99c286692aa28ff253f3e758fb2cc598.jpg-wh_600x-s_2865496202.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201811/14/07559e6e35fbfdf0288d89937098002b.jpg-wh_600x-s_3954410652.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201811/14/f4a4bae9aee58ebb5601a596c287191c.jpg-wh_600x-s_483190614.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201811/14/3724d1f05f75f11af9df7bf32b262688.jpg-wh_600x-s_1027664568.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201811/14/3e9b6b82db69868d2382ee92e18084cc.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201811/14/86e5a8ac00766fa7dccaebf312258536.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201811/14/d7e3045946fa9640eb1c8be0f0d2a017.jpg-wh_600x-s_495068290.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201811/14/b47119538a3546b4868d7ae57344e907.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201811/14/80b07b680cc59f3b3c173f952f5da957.jpg-wh_600x-s_3085686789.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201811/14/fd5887217d43e578202d95ef25b3f619.jpg-wh_600x-s_1125191377.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201811/14/46a537fe7ebf14325e3a13662aa841f7.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201811/14/18e9d2ed402c93b0e7119d1868e53bf0.jpg-wh_600x-s_650692007.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201811/14/6abdaca3c84787c7e5baeb7f298de218.jpg-wh_600x-s_3086835012.jpg">
+<meta property="og:updated_time" content="2018-11-15T03:12:59.909Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何构建一个低成本，高可用，少运维的ES平台？">
+<meta name="twitter:description" content="本文作者将从以下几个方面介绍在这两个阶段的发展中为业务解决了哪些痛点以及是如何去解决这些痛点的：  源动力  ES 平台  回看业务  搜索中台">
+<meta name="twitter:image" content="http://s1.51cto.com/oss/201811/14/a8842daf08f1abad8465d6fad1844d53.jpg-wh_600x-s_184107609.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="jianzhanger 的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">jianzhanger 的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-如何构建一个低成本，高可用，少运维的ES平台？" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/15/如何构建一个低成本，高可用，少运维的ES平台？/" class="article-date">
+  <time datetime="2018-11-15T03:10:23.000Z" itemprop="datePublished">2018-11-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/转载/">转载</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何构建一个低成本，高可用，少运维的ES平台？
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文作者将从以下几个方面介绍在这两个阶段的发展中为业务解决了哪些痛点以及是如何去解决这些痛点的：</p>
+<ul>
+<li><p><strong>源动力</strong></p>
+</li>
+<li><p><strong>ES 平台</strong></p>
+</li>
+<li><p><strong>回看业务</strong></p>
+</li>
+<li><p><strong>搜索中台</strong></p>
+</li>
+</ul>
+<a id="more"></a>
+<p>源动力：架构复杂、运维艰难</p>
+<p>和大多数大型企业一样，蚂蚁内部也有一套自研的搜索系统，我们称之为主搜。</p>
+<p>但是由于这种系统可定制性高，所以一般业务接入比较复杂，周期比较长。而对于大量新兴的中小业务而言，迭代速度尤为关键，因此难以用主搜去满足。</p>
+<p>主搜不能满足，业务又实际要用，怎么办呢？那就只能自建了。在前几年蚂蚁内部有很多小的搜索系统，有 ES，也有 Solr，甚至还有自己用 Lucene 的。</p>
+<p><strong>业务痛点</strong></p>
+<p><a href="http://s1.51cto.com/oss/201811/14/a8842daf08f1abad8465d6fad1844d53.jpg-wh_600x-s_184107609.jpg" target="_blank" rel="noopener"><img src="http://s1.51cto.com/oss/201811/14/a8842daf08f1abad8465d6fad1844d53.jpg-wh_600x-s_184107609.jpg" alt=""></a></p>
+<p>业务由于自身迭代速度很快，去运维这些搜索系统成本很大。就像 ES，虽然搭建一套很是简单，但是用在真实生产环境中还是需要很多专业知识的。</p>
+<p>作为业务部门很难去投入人力去运维维护。并且由于蚂蚁自身的业务特性，很多业务都是需要高可用保证的。</p>
+<p>而我们都知道 ES 本身的高可用目前只能跨机房部署了，先不谈跨机房部署时的分配策略，光是就近访问一点，业务都很难去完成。</p>
+<p>因为这些原因，导致这类场景基本都没有高可用，业务层宁愿写两套代码，准备一套兜底方案。他们觉得容灾时直接降级也比高可用简单。</p>
+<p><strong>架构痛点</strong></p>
+<p><a href="http://s1.51cto.com/oss/201811/14/8ff181e4e336a0ac538eedb1fe44e8e8.jpg-wh_600x-s_2302061528.jpg" target="_blank" rel="noopener"><img src="http://s1.51cto.com/oss/201811/14/8ff181e4e336a0ac538eedb1fe44e8e8.jpg-wh_600x-s_2302061528.jpg" alt=""></a></p>
+<p>从整体架构层面看，各个业务自行搭建搜索引擎造成了烟囱林立，各种重复建设。</p>
+<p>并且这种中小业务一般数据量都比较小，往往一个业务一套三节点集群只有几万条数据，造成整体资源利用率很低。</p>
+<p>而且由于搜索引擎选用的版本，部署的方式都不一致，也难以保证质量。在架构层面只能当做不存在搜索能力。</p>
+<p>低成本，高可用，少运维的 Elasticsearch 平台应运而生</p>
+<p>基于以上痛点，我们产生了构建一套标准搜索平台的想法，将业务从运维中解放出来，也从架构层面统一基础设施，提供一种简单可信的搜索服务。</p>
+<h3 id="架构图如下："><a href="#架构图如下：" class="headerlink" title="架构图如下："></a>架构图如下：</h3><p><a href="http://s2.51cto.com/oss/201811/14/99c286692aa28ff253f3e758fb2cc598.jpg-wh_600x-s_2865496202.jpg" target="_blank" rel="noopener"><img src="http://s2.51cto.com/oss/201811/14/99c286692aa28ff253f3e758fb2cc598.jpg-wh_600x-s_2865496202.jpg" alt=""></a></p>
+<p>如何做低成本，高可用，少运维呢？我们先来一起看一下整体架构，如上图。</p>
+<p>首先说明一下我们这两个框框代表两个机房，我们整体就是一种多机房的架构，用来保证高可用：</p>
+<ul>
+<li><p><strong>最上层是用户接入层，</strong>有 API，Kibana，Console 三种方式，用户和使用 ES 原生的 API 一样可以直接使用我们的产品。</p>
+</li>
+<li><p><strong>中间为路由层（Router)，</strong>负责将用户请求真实发送到对应集群中，负责一些干预处理逻辑。</p>
+</li>
+<li><p><strong>下面每个机房中都有队列（Queue），</strong>负责削峰填谷和容灾多写。</p>
+</li>
+<li><p><strong>每个机房中有多个 ES 集群，</strong>用户的数据最终落在一个真实的集群中，或者一组对等的高可用集群中。</p>
+</li>
+<li><p><strong>右边红色的是 Meta，</strong>负责所有组件的一站式自动化运维和元数据管理。</p>
+</li>
+<li><p><strong>最下面是 Kubernetes，</strong>我们所有的组件均是以容器跑在 K8S 上的，这解放了我们很多物理机运维操作，使得滚动重启这些变得非常方便。</p>
+</li>
+</ul>
+<p><strong>低成本：多租户</strong></p>
+<p>看完了整体，下面就逐点介绍下我们是怎么做的，第一个目标是低成本。在架构层面，成本优化是个每年必谈的话题。</p>
+<p>那么降低成本是什么意思？实际上就是提高资源利用率。提高资源利用率方法有很多，比如提高压缩比，降低查询开销。但是在平台上最简单有效的方式则是多租户。</p>
+<p><strong>今天我就主要介绍下我们的多租户方案：</strong>多租户的关键就是租户隔离，租户隔离分为逻辑隔离和物理隔离。</p>
+<h4 id="逻辑隔离"><a href="#逻辑隔离" class="headerlink" title="逻辑隔离"></a><strong>逻辑隔离</strong></h4><p><a href="http://s2.51cto.com/oss/201811/14/07559e6e35fbfdf0288d89937098002b.jpg-wh_600x-s_3954410652.jpg" target="_blank" rel="noopener"><img src="http://s2.51cto.com/oss/201811/14/07559e6e35fbfdf0288d89937098002b.jpg-wh_600x-s_3954410652.jpg" alt=""></a></p>
+<p>首先介绍下我们的逻辑隔离方案，逻辑隔离就是让业务还是和之前自己搭 ES 一样的用法，也就是透明访问。</p>
+<p>但是实际上访问的只是真实集群中属于自己的一部分数据，而看不到其他人的数据，也就是保证水平权限。</p>
+<p>而 ES 有一点很适合用来做逻辑隔离，ES 的访问实际上都是按照 Index 的。因此我们逻辑隔离的问题就转化为如何让用户只能看到自己的表了。</p>
+<p>我们是通过 Console 保存用户和表的映射关系，然后在访问时通过 Router，也就是前面介绍的路由层进行干预，使得用户只能访问自己的 Index。</p>
+<p>具体而言，我们路由层采用 OpenResty+Lua 实现，将请求过程分为了右图的四步：Dispatch，Filter，Router，Reprocess。</p>
+<p><strong>①</strong>在 Dispatch 阶段我们将请求结构化，抽出其用户，App，Index，Action 数据。</p>
+<p><strong>②</strong>然后进入 Filter 阶段，进行写过滤和改写。</p>
+<p>Filter 又分为三步：</p>
+<ul>
+<li><p>Access 进行限流和验权这类的准入性拦截。</p>
+</li>
+<li><p>Action 对具体的操作进行拦截处理，比如说 DDL，也就是建表，删表，修改结构这些操作，我们将其转发到 Console 进行处理。</p>
+<p>一方面方便记录其 Index 和 App 的对应信息；另一方面由于建删表这种还是很影响集群性能的，我们通过转发给 Console 可以对用户进行进一步限制，防止恶意行为对系统的影响。</p>
+</li>
+<li><p>Params 则是请求改写，在这一步我们会根据具体的 Index 和 Action 进行相应的改写。</p>
+<p>比如去掉用户没有权限的 Index；比如对于 Kibana 索引将其改为用户自己的唯一 Kibana 索引以实现 Kibana 的多租户；比如对 ES 不同版本的简单兼容。</p>
+<p>在这一步我们可以做很多，不过需要注意的有两点：一是尽量不要解析 Body，解 Body 是一种非常影响性能的行为，除了特殊的改写外应该尽力避免，比如 Index 就应该让用户写在 URL 上，并利用 ES 本身的参数关闭 Body 中指定 Index 的功能，这样改写速度可以快很多。</p>
+<p>二是对于 _all 和 getMapping 这种对所有 Index 进行访问的，如果我们替换为用户所有的索引会造成 URL 过长，我们采用的是创建一个和应用名同名的别名，然后将其改写成这个别名。</p>
+</li>
+</ul>
+<p><strong>③</strong>进行完 Filter 就到了真实的 Router 层，这一层就是根据 Filter 的结果做真实的路由请求，可能是转发到真实集群也可能是转发到我们其他的微服务中。</p>
+<p><strong>④</strong>最后是 Reprocess ,这是拿到业务响应后的最终处理，我们在这边会对一些结果进行改写，并且异步记录日志。</p>
+<p>上面这四步就是我们路由层的大致逻辑，通过 App 和 Index 的权限关系控制水平权限，通过 Index 改写路由进行共享集群。</p>
+<h4 id="物理隔离"><a href="#物理隔离" class="headerlink" title="物理隔离"></a><strong>物理隔离</strong></h4><p><a href="http://s5.51cto.com/oss/201811/14/f4a4bae9aee58ebb5601a596c287191c.jpg-wh_600x-s_483190614.jpg" target="_blank" rel="noopener"><img src="http://s5.51cto.com/oss/201811/14/f4a4bae9aee58ebb5601a596c287191c.jpg-wh_600x-s_483190614.jpg" alt=""></a></p>
+<p>做完了逻辑隔离，我们可以保证业务的水平权限了，那么是否就可以了呢？</p>
+<p>显然不是的，实际中不同业务访问差异还是很大的，只做逻辑隔离往往会造成业务间相互影响。</p>
+<p>这时候就需要物理隔离了。不过物理隔离我们目前也没有找到非常好的方案，这边给大家分享下我们的一些尝试。</p>
+<p>首当其冲，我们采用的方法是服务分层，也就是将不同用途，不同重要性的业务分开，对于关键性的主链路业务甚至可以独占集群。</p>
+<p><strong>对于其他的，我们主要分为两类：</strong>写多查少的日志型和查多写少的检索型业务，按照其不同的要求和流量预估将其分配在我们预设的集群中。</p>
+<p>不过需要注意的是申报的和实际的总会有差异的，所以我们还有定期巡检机制，会将已上线业务按照其真实流量进行集群迁移。</p>
+<p>做完了服务分层，我们基本可以解决了低重要性业务影响高重要性业务的场景，但是在同级业务中依旧会有些业务因为比如说做营销活动这种造成突发流量。</p>
+<p>对于这种问题怎么办？一般而言就是全局限流，但是由于我们的访问都是长连接，所以限流并不好做。</p>
+<p>如右图所示，用户通过一个 LVS 访问了我们多个 Router，然后我们又通过了 LVS 访问了多个 ES 节点，我们要做限流，也就是要保证所有 Router 上的令牌总数。</p>
+<p>一般而言全局限流有两种方案：</p>
+<ul>
+<li><p><strong>一是以限流维度将所有请求打在同一实例上，</strong>也就是将同一表的所有访问打在一台机器上。</p>
+<p>但是在 ES 访问量这么高的场景下，这种并不合适，并且由于我们前面已经有了一层 LVS 做负载均衡，再做一层路由会显得过于复杂。</p>
+</li>
+<li><p><strong>第二种方案就是均分令牌，</strong>但是由于长连接的问题，会造成有些节点早已被限流，但是其他节点却没有什么流量。</p>
+</li>
+</ul>
+<p>那么怎么办呢？</p>
+<p><a href="http://s2.51cto.com/oss/201811/14/3724d1f05f75f11af9df7bf32b262688.jpg-wh_600x-s_1027664568.jpg" target="_blank" rel="noopener"><img src="http://s2.51cto.com/oss/201811/14/3724d1f05f75f11af9df7bf32b262688.jpg-wh_600x-s_1027664568.jpg" alt=""></a></p>
+<p>既然是令牌使用不均衡，那么我们就让其分配也不均衡就好了呗。所以我们采用了一种基于反馈的全局限流方案，什么叫基于反馈呢？</p>
+<p>就是我们用巡检去定时采集用量，用的多就多给一些，用的少就少给你一点。</p>
+<p>那么多给一些少给一点到底是什么样的标准呢？这时我们就需要决策单元来处理了，目前我们采取的方案是简单的按比例分配。</p>
+<p>这边需要注意的一点是当有新机器接入时，不是一开始就达到终态的，而是渐进的过程。</p>
+<p>所以需要对这个收敛期设置一些策略，目前因为我们机器性能比较好，不怕突发毛刺，所以我们设置的是全部放行，到稳定后再进行限流。</p>
+<p>这里说到长连接就顺便提一个 Nginx 的小参数：keepalive_timeout。用过 Nginx 的同学应该都见过，表示长连接超时时间，默认有 75s。</p>
+<p>但是这个参数实际上还有一个可选配置，表示写在响应头里的超时时间，如果这个参数没写的话就会出现在服务端释放的瞬间客户端正好复用了这个连接，造成 Connection Reset 或者 NoHttpResponse 的问题。</p>
+<p>出现频率不高，但是真实影响用户体验，因为随机低频出现，我们之前一直以为是客户端问题，后来才发现原来是这个释放顺序的问题。</p>
+<p>至此服务分层，全局限流都已经完成了，是不是可以睡个好觉了呢？ 很遗憾，还是不行，因为 ES 语法非常灵活，并且有许多大代价的操作。</p>
+<p>比如上千亿条数据做聚合，或者是用通配符做个中缀查询，写一个复杂的 Script 都有可能造成拖垮我们整个集群，那么对于这种情况怎么办呢？</p>
+<p>我们目前也是处于探索阶段，比较有用的一种方式是事后补救，也就是我们通过巡检去发现一些耗时大的 Task，然后对其应用的后继操作进行惩罚，比如降级，甚至熔断。</p>
+<p>这样就可以避免持续性的影响整个集群。但是一瞬间的 RT 上升还是不可避免的，因此我们也在尝试事前拦截，不过这个比较复杂，感兴趣的同学可以一起线下交流一下。</p>
+<p><strong>高可用：对等多集群</strong></p>
+<p><a href="http://s4.51cto.com/oss/201811/14/3e9b6b82db69868d2382ee92e18084cc.jpg" target="_blank" rel="noopener"><img src="http://s4.51cto.com/oss/201811/14/3e9b6b82db69868d2382ee92e18084cc.jpg" alt=""></a></p>
+<p>讲完了低成本，那么就来到了我们第二个目标，高可用。正如我之前提到那样，ES 本身其实提供了跨机房部署的方案，通过打标就可以进行跨机房部署，然后通过 Preference 可以保证业务就近查询。</p>
+<p>我这里就不再详细说了，但是这种方案需要两地三中心， 而我们很多对外输出的场景出于成本考虑，并没有三中心，只有两地两中心，因此双机房如何保证高可用就是我们遇到的一个挑战。</p>
+<p>下面我主要就给大家分享下我们基于对等多机房的高可用方案，提供了两种类型，共三种方案分别适用于不同的业务场景。</p>
+<p><strong>我们有单写多读和多写多读两种类型：</strong>单写多读我们采用的是跨集群复制的方案，通过修改 ES，我们增加了利用 Translog 将主集群数据推送给备库的能力。</p>
+<p>就和 6.5 的 ccr 类似，但是我们采用的是推模式，而不是拉模式，因为我们之前做过测试，对于海量数据写入，推比拉的性能好了不少。</p>
+<p>容灾时进行主备互换，然后恢复后再补上在途数据。由上层来保证单写，多读和容灾切换逻辑。</p>
+<p>这种方案通过 ES 本身的 Translog 同步，部署结构简单，数据也很准确，类似于数据库的备库，比较适合对写入 RT 没有过高要求的高可用场景。</p>
+<p><a href="http://s4.51cto.com/oss/201811/14/86e5a8ac00766fa7dccaebf312258536.jpg" target="_blank" rel="noopener"><img src="http://s4.51cto.com/oss/201811/14/86e5a8ac00766fa7dccaebf312258536.jpg" alt=""></a></p>
+<p>多写多读，我们提供了两种方案：</p>
+<ul>
+<li><p>第一种方案比较取巧，就是因为很多关键链路的业务场景都是从 DB 同步到搜索中的，因此我们打通了数据通道，可以自动化的从 DB 写入到搜索，用户无需关心。</p>
+<p>那么对于这类用户的高可用，我们采用的就是利用 DB 的高可用，搭建两条数据管道，分别写入不同的集群。这样就可以实现高可用了，并且还可以绝对保证最终一致性。</p>
+</li>
+<li><p>第二种方案则是在对写入 RT 有强要求，有没有数据源的情况下，我们会采用中间层的多写来实现高可用。</p>
+<p>我们利用消息队列作为中间层，来实现双写。就是用户写的时候，写成功后保证队列也写成功了才返回成功，如果一个不成功就整体失败。</p>
+<p>然后由队列去保证推送到另一个对等集群中。用外部版本号去保证一致性。但是由于是中间层，对于 Delete by Query 的一致性保证就有些无能为力了。所以也仅适合特定的业务场景。</p>
+</li>
+</ul>
+<p>最后，在高可用上我还想说的一点是对于平台产品而言，技术方案有哪些，怎么实现的业务其实并不关心，业务关心的仅仅是他们能不能就近访问降低 RT，和容灾时自动切换保证可用。</p>
+<p>因此我们在平台上屏蔽了这些复杂的高可用类型和这些适用的场景，完全交由我们的后端去判断，让用户可以轻松自助接入。</p>
+<p>并且在交互上也将读写控制，容灾操作移到了我们自己系统内，对用户无感知。</p>
+<p>只有用户可以这样透明拥有高可用能力了，我们的平台才真正成为了高可用的搜索平台。</p>
+<p><strong>少运维</strong></p>
+<p><a href="http://s5.51cto.com/oss/201811/14/d7e3045946fa9640eb1c8be0f0d2a017.jpg-wh_600x-s_495068290.jpg" target="_blank" rel="noopener"><img src="http://s5.51cto.com/oss/201811/14/d7e3045946fa9640eb1c8be0f0d2a017.jpg-wh_600x-s_495068290.jpg" alt=""></a></p>
+<p>最后一个目标，少运维，就简单介绍一下我们在整体运维系统搭建过程中沉淀出的四个原则：</p>
+<ul>
+<li><p><strong>自包含</strong>：ES 做的就很不错了，一个 Jar 就可以启动，而我们的整套系统也都应该和单个 ES 一样，一条很简单的命令就能启动，没有什么外部依赖，这样就很好去输出。</p>
+</li>
+<li><p><strong>组件化：</strong>是指我们每个模块都应该可以插拔，来适应不同的业务场景，比如有的不需要多租户，有的不需要削峰填谷。</p>
+</li>
+<li><p><strong>一站到底：</strong>是指我们的所有组件，Router，Queue，ES，还有很多微服务的管控都应该在一个系统中去管控，万万不能一个组件一套自己的管控。</p>
+</li>
+<li><p><strong>自动化</strong>就不说了，大家都懂。</p>
+</li>
+<li><p>右边就是我们的一个大盘页面，展现了 Router，ES 和 Queue 的访问情况。当然，这是 Mock 的数据。</p>
+</li>
+</ul>
+<p>回看业务：无需运维，却依旧不爽</p>
+<p>至此我们已经拥有了一套低成本，高可用，少运维的 Elasticsearch 平台了，也解决了之前谈到的业务痛点，那么用户用的是否就爽了呢？</p>
+<p>我们花了大半个月的时间，对我们的业务进行了走访调研，发现业务虽然已经从运维中解放了出来，但是身上还是有不少搜索的枷锁。</p>
+<p><a href="http://s4.51cto.com/oss/201811/14/b47119538a3546b4868d7ae57344e907.jpg" target="_blank" rel="noopener"><img src="http://s4.51cto.com/oss/201811/14/b47119538a3546b4868d7ae57344e907.jpg" alt=""></a></p>
+<p>我们主要分为两类用户，数据分析和全文检索的：</p>
+<ul>
+<li><p><strong>数据分析主要觉得配置太复杂，</strong>它只是想导入一个日志数据，要学一堆的字段配置，而且很久才会用到一次，每次学完就忘，用到再重学，很耽误事情。</p>
+<p>其次，无关逻辑重，因为数据分析类的一般都是保留多天的数据，过期的数据就可以删除了，为了实现这一个功能，数据分析的同学要写很多代码，还要控制不同的别名，很是麻烦。</p>
+</li>
+<li><p><strong>而全文检索类的同学主要痛点有三个，</strong>一是分词配置复杂；二是难以修改字段，Reindex 太复杂，还要自己先创建别名，再控制无缝切换；第三点是 Debug 艰难。</p>
+<p>虽然现在有 Explain，但是用过的同学应该都懂，想要整体梳理出具体的算分原因还是需要自己在脑中开辟很大的一块缓存的。对于不熟悉 ES 的同学就太痛苦了。</p>
+</li>
+</ul>
+<p>整理一下，这些痛点归类起来就两个痛点：学习成本高和接口过于原子。</p>
+<p>搜索中台：抽象逻辑，解放业务</p>
+<p>学习成本高和接口过于原子，虽然是业务的痛点，但是对 ES 本身而言却反而是优点，为什么学习成本高呢？因为功能丰富。而为什么接口原子呢？为了让上层可以灵活使用。</p>
+<p>这些对于专家用户而言，非常不错，但是对于业务而言，的确很是麻烦。因此我们开始了我们第二个阶段，搜索中台。</p>
+<p>什么叫中台呢，就是把一些通用的业务逻辑下移，来减少业务的逻辑，让业务专注于业务本身。</p>
+<p>而为什么业务不能做这些呢？当然也能做。但是俗话说『天下武功，唯快不破』，前台越轻，越能适应这变化极快的业务诉求。</p>
+<p>因此我们的搜索中台的主要目标就是两点：</p>
+<ul>
+<li><p><strong>一是降低业务学习成本，加快上手速度。</strong>我们这次介绍的主要是如何降低对于配置类这种低频操作的学习成本。</p>
+</li>
+<li><p><strong>二是抽象复杂逻辑来加速业务迭代，</strong>我们这次主要会介绍抽象了哪两种业务逻辑。</p>
+</li>
+</ul>
+<p><strong>降低学习成本</strong></p>
+<p><a href="http://s5.51cto.com/oss/201811/14/80b07b680cc59f3b3c173f952f5da957.jpg-wh_600x-s_3085686789.jpg" target="_blank" rel="noopener"><img src="http://s5.51cto.com/oss/201811/14/80b07b680cc59f3b3c173f952f5da957.jpg-wh_600x-s_3085686789.jpg" alt=""></a></p>
+<p>降低学习成本，这个怎么做呢？众所周知，黑屏变白屏，也就是白屏化。但是很多的白屏化就是把命令放在了 Web 上，回车变按钮。这样真的可以降低用户学习成本么？ 我想毋庸置疑，这样是不行的。</p>
+<p>我们在可视化上尝试了许多方案，也走了许多弯路，最后发现要想真正降低用户学习成本，需要把握三个要点：</p>
+<p><strong>①用户分层，</strong>区分出小白用户和专家用户，不要让专家用户的意见影响整体产品的极简设计，对于小白用户一定是越少越好，选择越少，路径越短，反馈越及时，效果越好。</p>
+<p>正如所谓的沉默的大多数，很多小白用户并不会去主动发声，只会随着复杂的配置而放弃使用。</p>
+<p>下图就是我们对于专家用户和小白用户在配置表结构时不同的页面，对于专家用户，基本就是 ES 所有的功能可视化，加快使用速度。对于小白用户而言，则是完全屏蔽这些功能点，让其可以直接使用。</p>
+<p><a href="http://s2.51cto.com/oss/201811/14/fd5887217d43e578202d95ef25b3f619.jpg-wh_600x-s_1125191377.jpg" target="_blank" rel="noopener"><img src="http://s2.51cto.com/oss/201811/14/fd5887217d43e578202d95ef25b3f619.jpg-wh_600x-s_1125191377.jpg" alt=""></a></p>
+<p><strong>②引导式配置，</strong>引导式配置其实也就是加上限制，通过对用户的上一步输入决定下一步的可选。</p>
+<p>要避免一个页面打开一堆配置项，这样用户就会无从下手，更不要谈学习成本了。</p>
+<p>通过引导式配置来减少用户的选择，降低用户的记忆成本。限制不一定就意味着约束用户，合适的限制更可以降低用户的理解成本。</p>
+<p>比如右图就是我们的一个分词器配置，很简单的引导，用户选择了中文字典后才可以选择相应的词典。</p>
+<p><a href="http://s4.51cto.com/oss/201811/14/46a537fe7ebf14325e3a13662aa841f7.jpg" target="_blank" rel="noopener"><img src="http://s4.51cto.com/oss/201811/14/46a537fe7ebf14325e3a13662aa841f7.jpg" alt=""></a></p>
+<p><strong>③深层次结构打平，</strong>什么叫深层次结构打平，就是指像现在的分词器，相似度这些都是在 Index 级别下的，我们将其抽象出来，变为全局的。</p>
+<p>用户可以自行创建全局的分词器，相似度，并且还可以共享给其他人，就像一个资源一样。然后在 Index 中则是引用这个分词器。</p>
+<p>虽然这边做的仅仅是将分词器从 Index 级别变为了全局，但是却真正的减少了很多业务操作，因为在一个业务场景中，往往存在多张表，而多张表往往会使用同一套分词器。</p>
+<p>通过这种全局性的分词器用户仅需修改一处即可作用于所有位置。</p>
+<p><strong>抽象复杂逻辑</strong></p>
+<p><a href="http://s3.51cto.com/oss/201811/14/18e9d2ed402c93b0e7119d1868e53bf0.jpg-wh_600x-s_650692007.jpg" target="_blank" rel="noopener"><img src="http://s3.51cto.com/oss/201811/14/18e9d2ed402c93b0e7119d1868e53bf0.jpg-wh_600x-s_650692007.jpg" alt=""></a></p>
+<p>好的，说完了白屏化的一些经验，这边给大家分享我们对于复杂逻辑的抽象封装的两种新型表结构。</p>
+<p>这两种分别是数据分析类场景，我们抽象出了日志型表，另一种是全文检索类场景，我们抽象出了别名型表。</p>
+<p>日志型表的作用顾名思义就是存日志，也就是之前说的对于数据分析类业务，往往只保留几天。</p>
+<p>比如我们现在有个业务场景，有张 ES 的日志表，只想保留 3 天，于是我们就给它按天创建索引。</p>
+<p>然后写入索引挂载到今天，查询索引挂载所有的，用 Router 去自动改写别名，用户还是传入 ES，但是执行写入操作时实际就是在 es_write 执行，查询就是在 es_read 执行。</p>
+<p>当然实际中我们并不是按天建的索引，我们会利用 Rollover 创建很多的索引来保证海量写入下的速度。但是整体逻辑还是和这个是一样的。</p>
+<p><a href="http://s5.51cto.com/oss/201811/14/6abdaca3c84787c7e5baeb7f298de218.jpg-wh_600x-s_3086835012.jpg" target="_blank" rel="noopener"><img src="http://s5.51cto.com/oss/201811/14/6abdaca3c84787c7e5baeb7f298de218.jpg-wh_600x-s_3086835012.jpg" alt=""></a></p>
+<p>而对于全文检索类场景，主要的痛点就是表结构的变更和分词器，字典类的变更，需要重建索引。</p>
+<p>所以我们抽象了一个叫别名表的表结构，用户创建一张表 ES，实际创建的是一个 ES 的别名，我们会把它和我们真实的 Index 一一对应上。这样利用这个别名，我们就可以自动帮用户完成索引重建的操作。</p>
+<p>而索引重建，我们有两种方式，一是用户配置了数据源的，我们会直接从数据源进行重建，重建完成后直接切换。</p>
+<p>另外对于没有数据源，直接 API 写入的，目前我们是利用了 ES 的 Reindex 再配合我们消息队列的消息回放实现的。</p>
+<p>具体而言，我们就是首先提交 Reindex，同时数据开始进 Queue 转发，然后待 Reindex 完成后，Queue 再从 Reindex 开始时进行回放，追平时切别名即可。</p>
+<p>总结</p>
+<p>总结一下这次分享的内容，我们首先构建了一个低成本，高可用，少运维的 ES 平台将业务从运维中解脱出来，然后又进一步构建了搜索中台，通过降低业务学习成本，下沉通用业务逻辑来加速业务迭代，赋能业务。</p>
+<p>当然，这里介绍的搜索中台只是最基础的中台能力，我们还在进一步探索些复杂场景下如何抽象来降低业务成本，也就是垂直化的搜索产品。</p>
+<p><em>作者：__善仁</em></p>
+<p><em>编辑：陶家龙、孙淑娟</em></p>
+<p>_出处：转载自金融级分布式架构（ID：Antfin_SOFA）微信公众号，本文根据他在 2018 Elastic 中国开发者大会的分享整理。_</p>
+<p><em>完整PPT：<a href="http://www.sofastack.tech/posts/2018-11-12-01" target="_blank" rel="noopener">http://www.sofastack.tech/posts/2018-11-12-01</a></em></p>
+<p>原文地址：<a href="http://developer.51cto.com/art/201811/586913.htm" target="_blank" rel="noopener">http://developer.51cto.com/art/201811/586913.htm</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/15/如何构建一个低成本，高可用，少运维的ES平台？/" data-id="cjoxquv4s00230sti9sutven4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/搜索引擎/">搜索引擎</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/15/详细的Docker入门总结（转载）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          详细的Docker入门总结（转载）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/15/应对大流量的一些思路（转载）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">应对大流量的一些思路（转载）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/原创/">原创</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品经理/">产品经理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像识别/">图像识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应急/">应急</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索引擎/">搜索引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物联网/">物联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科普阅读/">科普阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动开发/">移动开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟化/">虚拟化</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 17.5px;">Git</a> <a href="/tags/产品经理/" style="font-size: 12.5px;">产品经理</a> <a href="/tags/人工智能/" style="font-size: 10px;">人工智能</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/图像识别/" style="font-size: 10px;">图像识别</a> <a href="/tags/大数据/" style="font-size: 12.5px;">大数据</a> <a href="/tags/应急/" style="font-size: 10px;">应急</a> <a href="/tags/微服务/" style="font-size: 20px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/物联网/" style="font-size: 15px;">物联网</a> <a href="/tags/科普阅读/" style="font-size: 10px;">科普阅读</a> <a href="/tags/移动开发/" style="font-size: 10px;">移动开发</a> <a href="/tags/系统架构/" style="font-size: 17.5px;">系统架构</a> <a href="/tags/虚拟化/" style="font-size: 10px;">虚拟化</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/26/美团即时物流的分布式系统架构设计/">美团即时物流的分布式系统架构设计</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/详细的Docker入门总结（转载）/">详细的Docker入门总结（转载）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/如何构建一个低成本，高可用，少运维的ES平台？/">如何构建一个低成本，高可用，少运维的ES平台？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/应对大流量的一些思路（转载）/">应对大流量的一些思路（转载）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/26/10种室内定位技术原理深度解析/">10种室内定位技术原理深度解析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 jianzhanger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
