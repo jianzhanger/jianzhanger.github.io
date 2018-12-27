@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>从零开始构建人脸识别模型 | jianzhanger 的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="01 介绍 你是否意识到，每当你上传照片到Facebook上，平台都会用人脸识别算法来识别图片中的人物？目前还有一些政府在用人脸识别技术来识别和抓捕罪犯。此外，最常见的应用就是通过自己的脸部解锁手机。 计算机视觉的子领域应用得非常广泛，并且全球很多商业活动都已经从中获益。人脸识别模型的使用在接下来的几年内还会继续增长，所以一起来了解如何从零开始构建人脸识别模型吧！">
+<meta name="keywords" content="图像识别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始构建人脸识别模型">
+<meta property="og:url" content="http://yoursite.com/2018/11/27/从零开始构建人脸识别模型/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="01 介绍 你是否意识到，每当你上传照片到Facebook上，平台都会用人脸识别算法来识别图片中的人物？目前还有一些政府在用人脸识别技术来识别和抓捕罪犯。此外，最常见的应用就是通过自己的脸部解锁手机。 计算机视觉的子领域应用得非常广泛，并且全球很多商业活动都已经从中获益。人脸识别模型的使用在接下来的几年内还会继续增长，所以一起来了解如何从零开始构建人脸识别模型吧！">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://s4.51cto.com/oss/201811/27/09ff09dca5186952b360c2fb474ed002.jpg-wh_651x-s_4252756916.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201811/27/40031d838e899383787359552cef5d6e.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201811/27/ec77be6b9dec0a42ee764fc51790e687.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201811/27/0fcd1f5f608a34e96a376429d4a80ad9.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201811/27/fefa32c5957b835454f4313b4427be9e.jpg">
+<meta property="og:updated_time" content="2018-11-27T07:35:37.341Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始构建人脸识别模型">
+<meta name="twitter:description" content="01 介绍 你是否意识到，每当你上传照片到Facebook上，平台都会用人脸识别算法来识别图片中的人物？目前还有一些政府在用人脸识别技术来识别和抓捕罪犯。此外，最常见的应用就是通过自己的脸部解锁手机。 计算机视觉的子领域应用得非常广泛，并且全球很多商业活动都已经从中获益。人脸识别模型的使用在接下来的几年内还会继续增长，所以一起来了解如何从零开始构建人脸识别模型吧！">
+<meta name="twitter:image" content="http://s4.51cto.com/oss/201811/27/09ff09dca5186952b360c2fb474ed002.jpg-wh_651x-s_4252756916.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="jianzhanger 的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">jianzhanger 的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-从零开始构建人脸识别模型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/27/从零开始构建人脸识别模型/" class="article-date">
+  <time datetime="2018-11-27T07:33:58.000Z" itemprop="datePublished">2018-11-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/转载/">转载</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      从零开始构建人脸识别模型
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>01 介绍</strong></p>
+<p>你是否意识到，每当你上传照片到Facebook上，平台都会用人脸识别算法来识别图片中的人物？目前还有一些政府在用人脸识别技术来识别和抓捕罪犯。此外，最常见的应用就是通过自己的脸部解锁手机。</p>
+<p>计算机视觉的子领域应用得非常广泛，并且全球很多商业活动都已经从中获益。人脸识别模型的使用在接下来的几年内还会继续增长，所以一起来了解如何从零开始构建人脸识别模型吧！</p>
+<p><a href="http://s4.51cto.com/oss/201811/27/09ff09dca5186952b360c2fb474ed002.jpg-wh_651x-s_4252756916.jpg" target="_blank" rel="noopener"><img src="http://s4.51cto.com/oss/201811/27/09ff09dca5186952b360c2fb474ed002.jpg-wh_651x-s_4252756916.jpg" alt=""></a><br><a id="more"></a><br>本文首先会介绍人脸识别模型的内部工作原理。随后结合一个简单的案例，我们将通过Python进行案例实践。在本文的最后部分，你将完成你的第一个人脸识别模型！</p>
+<p><strong>02 理解人脸识别的工作原理</strong></p>
+<p>为了理解人脸识别算法工作原理，我们首先来了解一下特征向量的概念。（译者注：此处的特征向量指机器学习的概念，不同于矩阵理论。）</p>
+<p>每个机器学习算法都会将数据集作为输入，并从中学习经验。算法会遍历数据并识别数据中的模式。例如，假定我们希望识别指定图片中人物的脸，很多物体是可以看作模式的：</p>
+<ul>
+<li>脸部的长度/宽度。</li>
+<li>由于图片比例会被调整，长度和高度可能并不可靠。然而，在放缩图片后，比例是保持不变的——脸部长度和宽度的比例不会改变。</li>
+<li>脸部肤色。</li>
+<li>脸上局部细节的宽度，如嘴，鼻子等。</li>
+</ul>
+<p>显而易见，此时存在一个模式——不同的脸有不同的维度，相似的脸有相似的维度。有挑战性的是需要将特定的脸转为数字，因为机器学习算法只能理解数字。表示一张脸的数字（或训练集中的一个元素）可以称为特征向量。一个特征向量包括特定顺序的各种数字。</p>
+<p>举一个简单的例子，我们可以将一张脸映射到一个特征向量上。特征向量由不同的特征组成，如：</p>
+<ul>
+<li>脸的长度（cm）</li>
+<li>脸的宽度（cm）</li>
+<li>脸的平均肤色（R，G，B）</li>
+<li>唇部宽度（cm）</li>
+<li>鼻子长度（cm）</li>
+</ul>
+<p>当给定一个图片时，我们可以标注不同的特征并将其转化为如下的特征向量：</p>
+<p><a href="http://s5.51cto.com/oss/201811/27/40031d838e899383787359552cef5d6e.jpg" target="_blank" rel="noopener"><img src="http://s5.51cto.com/oss/201811/27/40031d838e899383787359552cef5d6e.jpg" alt=""></a></p>
+<p>如此一来，我们的图片现在被转化为一个向量，可以表示为(23.1,15.8,255,224,189,5.2,4.4)。当然我们还可以从图片中衍生出无数的其他特征（如，头发颜色，胡须，眼镜等）。然而在这个简单的例子中，我们只考虑这五个简单的特征。</p>
+<p>现在，一旦我们将每个图片解码为特征向量，问题就变得更简单。明显地，当我们使用同一个人的两张面部图片时，提取的特征向量会非常相似。换言之，两个特征向量的“距离”就变得非常小。</p>
+<p>此时机器学习可以帮我们完成两件事：</p>
+<ul>
+<li><strong>提取特征向量</strong>。由于特征过多，手动列出所有特征是非常困难的。一个机器学习算法可以自动标注很多特征。例如，一个复杂的特征可能是：鼻子长度和前额宽度的比例。手动列出所有的这些衍生特征是非常困难的。</li>
+<li><strong>匹配算法</strong>：一旦得到特征向量，机器学习算法需要将新图片和语料库中的特征向量进行匹配。</li>
+</ul>
+<p>既然我们对人脸识别如何工作有了基本的理解，让我们运用一些广泛使用的Python库来搭建自己的人脸识别算法。</p>
+<p><strong>03 案例学习</strong></p>
+<p>首先给定一些人物脸部的图片——可能是一些名人，如Mark Zuckerberg, Warren Buffett, Bill Gates, Shah Rukh Khan等，并把这些人脸看作我们的语料库。现在，我们给定一些其他名人的新图片（“新人物”），并判断这些“新人物”是否在语料库中。</p>
+<p>以下是语料库中的图片：</p>
+<p><a href="http://s5.51cto.com/oss/201811/27/ec77be6b9dec0a42ee764fc51790e687.jpg" target="_blank" rel="noopener"><img src="http://s5.51cto.com/oss/201811/27/ec77be6b9dec0a42ee764fc51790e687.jpg" alt=""></a></p>
+<p>如图所示，我们所列举的名人有Barack Obama, Bill Gates, Jeff Bezos, Mark Zuckerberg, Ray Dalio 和Shah Rukh Khan。</p>
+<p>现在，假定“新人物”如下：</p>
+<p><a href="http://s4.51cto.com/oss/201811/27/0fcd1f5f608a34e96a376429d4a80ad9.jpg" target="_blank" rel="noopener"><img src="http://s4.51cto.com/oss/201811/27/0fcd1f5f608a34e96a376429d4a80ad9.jpg" alt=""></a></p>
+<p>▲注：以上所有图片均来自Google图片</p>
+<p>显而易见，这是Shah Rukh Khan。然而对电脑来说，这个任务很有挑战性。因为对于我们来说，我们可以轻易地将图片的多种特征结合来判断这是哪个人物。然而对电脑而言，学习如何识别人脸是非常不直观的。</p>
+<p>有一个神奇但是简单的python库封装了以上提及的内容——可以根据脸部特征生成特征向量并且知道如何区分不同的脸。这个python库叫做face_recognition。它应用了dlib——一个现代C++工具包，其中包含了一些机器学习算法来帮助完成复杂的基于C++的应用。</p>
+<p>Python中的face_recognition库可以完成大量的任务：</p>
+<ul>
+<li>发现给定图片中所有的脸。</li>
+<li>发现并处理图片中的脸部特征。</li>
+<li>识别图片中的脸。</li>
+<li>实时的人脸识别。</li>
+</ul>
+<p>接下来，我们将探讨其中的第三种任务——识别图片中的脸。</p>
+<p>你可以在github的如下链接中获取face_recognition库的源代码。</p>
+<p>链接：</p>
+<p><a href="https://github.com/ageitgey/face_recognition" target="_blank" rel="noopener">https://github.com/ageitgey/face_recognition</a></p>
+<p>事实上，这里有一些如何安装face_recognition库的指导。</p>
+<p>链接：</p>
+<p><a href="https://github.com/ageitgey/face_recognition#installation-optionshttps://github.com/ageitgey/face_recognition#installation-options" target="_blank" rel="noopener">https://github.com/ageitgey/face_recognition#installation-options</a></p>
+<p>在你安装face_recognition之前，还需要安装dlib包。你可以从如下链接中找到安装dlib的指导。</p>
+<p>链接：</p>
+<p><a href="https://gist.github.com/ageitgey/629d75c1baac34dfa5ca2a1928a7aeaf" target="_blank" rel="noopener">https://gist.github.com/ageitgey/629d75c1baac34dfa5ca2a1928a7aeaf</a></p>
+<p><strong>04 Python应用</strong></p>
+<p>这部分包括使用face_recognition库搭建简单人脸识别系统的代码。这是一个应用操作的部分，我们将在下一部分解读代码来理解更多细节。</p>
+<ol>
+<li><h1 id="import-the-libraries"><a href="#import-the-libraries" class="headerlink" title="import the libraries"></a>import the libraries</h1></li>
+<li>import os  </li>
+<li>import face_recognition  </li>
+<li><h1 id="make-a-list-of-all-the-available-images"><a href="#make-a-list-of-all-the-available-images" class="headerlink" title="make a list of all the available images"></a>make a list of all the available images</h1></li>
+<li>images = os.listdir(‘images’)  </li>
+<li><h1 id="load-your-image"><a href="#load-your-image" class="headerlink" title="load your image"></a>load your image</h1></li>
+<li>image_to_be_matched = face_recognition.load_image_file(‘my_image.jpg’)  </li>
+<li><h1 id="encoded-the-loaded-image-into-a-feature-vector"><a href="#encoded-the-loaded-image-into-a-feature-vector" class="headerlink" title="encoded the loaded image into a feature vector"></a>encoded the loaded image into a feature vector</h1></li>
+<li>image_to_be_matched_encoded = face_recognition.face_encodings(  </li>
+<li>image_to_be_matched)[0] </li>
+<li><h1 id="iterate-over-each-image"><a href="#iterate-over-each-image" class="headerlink" title="iterate over each image"></a>iterate over each image</h1></li>
+<li>for image in images:  </li>
+<li><h1 id="load-the-image"><a href="#load-the-image" class="headerlink" title="load the image"></a>load the image</h1></li>
+<li>current_image = face_recognition.load_image_file(“images/“ + image) </li>
+<li><h1 id="encode-the-loaded-image-into-a-feature-vector"><a href="#encode-the-loaded-image-into-a-feature-vector" class="headerlink" title="encode the loaded image into a feature vector"></a>encode the loaded image into a feature vector</h1></li>
+<li>current_image_encoded = face_recognition.face_encodings(current_image)[0] </li>
+<li><h1 id="match-your-image-with-the-image-and-check-if-it-matches"><a href="#match-your-image-with-the-image-and-check-if-it-matches" class="headerlink" title="match your image with the image and check if it matches"></a>match your image with the image and check if it matches</h1></li>
+<li>result = face_recognition.compare_faces( </li>
+<li>[image_to_be_matched_encoded], current_image_encoded) </li>
+<li><h1 id="check-if-it-was-a-match"><a href="#check-if-it-was-a-match" class="headerlink" title="check if it was a match"></a>check if it was a match</h1></li>
+<li>if result[0] == True: </li>
+<li>print “Matched: “ + image </li>
+<li>else: </li>
+<li>print “Not matched: “ + image </li>
+</ol>
+<p>文件结构如下：</p>
+<p>facialrecognition：</p>
+<ul>
+<li>fr.py</li>
+<li>my_image.jpg</li>
+<li><p>images/</p>
+</li>
+<li><p>barack_obama.jpg</p>
+</li>
+<li>bill_gates.jpg</li>
+<li>jeff_bezos.jpg</li>
+<li>mark_zuckerberg.jpg</li>
+<li>ray_dalio.jpg</li>
+<li>shah_rukh_khan.jpg</li>
+<li>warren_buffett.jpg</li>
+</ul>
+<p>我们的根目录，facialrecognition包括：</p>
+<ul>
+<li>fr.py的形式的人脸识别代码。</li>
+<li>my_image.jpg – 即将被识别的图片(“新人物”)。</li>
+<li>images/ – 语料库。</li>
+</ul>
+<p>如果你按照前文创建文件结构并执行代码，如下是你能得到的结果：</p>
+<ol>
+<li>Matched: shah_rukh_khan.jpg  </li>
+<li>Not matched: warren_buffett.jpg  </li>
+<li>Not matched: barack_obama.jpg  </li>
+<li>Not matched: ray_dalio.jpg  </li>
+<li>Not matched: bill_gates.jpg  </li>
+<li>Not matched: jeff_bezos.jpg  </li>
+<li>Not matched: mark_zuckerberg.jpg </li>
+</ol>
+<p>显而易见，新名人是Shah Rukh Khan 并且我们的人脸识别系统可以识别!</p>
+<p><strong>05 理解Python代码</strong></p>
+<p>现在让我们解读代码来，并理解其工作原理：</p>
+<ol>
+<li><h1 id="import-the-libraries-1"><a href="#import-the-libraries-1" class="headerlink" title="import the libraries"></a>import the libraries</h1></li>
+<li>import os  </li>
+<li>import face_recognition </li>
+</ol>
+<p>以上是引入操作。我们将通过已经建好的os库来读入语料库中的所有图片，并且通过face_recognition来完成算法部分。</p>
+<ol>
+<li><h1 id="make-a-list-of-all-the-available-images-1"><a href="#make-a-list-of-all-the-available-images-1" class="headerlink" title="make a list of all the available images"></a>make a list of all the available images</h1></li>
+<li>images = os.listdir(‘images’) </li>
+</ol>
+<p>这个简单的代码将帮助我们识别语料库中所有图片的路径。一旦执行这些代码，我们可以得到：</p>
+<ol>
+<li>images = [‘shah_rukh_khan.jpg’, ‘warren_buffett.jpg’, ‘barack_obama.jpg’, ‘ray_dalio.jpg’, ‘bill_gates.jpg’, ‘jeff_bezos.jpg’, ‘mark_zuckerberg.jpg’] </li>
+</ol>
+<p>现在，以下代码将加载新人物的图片：</p>
+<ol>
+<li><h1 id="load-your-image-1"><a href="#load-your-image-1" class="headerlink" title="load your image"></a>load your image</h1></li>
+<li>image_to_be_matched = face_recognition.load_image_file(‘my_image.jpg’) </li>
+</ol>
+<p>为了保证算法可以解析图片，我们将人物脸部图片转化为特征向量：</p>
+<ol>
+<li><h1 id="encoded-the-loaded-image-into-a-feature-vector-1"><a href="#encoded-the-loaded-image-into-a-feature-vector-1" class="headerlink" title="encoded the loaded image into a feature vector"></a>encoded the loaded image into a feature vector</h1></li>
+<li>image_to_be_matched_encoded = face_recognition.face_encodings(  </li>
+<li>image_to_be_matched)[0] </li>
+</ol>
+<p>剩余的代码相对简单：</p>
+<ol>
+<li><h1 id="iterate-over-each-image-1"><a href="#iterate-over-each-image-1" class="headerlink" title="iterate over each image"></a>iterate over each image</h1></li>
+<li>for image in images:  </li>
+<li><h1 id="load-the-image-1"><a href="#load-the-image-1" class="headerlink" title="load the image"></a>load the image</h1></li>
+<li>current_image = face_recognition.load_image_file(“images/“ + image) </li>
+<li><h1 id="encode-the-loaded-image-into-a-feature-vector-1"><a href="#encode-the-loaded-image-into-a-feature-vector-1" class="headerlink" title="encode the loaded image into a feature vector"></a>encode the loaded image into a feature vector</h1></li>
+<li>current_image_encoded = face_recognition.face_encodings(current_image)[0] </li>
+<li><h1 id="match-your-image-with-the-image-and-check-if-it-matches-1"><a href="#match-your-image-with-the-image-and-check-if-it-matches-1" class="headerlink" title="match your image with the image and check if it matches"></a>match your image with the image and check if it matches</h1></li>
+<li>result = face_recognition.compare_faces( </li>
+<li>[image_to_be_matched_encoded], current_image_encoded) </li>
+<li><h1 id="check-if-it-was-a-match-1"><a href="#check-if-it-was-a-match-1" class="headerlink" title="check if it was a match"></a>check if it was a match</h1></li>
+<li>if result[0] == True: </li>
+<li>print “Matched: “ + image </li>
+<li>else: </li>
+<li>print “Not matched: “ + image </li>
+</ol>
+<p>此时，我们：</p>
+<ul>
+<li>对每个图像进行循环操作。</li>
+<li>将图像解析为特征向量。</li>
+<li>比较语料库中已经加载的图片和被识别的新人物图片。</li>
+<li>如果两者匹配，我们就显示出来。如果不匹配，我们也要显示结果。</li>
+</ul>
+<p>如上所示，结果显示这个简单的人脸识别算法进行得很顺利。让我们尝试将my_image替换为另一个图片：</p>
+<p><a href="http://s1.51cto.com/oss/201811/27/fefa32c5957b835454f4313b4427be9e.jpg" target="_blank" rel="noopener"><img src="http://s1.51cto.com/oss/201811/27/fefa32c5957b835454f4313b4427be9e.jpg" alt=""></a></p>
+<p>当你再次运行这个算法，将会看到如下结果：</p>
+<ol>
+<li>Not matched: shah_rukh_khan.jpg  </li>
+<li>Not matched: warren_buffett.jpg  </li>
+<li>Not matched: barack_obama.jpg  </li>
+<li>Not matched: ray_dalio.jpg  </li>
+<li>Not matched: bill_gates.jpg  </li>
+<li>Not matched: jeff_bezos.jpg  </li>
+<li>Not matched: mark_zuckerberg.jpg </li>
+</ol>
+<p>很明显，系统没有将马云识别为以上的任何一个名人。这意味着我们的算法在以下方面都表现得很好：</p>
+<ul>
+<li>正确地识别那些在语料库中存储的人。</li>
+<li>对语料库中不存在的人物进行标注。</li>
+</ul>
+<p><strong>06 人脸识别算法的应用</strong></p>
+<p>人脸识别是一个成熟的研究方向，已被广泛地应用在工业界和学术界。例如，一个罪犯在中国被捕可能就得益于人脸识别系统：系统识别了他的脸并发出警报。由此可见，面部识别可以用来减少犯罪。还有许多其他有趣的人脸识别案例:</p>
+<ul>
+<li>面部身份验证：Apple在iPhones中引入了Face ID以用于面部身份验证。一些银行也尝试使用面部身份验证来解锁。</li>
+<li>用户服务：马来西亚的一些银行安装了新的人脸识别系统，用于识别有价值的银行客户，以便银行为其提供个人服务。进而银行可以通过维持这类用户并提升用户满意度来获取更多收益。</li>
+<li>保险行业：很多保险公司正在通过运用人脸识别系统来匹配人的脸和ID提供的照片，使赔付过程变得更简单。</li>
+</ul>
+<p><strong>07 尾记</strong></p>
+<p>综上所述，人脸识别是一个有趣的问题并且有很多强大的案例。这些应用可以有效地从各个方面为社会服务。尽管将这些技术商业化可能会带来伦理风险，但我们会把这个问题留到下次讨论。</p>
+<p>希望你能从本文中有所收获。</p>
+<p>原文标题：</p>
+<p>Simple Introduction to Facial Recognition (with Python codes)</p>
+<p>原文链接：</p>
+<p><a href="https://www.analyticsvidhya.com/blog/2018/08/a-simple-introduction-to-facial-recognition-with-python-codes/" target="_blank" rel="noopener">https://www.analyticsvidhya.com/blog/2018/08/a-simple-introduction-to-facial-recognition-with-python-codes/</a></p>
+<p>关于译者：王雨桐，统计学在读，数据科学硕士预备，跑步不停，弹琴不止。梦想把数据可视化当作艺术，目前日常是摸着下巴看机器学习。</p>
+<p>原文地址：<a href="http://developer.51cto.com/art/201811/587696.htm" target="_blank" rel="noopener">http://developer.51cto.com/art/201811/587696.htm</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/27/从零开始构建人脸识别模型/" data-id="cjq673rri001owwtitajrdxpm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图像识别/">图像识别</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/03/一文看懂区块链的3种类型：公有链、私有链和联盟链/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          一文看懂区块链的3种类型：公有链、私有链和联盟链
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/27/读完这篇，你一定能真正理解Redis持久化/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">读完这篇，你一定能真正理解Redis持久化</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/原创/">原创</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品经理/">产品经理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像识别/">图像识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应急/">应急</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索引擎/">搜索引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂文/">杂文</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物联网/">物联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/神经网络/">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动开发/">移动开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟化/">虚拟化</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 16px;">Git</a> <a href="/tags/产品经理/" style="font-size: 20px;">产品经理</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/区块链/" style="font-size: 12px;">区块链</a> <a href="/tags/图像识别/" style="font-size: 12px;">图像识别</a> <a href="/tags/大数据/" style="font-size: 14px;">大数据</a> <a href="/tags/应急/" style="font-size: 10px;">应急</a> <a href="/tags/微服务/" style="font-size: 18px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/物联网/" style="font-size: 14px;">物联网</a> <a href="/tags/神经网络/" style="font-size: 10px;">神经网络</a> <a href="/tags/移动开发/" style="font-size: 10px;">移动开发</a> <a href="/tags/系统架构/" style="font-size: 16px;">系统架构</a> <a href="/tags/虚拟化/" style="font-size: 10px;">虚拟化</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/10/如何提高界面设计中的层次感？来看这篇超全面的总结/">如何提高界面设计中的层次感？来看这篇超全面的总结</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/10/超全面！用户界面设计中的「版式设计」全方位指南/">超全面！用户界面设计中的「版式设计」全方位指南</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/10/从技法到心理，深度分析优秀设计师该有的气质/">从技法到心理，深度分析优秀设计师该有的气质</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/10/高手私藏的UI细节设计，这篇全都给你整理好了/">高手私藏的UI细节设计，这篇全都给你整理好了</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/07/神经网络入门（转载）/">神经网络入门（转载）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 jianzhanger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

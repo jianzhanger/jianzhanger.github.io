@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>新一代大数据与人工智能基础架构技术的发展与趋势 | jianzhanger 的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="2018年是开源软件历史上最精彩的一年，2个IPO加上5个并购，开源技术到达新的高度。回溯过去大数据时代的15年，开源技术的创新潮流，包括集群技术，流计算，数据库，容器技术和机器学习，可谓一波接着一波。 2003-2004年Google发布的GFS和MapReduce论文，对业界的影响可谓意义深远，它全面揭开了大数据的时代序幕。2006年，Doug Cutting加入Yahoo并发布Hadoop">
+<meta name="keywords" content="大数据,人工智能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="新一代大数据与人工智能基础架构技术的发展与趋势">
+<meta property="og:url" content="http://yoursite.com/2018/12/04/新一代大数据与人工智能基础架构技术的发展与趋势/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="2018年是开源软件历史上最精彩的一年，2个IPO加上5个并购，开源技术到达新的高度。回溯过去大数据时代的15年，开源技术的创新潮流，包括集群技术，流计算，数据库，容器技术和机器学习，可谓一波接着一波。 2003-2004年Google发布的GFS和MapReduce论文，对业界的影响可谓意义深远，它全面揭开了大数据的时代序幕。2006年，Doug Cutting加入Yahoo并发布Hadoop">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/37838ecb6f2db5d7ed35ff604033d58f.jpg-wh_651x-s_1475789329.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/349747b955f54847f23d4c620eb1a5a4.jpg-wh_600x-s_3839100831.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/612a691b651dd8ca45b1fb7abb1a3abc.jpg-wh_600x-s_3749293788.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/9e616e33ab318c402d02184f5c20ff88.jpg-wh_600x-s_4029304846.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201812/03/dede99ed5cd094d4371eb53ee1f31fb0.jpg-wh_600x-s_2568445913.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/9f72eacb1e442e21437c1c0dbb93b0af.jpg-wh_600x-s_1273627498.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201812/03/5838ccdc2359d47e08e01247299951b5.jpg-wh_600x-s_1607432063.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/63159dd5eeb76a8a03f5a28e37f96146.jpg-wh_600x-s_2240158432.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/fbcf3959bd75e9ba321ff6eb8ca4c56c.jpg-wh_600x-s_1178190839.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/7d305d02900148cb2546db685f13b846.jpg-wh_600x-s_228548920.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/aa1d0ec5d11ee843d9e8be03f0726c74.jpg-wh_600x-s_1669991102.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/7d8822c35358e8ea94b152a1d2394d3a.jpg-wh_600x-s_3760603095.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201812/03/364ccd2ea18714c3c89b58f2173d713b.jpg-wh_600x-s_3588934116.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/e334dbecf951c0b4cc5a0f69e02d1b9d.jpg-wh_600x-s_3397190841.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/0fbbb793740ae9ef73863f777d927eb8.jpg-wh_600x-s_2031823113.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/d77d2f1337b66d4e0f5bb48e84ed056b.jpg-wh_600x-s_1878772938.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/83aa556ce077885853465fb7356acd31.jpg-wh_600x-s_1663389395.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/8ddbcc4aa3c3b18ffaef126804e354f8.jpg-wh_600x-s_925838555.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/2c30f096b5e071a924574c35057f486e.jpg-wh_600x-s_167299430.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/36b6f0238bd6c01d7fb34eb688a45c20.jpg-wh_600x-s_2166568693.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/908f0478eabeede40dcbafc0100f94f7.jpg-wh_600x-s_1926970688.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/666f09820c5f8d7eeaab002738423a86.jpg-wh_600x-s_561290882.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/a39d71cd1d6507153e9fcad7d00d685c.jpg-wh_600x-s_646481320.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/86ebe38929dbb1b64885c5b6442f57b8.jpg-wh_600x-s_3418913684.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/f046ec1355e2c4bbd92cffab0a9de4b6.jpg-wh_600x-s_1495886493.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/4722c9aadf0d8988b7eb2f0fa297084a.jpg-wh_600x-s_99140833.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/020f221a26a4384d491e97a9329c922e.jpg-wh_600x-s_819301942.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/ce3cfc9fc8950de15db11a3aa649fbdf.jpg-wh_600x-s_2047622508.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/e0691d9e4032e9b126fe7e93b1d2b1d1.jpg-wh_600x-s_2548556028.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/182f3280733f15a8777b80da66bcd78a.jpg-wh_600x-s_375578151.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/b30843786f54b0703d04c682966523ca.jpg-wh_600x-s_2284094170.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/deee2b4329aaf6e3841bc14e75e1d4b5.jpg-wh_600x-s_2745199806.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/8046d1e5c69c9e8c32583e05c0f93df5.jpg-wh_600x-s_575015945.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/02889a648db7766e20fb5042b28427ef.jpg-wh_600x-s_764734545.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/5dd1e0afc1c5dc0ae0f1477986235075.jpg-wh_600x-s_2351627693.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/46f54fea56e12836a54edbe112cfbb47.jpg-wh_600x-s_1783306144.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/3f1dc05a732dc2aabc904467274bd3d5.jpg-wh_600x-s_405283744.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201812/03/1ed81aa2e360709db3ab4ba213ca5966.jpg-wh_600x-s_2888011704.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/c74418bf3949b9b182f5ed5da011805a.jpg-wh_600x-s_1863166041.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/6cc809b25ce3d6e95e9d362c651a3a09.jpg-wh_600x-s_2227008569.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/85b91d675c286eec0b2db5cacb63a71e.jpg-wh_600x-s_3421510576.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/dc0fcbf24511dd0422afa114458b42d7.jpg-wh_600x-s_3294829043.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/61ffde5c5bc5e24a1038dbba309d16ca.jpg-wh_600x-s_53003341.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/879588e99818aedcf6cdfaab7b7216a3.jpg-wh_600x-s_2273497091.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/2e8d7e54d30401f2c10ba1064027c24d.jpg-wh_600x-s_3552168640.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/df6afe38d41c80f60c2d2e0fb130a7e5.jpg-wh_600x-s_4069815753.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/21aa8fce3be8cf8052dcd754fe5a5076.jpg-wh_600x-s_3207869798.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/f1754961d99e1817717ade5389a7d538.jpg-wh_600x-s_1365055796.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201812/03/b9fa81ab3272ee7e2111120f976b886d.jpg-wh_600x-s_3531958893.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201812/03/a71f191e690b23532b631f2e143923dd.jpg-wh_600x-s_3203932873.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/04/9ec7df281ddae3eda5654c0c6c9212bd.jpg-wh_600x-s_449768349.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/73ad5fe0d8755c6b8565c5d083c6906f.jpg-wh_600x-s_3063350141.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/5785c350951818875871a6ba1a09d215.jpg-wh_600x-s_1777349728.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/51fe96772a7738a64cd3c97fdd206ab7.jpg-wh_600x-s_2001858514.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201812/03/73d043027ebfd43d96330f47fd748720.jpg-wh_600x-s_2067620828.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/a4e096422e6baeb13533f871e43c691c.jpg-wh_600x-s_379167433.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/ba15b7ad44617390038a2fd0b490c552.jpg-wh_600x-s_3225131082.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201812/03/16a6cf48a1ffcbaa544678e45e7bcc18.jpg-wh_600x-s_423399093.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/ffc1fca17b138562cfcb9493229d59c6.jpg-wh_600x-s_2638637684.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/2f6f238228ea99c32d7b2c05ddbcac65.jpg-wh_600x-s_22927195.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/017a893796ad3795d0e6eecb5c382c07.jpg-wh_600x-s_159523507.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/16d9bf738f023f7022bf8ad74bdd0861.jpg-wh_600x-s_1450319879.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/691e6e03360d705bc2a478c1c2bc7fcc.jpg-wh_600x-s_3223424183.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/13261aa6820fea0414f288f2082f4dea.jpg-wh_600x-s_4248669072.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201812/03/252702fc86055a413d5d1c9b8b7b31ba.jpg-wh_600x-s_2022034996.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/94d1b2ec21a8bc95ea9006b3b495caeb.jpg-wh_600x-s_4061686210.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/74b1a7bb50eab3aee5b1c9dac5dc2e3e.jpg-wh_600x-s_3822000916.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/04d067474ef3a6ad879b85128a52c348.jpg-wh_600x-s_245270979.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/c733bbe4ff880f59a05b969e06e0683f.jpg-wh_600x-s_1791284164.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/4475949bdfb01defc7bb961c80c56659.jpg-wh_600x-s_1080875730.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/c805a309ffa7a60049f272d02797cae0.jpg-wh_600x-s_3995011078.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/796feafcbe59f98a60d88ee5c324ec50.jpg-wh_600x-s_1104289095.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/7866de523e620895940dc94473856c8d.jpg-wh_600x-s_3088280945.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/5c24d9de8158c1613887f2e7c7fab368.jpg-wh_600x-s_911459943.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/9820d969904f5f51234f3f0a9a69917c.jpg-wh_600x-s_366206124.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/b5e287a47c45b74952fa5cab12755fe7.jpg-wh_600x-s_3497140040.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/aa122fa86c9b689bec264474220182ec.jpg-wh_600x-s_376547459.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/0f4fa00bdb3152601385e1be23d5d531.jpg-wh_600x-s_1891887428.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/f7a1ebb4170179094f04944efc60db01.jpg-wh_600x-s_1939212157.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/54c3202d08cefa7b6146ab6c18673f27.jpg-wh_600x-s_2939624701.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/a669292e9fa726e775d75620f729e9bd.jpg-wh_600x-s_1917814505.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/4507944eee2e870aa4498f7ce5c843c7.jpg-wh_600x-s_3574845472.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/0a35e2817b453763063a3569173c584f.jpg-wh_600x-s_3396682584.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/0f495da8e9ba6cad012708abb359c669.jpg-wh_600x-s_2690281916.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201812/03/dae4899d353e7c00ba29fd411eeb05e5.jpg-wh_600x-s_2414696596.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/e14ae84da9dbccce22172b470ff7a361.jpg-wh_600x-s_718033460.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/df573379be2a23d933a310fcc310dbe1.jpg-wh_600x-s_2496733932.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/9eedf4f3d66aba3f664aa054340fe37d.jpg-wh_600x-s_282647006.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/f64a0dee6e1fa91c473c9d7c374fefa9.jpg-wh_600x-s_2553668020.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/6ac1222a4779cba6a94079e2c542d258.jpg-wh_600x-s_3162678429.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/3e1bc2598e1a643318ff921ac6a0cee7.jpg-wh_600x-s_2790845218.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201812/03/9ca8051d16fd11df7d115c2463da665d.jpg-wh_600x-s_3084866616.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/ae8ec84a93a29a8284dc99508001a026.jpg-wh_600x-s_3851277896.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/5c8f0235f9ce21a22492ffd81151a1a9.jpg-wh_600x-s_3763044451.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/92b3e4b111d2397077f9f6029a35d73e.jpg-wh_600x-s_1499590103.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/bf9fee8707f6dd49a00e189eda9469ca.jpg-wh_600x-s_783850480.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201812/03/1b685bf97abb138ece6e0058b24bb8dc.jpg-wh_600x-s_2158892310.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/a6942c718d6d231b1b84389b6b8d1513.jpg-wh_600x-s_1533667343.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/a457ca10549cab49777a260525c1531f.jpg-wh_600x-s_758438530.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/725294a33cdccc7417276516fabdd824.jpg-wh_600x-s_2428400491.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/78adb38804b1be8ab79ed90727841c6b.jpg-wh_600x-s_3180240288.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/394f356d6dfc8aec7e653c12cd390d6a.jpg-wh_600x-s_2154119360.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/16cf9803fab44faefc89d15bb5b5cdf0.jpg-wh_600x-s_4120322407.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/5aca78a45f834540e25b6377d8832f70.jpg-wh_600x-s_1956984162.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/7b44e4fdb24b0c5e9f7cfbcd92ebc9fb.jpg-wh_600x-s_95411010.jpg">
+<meta property="og:image" content="http://s4.51cto.com/oss/201812/03/f511ecac96bc9edb95f2d4f1dbae7bf4.jpg-wh_600x-s_1969925563.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/6b1302b30d403351605a9926f4ef6f49.jpg-wh_600x-s_2249302930.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/21f52d15ea5fef2140d939d04a81f986.jpg-wh_600x-s_358561612.jpg">
+<meta property="og:image" content="http://s2.51cto.com/oss/201812/03/238db8c591c5a89b0bf5c448f92c7c64.jpg-wh_600x-s_3478646821.jpg">
+<meta property="og:image" content="http://s1.51cto.com/oss/201812/03/1fbb6fa69e28c3429cbc7e35dd4743de.jpg-wh_600x-s_2719839704.jpg">
+<meta property="og:image" content="http://s5.51cto.com/oss/201812/03/b9bdb2f581e935ba4b0207ef2a69f6cb.jpg-wh_600x-s_1389386807.jpg">
+<meta property="og:image" content="http://s3.51cto.com/oss/201812/03/d240849c36889122d5fe6e901717ce77.jpg-wh_600x-s_2911413713.jpg">
+<meta property="og:updated_time" content="2018-12-04T08:20:58.493Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="新一代大数据与人工智能基础架构技术的发展与趋势">
+<meta name="twitter:description" content="2018年是开源软件历史上最精彩的一年，2个IPO加上5个并购，开源技术到达新的高度。回溯过去大数据时代的15年，开源技术的创新潮流，包括集群技术，流计算，数据库，容器技术和机器学习，可谓一波接着一波。 2003-2004年Google发布的GFS和MapReduce论文，对业界的影响可谓意义深远，它全面揭开了大数据的时代序幕。2006年，Doug Cutting加入Yahoo并发布Hadoop">
+<meta name="twitter:image" content="http://s2.51cto.com/oss/201812/03/37838ecb6f2db5d7ed35ff604033d58f.jpg-wh_651x-s_1475789329.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="jianzhanger 的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">jianzhanger 的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-新一代大数据与人工智能基础架构技术的发展与趋势" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/04/新一代大数据与人工智能基础架构技术的发展与趋势/" class="article-date">
+  <time datetime="2018-12-04T08:16:08.000Z" itemprop="datePublished">2018-12-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/转载/">转载</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      新一代大数据与人工智能基础架构技术的发展与趋势
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>2018年是开源软件历史上最精彩的一年，2个IPO加上5个并购，开源技术到达新的高度。回溯过去大数据时代的15年，开源技术的创新潮流，包括集群技术，流计算，数据库，容器技术和机器学习，可谓一波接着一波。</p>
+<p>2003-2004年Google发布的GFS和MapReduce论文，对业界的影响可谓意义深远，它全面揭开了大数据的时代序幕。2006年，Doug Cutting加入Yahoo并发布Hadoop 0.1版本，同年Google发布BigTable论文。2008年，MySQL 10亿美元被Sun收购。2009年，Spark从Berkeley大学的AMPLab实验室诞生，程序员Johan Oskarsson举办第一个NoSQL数据库活动。2010年，RackSpace与NASA联合发起OpenStack云计算项目。2011年，451 Research分析师Matthew Aslett首次提出NewSQL概念。2012年，Red Hat首次达到10亿美元的年收入。2013年，Docker的崛起意味容器时代的开始。2014年， 随着Hadoop三驾马车之一的Hortonworks IPO，Hadoop到达高峰时期，但在同年Hadoop保持的记录被Spark打破。2015年，Google开源Tensorflow，Kubernetes 1.0发布并捐给CNCF组织。2017年， Hadoop 3.0正式发布。2018年，Cloudera和Hortonworks两大巨头合并，Elastic IPO，市值49亿美元。</p>
+<p>这一幕幕精彩的故事背后隐藏着技术一次又一次的改革和创新，到底是上层业务应用的发展驱动底层基础架构技术的发展，还是基础架构的创新颠覆业务应用模式？下面我们一起回顾和预测这些关键技术的演变发展和未来趋势。<br><a id="more"></a><br><img src="http://s2.51cto.com/oss/201812/03/37838ecb6f2db5d7ed35ff604033d58f.jpg-wh_651x-s_1475789329.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/349747b955f54847f23d4c620eb1a5a4.jpg-wh_600x-s_3839100831.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/612a691b651dd8ca45b1fb7abb1a3abc.jpg-wh_600x-s_3749293788.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/9e616e33ab318c402d02184f5c20ff88.jpg-wh_600x-s_4029304846.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s4.51cto.com/oss/201812/03/dede99ed5cd094d4371eb53ee1f31fb0.jpg-wh_600x-s_2568445913.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/9f72eacb1e442e21437c1c0dbb93b0af.jpg-wh_600x-s_1273627498.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"><img src="http://s4.51cto.com/oss/201812/03/5838ccdc2359d47e08e01247299951b5.jpg-wh_600x-s_1607432063.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/63159dd5eeb76a8a03f5a28e37f96146.jpg-wh_600x-s_2240158432.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/fbcf3959bd75e9ba321ff6eb8ca4c56c.jpg-wh_600x-s_1178190839.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/7d305d02900148cb2546db685f13b846.jpg-wh_600x-s_228548920.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/aa1d0ec5d11ee843d9e8be03f0726c74.jpg-wh_600x-s_1669991102.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/7d8822c35358e8ea94b152a1d2394d3a.jpg-wh_600x-s_3760603095.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s4.51cto.com/oss/201812/03/364ccd2ea18714c3c89b58f2173d713b.jpg-wh_600x-s_3588934116.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/e334dbecf951c0b4cc5a0f69e02d1b9d.jpg-wh_600x-s_3397190841.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/0fbbb793740ae9ef73863f777d927eb8.jpg-wh_600x-s_2031823113.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/d77d2f1337b66d4e0f5bb48e84ed056b.jpg-wh_600x-s_1878772938.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/83aa556ce077885853465fb7356acd31.jpg-wh_600x-s_1663389395.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/8ddbcc4aa3c3b18ffaef126804e354f8.jpg-wh_600x-s_925838555.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/2c30f096b5e071a924574c35057f486e.jpg-wh_600x-s_167299430.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/36b6f0238bd6c01d7fb34eb688a45c20.jpg-wh_600x-s_2166568693.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/908f0478eabeede40dcbafc0100f94f7.jpg-wh_600x-s_1926970688.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/666f09820c5f8d7eeaab002738423a86.jpg-wh_600x-s_561290882.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/a39d71cd1d6507153e9fcad7d00d685c.jpg-wh_600x-s_646481320.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/86ebe38929dbb1b64885c5b6442f57b8.jpg-wh_600x-s_3418913684.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/f046ec1355e2c4bbd92cffab0a9de4b6.jpg-wh_600x-s_1495886493.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/4722c9aadf0d8988b7eb2f0fa297084a.jpg-wh_600x-s_99140833.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/020f221a26a4384d491e97a9329c922e.jpg-wh_600x-s_819301942.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/ce3cfc9fc8950de15db11a3aa649fbdf.jpg-wh_600x-s_2047622508.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/e0691d9e4032e9b126fe7e93b1d2b1d1.jpg-wh_600x-s_2548556028.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/182f3280733f15a8777b80da66bcd78a.jpg-wh_600x-s_375578151.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/b30843786f54b0703d04c682966523ca.jpg-wh_600x-s_2284094170.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/deee2b4329aaf6e3841bc14e75e1d4b5.jpg-wh_600x-s_2745199806.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/8046d1e5c69c9e8c32583e05c0f93df5.jpg-wh_600x-s_575015945.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/02889a648db7766e20fb5042b28427ef.jpg-wh_600x-s_764734545.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/5dd1e0afc1c5dc0ae0f1477986235075.jpg-wh_600x-s_2351627693.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/46f54fea56e12836a54edbe112cfbb47.jpg-wh_600x-s_1783306144.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/3f1dc05a732dc2aabc904467274bd3d5.jpg-wh_600x-s_405283744.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s4.51cto.com/oss/201812/03/1ed81aa2e360709db3ab4ba213ca5966.jpg-wh_600x-s_2888011704.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/c74418bf3949b9b182f5ed5da011805a.jpg-wh_600x-s_1863166041.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/6cc809b25ce3d6e95e9d362c651a3a09.jpg-wh_600x-s_2227008569.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/85b91d675c286eec0b2db5cacb63a71e.jpg-wh_600x-s_3421510576.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/dc0fcbf24511dd0422afa114458b42d7.jpg-wh_600x-s_3294829043.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/61ffde5c5bc5e24a1038dbba309d16ca.jpg-wh_600x-s_53003341.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/879588e99818aedcf6cdfaab7b7216a3.jpg-wh_600x-s_2273497091.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/2e8d7e54d30401f2c10ba1064027c24d.jpg-wh_600x-s_3552168640.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/df6afe38d41c80f60c2d2e0fb130a7e5.jpg-wh_600x-s_4069815753.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/21aa8fce3be8cf8052dcd754fe5a5076.jpg-wh_600x-s_3207869798.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/f1754961d99e1817717ade5389a7d538.jpg-wh_600x-s_1365055796.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s4.51cto.com/oss/201812/03/b9fa81ab3272ee7e2111120f976b886d.jpg-wh_600x-s_3531958893.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s4.51cto.com/oss/201812/03/a71f191e690b23532b631f2e143923dd.jpg-wh_600x-s_3203932873.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><a href="http://s1.51cto.com/oss/201812/04/9ec7df281ddae3eda5654c0c6c9212bd.jpg-wh_600x-s_449768349.jpg" target="_blank" rel="noopener"><img src="http://s1.51cto.com/oss/201812/04/9ec7df281ddae3eda5654c0c6c9212bd.jpg-wh_600x-s_449768349.jpg" alt=""></a></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/73ad5fe0d8755c6b8565c5d083c6906f.jpg-wh_600x-s_3063350141.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/5785c350951818875871a6ba1a09d215.jpg-wh_600x-s_1777349728.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/51fe96772a7738a64cd3c97fdd206ab7.jpg-wh_600x-s_2001858514.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s4.51cto.com/oss/201812/03/73d043027ebfd43d96330f47fd748720.jpg-wh_600x-s_2067620828.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/a4e096422e6baeb13533f871e43c691c.jpg-wh_600x-s_379167433.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/ba15b7ad44617390038a2fd0b490c552.jpg-wh_600x-s_3225131082.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s4.51cto.com/oss/201812/03/16a6cf48a1ffcbaa544678e45e7bcc18.jpg-wh_600x-s_423399093.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/ffc1fca17b138562cfcb9493229d59c6.jpg-wh_600x-s_2638637684.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/2f6f238228ea99c32d7b2c05ddbcac65.jpg-wh_600x-s_22927195.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/017a893796ad3795d0e6eecb5c382c07.jpg-wh_600x-s_159523507.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/16d9bf738f023f7022bf8ad74bdd0861.jpg-wh_600x-s_1450319879.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/691e6e03360d705bc2a478c1c2bc7fcc.jpg-wh_600x-s_3223424183.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/13261aa6820fea0414f288f2082f4dea.jpg-wh_600x-s_4248669072.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s4.51cto.com/oss/201812/03/252702fc86055a413d5d1c9b8b7b31ba.jpg-wh_600x-s_2022034996.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/94d1b2ec21a8bc95ea9006b3b495caeb.jpg-wh_600x-s_4061686210.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/74b1a7bb50eab3aee5b1c9dac5dc2e3e.jpg-wh_600x-s_3822000916.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/04d067474ef3a6ad879b85128a52c348.jpg-wh_600x-s_245270979.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/c733bbe4ff880f59a05b969e06e0683f.jpg-wh_600x-s_1791284164.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/4475949bdfb01defc7bb961c80c56659.jpg-wh_600x-s_1080875730.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/c805a309ffa7a60049f272d02797cae0.jpg-wh_600x-s_3995011078.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/796feafcbe59f98a60d88ee5c324ec50.jpg-wh_600x-s_1104289095.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/7866de523e620895940dc94473856c8d.jpg-wh_600x-s_3088280945.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/5c24d9de8158c1613887f2e7c7fab368.jpg-wh_600x-s_911459943.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/9820d969904f5f51234f3f0a9a69917c.jpg-wh_600x-s_366206124.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/b5e287a47c45b74952fa5cab12755fe7.jpg-wh_600x-s_3497140040.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/aa122fa86c9b689bec264474220182ec.jpg-wh_600x-s_376547459.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/0f4fa00bdb3152601385e1be23d5d531.jpg-wh_600x-s_1891887428.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/f7a1ebb4170179094f04944efc60db01.jpg-wh_600x-s_1939212157.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/54c3202d08cefa7b6146ab6c18673f27.jpg-wh_600x-s_2939624701.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/a669292e9fa726e775d75620f729e9bd.jpg-wh_600x-s_1917814505.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/4507944eee2e870aa4498f7ce5c843c7.jpg-wh_600x-s_3574845472.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/0a35e2817b453763063a3569173c584f.jpg-wh_600x-s_3396682584.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/0f495da8e9ba6cad012708abb359c669.jpg-wh_600x-s_2690281916.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s4.51cto.com/oss/201812/03/dae4899d353e7c00ba29fd411eeb05e5.jpg-wh_600x-s_2414696596.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/e14ae84da9dbccce22172b470ff7a361.jpg-wh_600x-s_718033460.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/df573379be2a23d933a310fcc310dbe1.jpg-wh_600x-s_2496733932.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/9eedf4f3d66aba3f664aa054340fe37d.jpg-wh_600x-s_282647006.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/f64a0dee6e1fa91c473c9d7c374fefa9.jpg-wh_600x-s_2553668020.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/6ac1222a4779cba6a94079e2c542d258.jpg-wh_600x-s_3162678429.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/3e1bc2598e1a643318ff921ac6a0cee7.jpg-wh_600x-s_2790845218.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s4.51cto.com/oss/201812/03/9ca8051d16fd11df7d115c2463da665d.jpg-wh_600x-s_3084866616.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/ae8ec84a93a29a8284dc99508001a026.jpg-wh_600x-s_3851277896.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/5c8f0235f9ce21a22492ffd81151a1a9.jpg-wh_600x-s_3763044451.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/92b3e4b111d2397077f9f6029a35d73e.jpg-wh_600x-s_1499590103.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/bf9fee8707f6dd49a00e189eda9469ca.jpg-wh_600x-s_783850480.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s4.51cto.com/oss/201812/03/1b685bf97abb138ece6e0058b24bb8dc.jpg-wh_600x-s_2158892310.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/a6942c718d6d231b1b84389b6b8d1513.jpg-wh_600x-s_1533667343.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/a457ca10549cab49777a260525c1531f.jpg-wh_600x-s_758438530.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/725294a33cdccc7417276516fabdd824.jpg-wh_600x-s_2428400491.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/78adb38804b1be8ab79ed90727841c6b.jpg-wh_600x-s_3180240288.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><a href="http://s3.51cto.com/oss/201812/03/394f356d6dfc8aec7e653c12cd390d6a.jpg-wh_600x-s_2154119360.jpg" target="_blank" rel="noopener"><img src="http://s3.51cto.com/oss/201812/03/394f356d6dfc8aec7e653c12cd390d6a.jpg-wh_600x-s_2154119360.jpg" alt=""></a></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/16cf9803fab44faefc89d15bb5b5cdf0.jpg-wh_600x-s_4120322407.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/5aca78a45f834540e25b6377d8832f70.jpg-wh_600x-s_1956984162.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/7b44e4fdb24b0c5e9f7cfbcd92ebc9fb.jpg-wh_600x-s_95411010.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><a href="http://s4.51cto.com/oss/201812/03/f511ecac96bc9edb95f2d4f1dbae7bf4.jpg-wh_600x-s_1969925563.jpg" target="_blank" rel="noopener"><img src="http://s4.51cto.com/oss/201812/03/f511ecac96bc9edb95f2d4f1dbae7bf4.jpg-wh_600x-s_1969925563.jpg" alt=""></a></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/6b1302b30d403351605a9926f4ef6f49.jpg-wh_600x-s_2249302930.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/21f52d15ea5fef2140d939d04a81f986.jpg-wh_600x-s_358561612.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s2.51cto.com/oss/201812/03/238db8c591c5a89b0bf5c448f92c7c64.jpg-wh_600x-s_3478646821.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s1.51cto.com/oss/201812/03/1fbb6fa69e28c3429cbc7e35dd4743de.jpg-wh_600x-s_2719839704.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s5.51cto.com/oss/201812/03/b9bdb2f581e935ba4b0207ef2a69f6cb.jpg-wh_600x-s_1389386807.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p><img src="http://s3.51cto.com/oss/201812/03/d240849c36889122d5fe6e901717ce77.jpg-wh_600x-s_2911413713.jpg" alt="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势" title="【113张PPT】新一代大数据与人工智能基础架构技术的发展与趋势"></p>
+<p>原文地址：<a href="http://bigdata.51cto.com/art/201812/588089.htm" target="_blank" rel="noopener">http://bigdata.51cto.com/art/201812/588089.htm</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/04/新一代大数据与人工智能基础架构技术的发展与趋势/" data-id="cjq673rs7002mwwti7hgk2cz4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/07/神经网络入门（转载）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          神经网络入门（转载）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/03/一文看懂区块链的3种类型：公有链、私有链和联盟链/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">一文看懂区块链的3种类型：公有链、私有链和联盟链</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/原创/">原创</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品经理/">产品经理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像识别/">图像识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应急/">应急</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索引擎/">搜索引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂文/">杂文</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物联网/">物联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/神经网络/">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动开发/">移动开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟化/">虚拟化</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 16px;">Git</a> <a href="/tags/产品经理/" style="font-size: 20px;">产品经理</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/区块链/" style="font-size: 12px;">区块链</a> <a href="/tags/图像识别/" style="font-size: 12px;">图像识别</a> <a href="/tags/大数据/" style="font-size: 14px;">大数据</a> <a href="/tags/应急/" style="font-size: 10px;">应急</a> <a href="/tags/微服务/" style="font-size: 18px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/物联网/" style="font-size: 14px;">物联网</a> <a href="/tags/神经网络/" style="font-size: 10px;">神经网络</a> <a href="/tags/移动开发/" style="font-size: 10px;">移动开发</a> <a href="/tags/系统架构/" style="font-size: 16px;">系统架构</a> <a href="/tags/虚拟化/" style="font-size: 10px;">虚拟化</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/10/如何提高界面设计中的层次感？来看这篇超全面的总结/">如何提高界面设计中的层次感？来看这篇超全面的总结</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/10/超全面！用户界面设计中的「版式设计」全方位指南/">超全面！用户界面设计中的「版式设计」全方位指南</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/10/从技法到心理，深度分析优秀设计师该有的气质/">从技法到心理，深度分析优秀设计师该有的气质</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/10/高手私藏的UI细节设计，这篇全都给你整理好了/">高手私藏的UI细节设计，这篇全都给你整理好了</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/07/神经网络入门（转载）/">神经网络入门（转载）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 jianzhanger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
