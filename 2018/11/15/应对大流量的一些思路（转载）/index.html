@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="1. 首先，我们来说一下什么是大流量? 大流量，我们很可能会冒出：TPS(每秒事务量)，QPS(每秒请求量)，1W+，5W+，10W+，100W+…。其实并没有一个绝对的数字，如果这个量造成了系统的压力，影响了系统的性能，那么这个量就可以称之为大流量了。 2. 其次，应对大流量的一些常见手段是什么?  缓存：说白了，就是让数据尽早进入缓存，离程序近一点，不要大量频繁的访问DB。 降级：如果不是核心">
+<meta name="description" content="1. 首先，我们来说一下什么是大流量? 大流量，我们很可能会冒出：TPS(每秒事务量)，QPS(每秒请求量)，1W+，5W+，10W+，100W+…。其实并没有一个绝对的数字，如果这个量造成了系统的压力，影响了系统的性能，那么这个量就可以称之为大流量了。">
 <meta name="keywords" content="系统架构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="应对大流量的一些思路（转载）">
 <meta property="og:url" content="http://yoursite.com/2018/11/15/应对大流量的一些思路（转载）/index.html">
 <meta property="og:site_name" content="jianzhanger 的博客">
-<meta property="og:description" content="1. 首先，我们来说一下什么是大流量? 大流量，我们很可能会冒出：TPS(每秒事务量)，QPS(每秒请求量)，1W+，5W+，10W+，100W+…。其实并没有一个绝对的数字，如果这个量造成了系统的压力，影响了系统的性能，那么这个量就可以称之为大流量了。 2. 其次，应对大流量的一些常见手段是什么?  缓存：说白了，就是让数据尽早进入缓存，离程序近一点，不要大量频繁的访问DB。 降级：如果不是核心">
+<meta property="og:description" content="1. 首先，我们来说一下什么是大流量? 大流量，我们很可能会冒出：TPS(每秒事务量)，QPS(每秒请求量)，1W+，5W+，10W+，100W+…。其实并没有一个绝对的数字，如果这个量造成了系统的压力，影响了系统的性能，那么这个量就可以称之为大流量了。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://s5.51cto.com/oss/201811/15/cba4b9cd595e652e0112fc5b96a150f7.jpg">
 <meta property="og:image" content="http://s5.51cto.com/oss/201811/15/099406f503f527d8b34c13838c4c28e1.jpg">
@@ -95,10 +95,10 @@
 <meta property="og:image" content="http://s5.51cto.com/oss/201811/15/7c7493ad5bb7f56a2ebec871ca90bb20.jpg">
 <meta property="og:image" content="http://s3.51cto.com/oss/201811/15/0cf3223246b8b0a9dbd9720ab43acd80.jpg">
 <meta property="og:image" content="http://s3.51cto.com/oss/201811/15/642343bd1b87cd3351962928899a4fba.jpg">
-<meta property="og:updated_time" content="2018-11-15T01:08:41.711Z">
+<meta property="og:updated_time" content="2019-01-21T10:20:52.953Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="应对大流量的一些思路（转载）">
-<meta name="twitter:description" content="1. 首先，我们来说一下什么是大流量? 大流量，我们很可能会冒出：TPS(每秒事务量)，QPS(每秒请求量)，1W+，5W+，10W+，100W+…。其实并没有一个绝对的数字，如果这个量造成了系统的压力，影响了系统的性能，那么这个量就可以称之为大流量了。 2. 其次，应对大流量的一些常见手段是什么?  缓存：说白了，就是让数据尽早进入缓存，离程序近一点，不要大量频繁的访问DB。 降级：如果不是核心">
+<meta name="twitter:description" content="1. 首先，我们来说一下什么是大流量? 大流量，我们很可能会冒出：TPS(每秒事务量)，QPS(每秒请求量)，1W+，5W+，10W+，100W+…。其实并没有一个绝对的数字，如果这个量造成了系统的压力，影响了系统的性能，那么这个量就可以称之为大流量了。">
 <meta name="twitter:image" content="http://s5.51cto.com/oss/201811/15/cba4b9cd595e652e0112fc5b96a150f7.jpg">
 
 
@@ -406,12 +406,11 @@
 
       
         <p><strong>1. 首先，我们来说一下什么是大流量?</strong></p>
-<p>大流量，我们很可能会冒出：TPS(每秒事务量)，QPS(每秒请求量)，1W+，5W+，10W+，100W+…。其实并没有一个绝对的数字，如果这个量造成了系统的压力，影响了系统的性能，那么这个量就可以称之为大流量了。</p>
-<p><strong>2. 其次，应对大流量的一些常见手段是什么?</strong></p>
+<p>大流量，我们很可能会冒出：TPS(每秒事务量)，QPS(每秒请求量)，1W+，5W+，10W+，100W+…。其实并没有一个绝对的数字，如果这个量造成了系统的压力，影响了系统的性能，那么这个量就可以称之为大流量了。<br><a id="more"></a><br><strong>2. 其次，应对大流量的一些常见手段是什么?</strong></p>
 <ul>
 <li>缓存：说白了，就是让数据尽早进入缓存，离程序近一点，不要大量频繁的访问DB。</li>
 <li>降级：如果不是核心链路，那么就把这个服务降级掉。打个比喻，现在的APP都讲究千人千面，拿到数据后，做个性化排序展示，如果在大流量下，这个排序就可以降级掉!</li>
-<li>限流：大家都知道，北京地铁早高峰，地铁站都会做一件事情，就是限流了!想法很直接，就是想在一定时间内把请求限制在一定范围内，保证系统不被冲垮，同时尽可能提升系统的吞吐量。<a id="more"></a>
+<li>限流：大家都知道，北京地铁早高峰，地铁站都会做一件事情，就是限流了!想法很直接，就是想在一定时间内把请求限制在一定范围内，保证系统不被冲垮，同时尽可能提升系统的吞吐量。<!--more-->
 注意到，有些时候，缓存和降级是解决不了问题的，比如，电商的双十一，用户的购买，下单等行为，是涉及到大量写操作，而且是核心链路，无法降级的，这个时候，限流就比较重要了。</li>
 </ul>
 <p>那么接下来，我们重点说一下，限流。</p>
@@ -565,7 +564,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -624,7 +623,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

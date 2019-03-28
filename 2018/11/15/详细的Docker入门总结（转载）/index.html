@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="Docker 是什么? Docker 到底是个什么东西呢?我们在理解 Docker 之前，首先得先区分清楚两个概念，容器和虚拟机。 可能很多读者朋友都用过虚拟机，而对容器这个概念比较的陌生。我们用的传统虚拟机如 VMware ， VisualBox 之类的需要模拟整台机器包括硬件。 每台虚拟机都需要有自己的操作系统，虚拟机一旦被开启，预分配给它的资源将全部被占用。 每一台虚拟机包括应用，必要的二进">
+<meta name="description" content="Docker 是什么? Docker 到底是个什么东西呢?我们在理解 Docker 之前，首先得先区分清楚两个概念，容器和虚拟机。 可能很多读者朋友都用过虚拟机，而对容器这个概念比较的陌生。我们用的传统虚拟机如 VMware ， VisualBox 之类的需要模拟整台机器包括硬件。 每台虚拟机都需要有自己的操作系统，虚拟机一旦被开启，预分配给它的资源将全部被占用。">
 <meta name="keywords" content="虚拟化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="详细的Docker入门总结（转载）">
 <meta property="og:url" content="http://yoursite.com/2018/11/15/详细的Docker入门总结（转载）/index.html">
 <meta property="og:site_name" content="jianzhanger 的博客">
-<meta property="og:description" content="Docker 是什么? Docker 到底是个什么东西呢?我们在理解 Docker 之前，首先得先区分清楚两个概念，容器和虚拟机。 可能很多读者朋友都用过虚拟机，而对容器这个概念比较的陌生。我们用的传统虚拟机如 VMware ， VisualBox 之类的需要模拟整台机器包括硬件。 每台虚拟机都需要有自己的操作系统，虚拟机一旦被开启，预分配给它的资源将全部被占用。 每一台虚拟机包括应用，必要的二进">
+<meta property="og:description" content="Docker 是什么? Docker 到底是个什么东西呢?我们在理解 Docker 之前，首先得先区分清楚两个概念，容器和虚拟机。 可能很多读者朋友都用过虚拟机，而对容器这个概念比较的陌生。我们用的传统虚拟机如 VMware ， VisualBox 之类的需要模拟整台机器包括硬件。 每台虚拟机都需要有自己的操作系统，虚拟机一旦被开启，预分配给它的资源将全部被占用。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://s4.51cto.com/oss/201811/14/1e0bd50e3d65c76a2c951278560e6744.png">
 <meta property="og:image" content="http://s5.51cto.com/oss/201811/14/7afe8872dffdecc351878e1ce42c3384.jpg">
@@ -115,10 +115,10 @@
 <meta property="og:image" content="http://s2.51cto.com/oss/201811/14/ee5213091aa5d5386d4d5878b556fcc5.png-wh_600x-s_849636784.png">
 <meta property="og:image" content="http://s1.51cto.com/oss/201811/14/eb520ca716b3c29f00af11ecf412f08c.png-wh_600x-s_4220077836.png">
 <meta property="og:image" content="http://s2.51cto.com/oss/201811/14/3051e73398b4fc498b1260fa3cf0bf1c.png-wh_600x-s_3739567784.png">
-<meta property="og:updated_time" content="2018-11-15T03:52:39.686Z">
+<meta property="og:updated_time" content="2019-01-21T10:20:22.782Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="详细的Docker入门总结（转载）">
-<meta name="twitter:description" content="Docker 是什么? Docker 到底是个什么东西呢?我们在理解 Docker 之前，首先得先区分清楚两个概念，容器和虚拟机。 可能很多读者朋友都用过虚拟机，而对容器这个概念比较的陌生。我们用的传统虚拟机如 VMware ， VisualBox 之类的需要模拟整台机器包括硬件。 每台虚拟机都需要有自己的操作系统，虚拟机一旦被开启，预分配给它的资源将全部被占用。 每一台虚拟机包括应用，必要的二进">
+<meta name="twitter:description" content="Docker 是什么? Docker 到底是个什么东西呢?我们在理解 Docker 之前，首先得先区分清楚两个概念，容器和虚拟机。 可能很多读者朋友都用过虚拟机，而对容器这个概念比较的陌生。我们用的传统虚拟机如 VMware ， VisualBox 之类的需要模拟整台机器包括硬件。 每台虚拟机都需要有自己的操作系统，虚拟机一旦被开启，预分配给它的资源将全部被占用。">
 <meta name="twitter:image" content="http://s4.51cto.com/oss/201811/14/1e0bd50e3d65c76a2c951278560e6744.png">
 
 
@@ -428,10 +428,9 @@
         <p><strong>Docker 是什么?</strong></p>
 <p>Docker 到底是个什么东西呢?我们在理解 Docker 之前，首先得先区分清楚两个概念，容器和虚拟机。</p>
 <p>可能很多读者朋友都用过虚拟机，而对容器这个概念比较的陌生。我们用的传统虚拟机如 VMware ， VisualBox 之类的需要模拟整台机器包括硬件。</p>
-<p>每台虚拟机都需要有自己的操作系统，虚拟机一旦被开启，预分配给它的资源将全部被占用。</p>
-<p>每一台虚拟机包括应用，必要的二进制和库，以及一个完整的用户操作系统。</p>
+<p>每台虚拟机都需要有自己的操作系统，虚拟机一旦被开启，预分配给它的资源将全部被占用。<br><a id="more"></a><br>每一台虚拟机包括应用，必要的二进制和库，以及一个完整的用户操作系统。</p>
 <p>而容器技术是和我们的宿主机共享硬件资源及操作系统，可以实现资源的动态分配。</p>
-<p>容器包含应用和其所有的依赖包，但是与其他容器共享内核。容器在宿主机操作系统中，在用户空间以分离的进程运行。<br><a id="more"></a><br>容器技术是实现操作系统虚拟化的一种途径，可以让您在资源受到隔离的进程中运行应用程序及其依赖关系。</p>
+<p>容器包含应用和其所有的依赖包，但是与其他容器共享内核。容器在宿主机操作系统中，在用户空间以分离的进程运行。<br><!--more--><br>容器技术是实现操作系统虚拟化的一种途径，可以让您在资源受到隔离的进程中运行应用程序及其依赖关系。</p>
 <p>通过使用容器，我们可以轻松打包应用程序的代码、配置和依赖关系，将其变成容易使用的构建块，从而实现环境一致性、运营效率、开发人员生产力和版本控制等诸多目标。</p>
 <p>容器可以帮助保证应用程序快速、可靠、一致地部署，其间不受部署环境的影响。</p>
 <p>容器还赋予我们对资源更多的精细化控制能力，让我们的基础设施效率更高。</p>
@@ -783,7 +782,7 @@
 </ul>
 <p>下面是一段简单的 Dockerfile 的例子：</p>
 <ol>
-<li>FROM python:2.7MAINTAINER Angel_Kitty <a href="mailto:&#x61;&#110;&#x67;&#101;&#x6c;&#107;&#x69;&#116;&#x74;&#x79;&#x36;&#x36;&#57;&#x38;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" target="_blank" rel="noopener">&#x61;&#110;&#x67;&#101;&#x6c;&#107;&#x69;&#116;&#x74;&#x79;&#x36;&#x36;&#57;&#x38;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>COPY . /app </li>
+<li>FROM python:2.7MAINTAINER Angel_Kitty <a href="mailto:&#x61;&#x6e;&#103;&#101;&#x6c;&#107;&#x69;&#x74;&#x74;&#x79;&#54;&#x36;&#x39;&#56;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;" target="_blank" rel="noopener">&#x61;&#x6e;&#103;&#101;&#x6c;&#107;&#x69;&#x74;&#x74;&#x79;&#54;&#x36;&#x39;&#56;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;</a>COPY . /app </li>
 <li>WORKDIR /app </li>
 <li>RUN pip install -r requirements.txt </li>
 <li>EXPOSE 5000ENTRYPOINT [“python”]CMD [“app.py”] </li>
@@ -878,7 +877,7 @@
 <p>然后 vi Dockerfile 开始编辑该文件，输入 i 开始编辑。以下是我们构建的 Dockerfile 内容：</p>
 <ol>
 <li>FROM nginx </li>
-<li>MAINTAINER Angel_Kitty <a href="mailto:&#97;&#110;&#x67;&#101;&#108;&#107;&#x69;&#116;&#116;&#121;&#54;&#x36;&#x39;&#x38;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;" target="_blank" rel="noopener">&#97;&#110;&#x67;&#101;&#108;&#107;&#x69;&#116;&#116;&#121;&#54;&#x36;&#x39;&#x38;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a> </li>
+<li>MAINTAINER Angel_Kitty <a href="mailto:&#97;&#110;&#x67;&#101;&#108;&#107;&#x69;&#x74;&#116;&#121;&#54;&#54;&#57;&#56;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;" target="_blank" rel="noopener">&#97;&#110;&#x67;&#101;&#108;&#107;&#x69;&#x74;&#116;&#121;&#54;&#54;&#57;&#56;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;</a> </li>
 <li>RUN echo ‘<h1>Hello, Docker!</h1>‘ &gt; /usr/share/nginx/html/index.html </li>
 </ol>
 <p>编辑完后按 esc 退出编辑，然后 ：wq写入，退出。</p>
@@ -1025,7 +1024,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1100,7 +1099,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

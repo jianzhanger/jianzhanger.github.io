@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据库," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="看到这个题目，很多人第一反应就是：分库分表啊!但是实际上，数据库层面的分库分表到底是用来干什么的，他的不同的作用如何应对不同的场景，我觉得很多同学可能都没搞清楚。">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="支撑百万并发的数据库架构如何设计？">
+<meta property="og:url" content="http://yoursite.com/2019/03/05/支撑百万并发的数据库架构如何设计？/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="看到这个题目，很多人第一反应就是：分库分表啊!但是实际上，数据库层面的分库分表到底是用来干什么的，他的不同的作用如何应对不同的场景，我觉得很多同学可能都没搞清楚。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.51cto.com/oss/201902/27/ce7023e2622aa57f0c20429342fdfe10.jpg">
+<meta property="og:image" content="https://s3.51cto.com/oss/201902/27/5a82c585cf3693decb35754a146f0554.jpg-wh_600x-s_1153234073.jpg">
+<meta property="og:image" content="https://s2.51cto.com/oss/201902/27/82f9be8a6e606a787aed85a16b276271.jpg-wh_600x-s_1360230890.jpg">
+<meta property="og:image" content="https://s5.51cto.com/oss/201902/27/a23a094ded06d3ef4f7fc16a0ebdd062.jpg-wh_600x-s_1032626538.jpg">
+<meta property="og:image" content="https://s5.51cto.com/oss/201902/27/b6b89e0253f950fe19c2ba05a3d55e59.jpg-wh_600x-s_943757648.jpg">
+<meta property="og:image" content="https://s1.51cto.com/oss/201902/27/25a528a9481d132c774be17ac2143833.jpg-wh_600x-s_561997955.jpg">
+<meta property="og:updated_time" content="2019-03-05T03:00:43.154Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="支撑百万并发的数据库架构如何设计？">
+<meta name="twitter:description" content="看到这个题目，很多人第一反应就是：分库分表啊!但是实际上，数据库层面的分库分表到底是用来干什么的，他的不同的作用如何应对不同的场景，我觉得很多同学可能都没搞清楚。">
+<meta name="twitter:image" content="https://s1.51cto.com/oss/201902/27/ce7023e2622aa57f0c20429342fdfe10.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/05/支撑百万并发的数据库架构如何设计？/"/>
+
+
+
+
+
+  <title>支撑百万并发的数据库架构如何设计？ | jianzhanger 的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jianzhanger 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/支撑百万并发的数据库架构如何设计？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jianzhanger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_0004.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jianzhanger 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">支撑百万并发的数据库架构如何设计？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-05T10:57:42+08:00">
+                2019-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/转载/" itemprop="url" rel="index">
+                    <span itemprop="name">转载</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>看到这个题目，很多人第一反应就是：分库分表啊!但是实际上，数据库层面的分库分表到底是用来干什么的，他的不同的作用如何应对不同的场景，我觉得很多同学可能都没搞清楚。<br><a id="more"></a><br><strong>用一个创业公司的发展作为背景引入</strong></p>
+<p>假如我们现在是一个小创业公司，注册用户就 20 万，每天活跃用户就 1 万，每天单表数据量就 1000，然后高峰期每秒钟并发请求最多就 10。</p>
+<p>天哪!就这种系统，随便找一个有几年工作经验的高级工程师，然后带几个年轻工程师，随便干干都可以做出来。</p>
+<p>因为这样的系统，实际上主要就是在前期快速的进行业务功能的开发，搞一个单块系统部署在一台服务器上，然后连接一个数据库就可以了。</p>
+<p>接着大家就是不停的在一个工程里填充进去各种业务代码，尽快把公司的业务支撑起来。</p>
+<p>如下图所示：</p>
+<p><a href="https://s1.51cto.com/oss/201902/27/ce7023e2622aa57f0c20429342fdfe10.jpg" target="_blank" rel="noopener"><img src="https://s1.51cto.com/oss/201902/27/ce7023e2622aa57f0c20429342fdfe10.jpg" alt=""></a></p>
+<p>结果呢，没想到我们运气这么好，碰上个优秀的 CEO 带着我们走上了康庄大道!</p>
+<p>公司业务发展迅猛，过了几个月，注册用户数达到了 2000 万!每天活跃用户数 100 万!每天单表新增数据量达到 50 万条!高峰期每秒请求量达到 1 万!</p>
+<p>同时公司还顺带着融资了两轮，估值达到了惊人的几亿美金!一只朝气蓬勃的幼年独角兽的节奏!</p>
+<p>好吧，现在大家感觉压力已经有点大了，为啥呢?因为每天单表新增 50 万条数据，一个月就多 1500 万条数据，一年下来单表会达到上亿条数据。</p>
+<p>经过一段时间的运行，现在咱们单表已经两三千万条数据了，勉强还能支撑着。</p>
+<p>但是，眼见着系统访问数据库的性能怎么越来越差呢，单表数据量越来越大，拖垮了一些复杂查询 SQL 的性能啊!</p>
+<p>然后高峰期请求现在是每秒 1 万，咱们的系统在线上部署了 20 台机器，平均每台机器每秒支撑 500 请求，这个还能抗住，没啥大问题。但是数据库层面呢?</p>
+<p>如果说此时你还是一台数据库服务器在支撑每秒上万的请求，负责任的告诉你，每次高峰期会出现下述问题：</p>
+<ul>
+<li>你的数据库服务器的磁盘 IO、网络带宽、CPU 负载、内存消耗，都会达到非常高的情况，数据库所在服务器的整体负载会非常重，甚至都快不堪重负了。</li>
+<li>高峰期时，本来你单表数据量就很大，SQL 性能就不太好，这时加上你的数据库服务器负载太高导致性能下降，就会发现你的 SQL 性能更差了。</li>
+<li>最明显的一个感觉，就是你的系统在高峰期各个功能都运行的很慢，用户体验很差，点一个按钮可能要几十秒才出来结果。</li>
+<li>如果你运气不太好，数据库服务器的配置不是特别的高的话，弄不好你还会经历数据库宕机的情况，因为负载太高对数据库压力太大了。</li>
+</ul>
+<p><strong>多台服务器分库支撑高并发读写</strong></p>
+<p>首先我们先考虑第一个问题，数据库每秒上万的并发请求应该如何来支撑呢?</p>
+<p>要搞清楚这个问题，先得明白一般数据库部署在什么配置的服务器上。通常来说，假如你用普通配置的服务器来部署数据库，那也起码是 16 核 32G 的机器配置。</p>
+<p>这种非常普通的机器配置部署的数据库，一般线上的经验是：不要让其每秒请求支撑超过 2000，一般控制在 2000 左右。</p>
+<p>控制在这个程度，一般数据库负载相对合理，不会带来太大的压力，没有太大的宕机风险。</p>
+<p>所以首先第一步，就是在上万并发请求的场景下，部署个 5 台服务器，每台服务器上都部署一个数据库实例。</p>
+<p>然后每个数据库实例里，都创建一个一样的库，比如说订单库。此时在 5 台服务器上都有一个订单库，名字可以类似为：db_order_01，db_order_02，等等。</p>
+<p>然后每个订单库里，都有一个相同的表，比如说订单库里有订单信息表，那么此时 5 个订单库里都有一个订单信息表。</p>
+<p>比如 db_order_01 库里就有一个 tb_order_01 表，db_order_02 库里就有一个 tb_order_02 表。</p>
+<p>这就实现了一个基本的分库分表的思路，原来的一台数据库服务器变成了 5 台数据库服务器，原来的一个库变成了 5 个库，原来的一张表变成了 5 个表。</p>
+<p>然后你在写入数据的时候，需要借助数据库中间件，比如 sharding-jdbc，或者是 mycat，都可以。</p>
+<p>你可以根据比如订单 id 来 hash 后按 5 取模，比如每天订单表新增 50 万数据，此时其中 10 万条数据会落入 db_order_01 库的 tb_order_01 表，另外 10 万条数据会落入 db_order_02 库的 tb_order_02 表，以此类推。</p>
+<p>这样就可以把数据均匀分散在 5 台服务器上了，查询的时候，也可以通过订单 id 来 hash 取模，去对应的服务器上的数据库里，从对应的表里查询那条数据出来即可。</p>
+<p>依据这个思路画出的图如下所示，大家可以看看：</p>
+<p><a href="https://s3.51cto.com/oss/201902/27/5a82c585cf3693decb35754a146f0554.jpg-wh_600x-s_1153234073.jpg" target="_blank" rel="noopener"><img src="https://s3.51cto.com/oss/201902/27/5a82c585cf3693decb35754a146f0554.jpg-wh_600x-s_1153234073.jpg" alt=""></a></p>
+<p>做这一步有什么好处呢?第一个好处，原来比如订单表就一张表，这个时候不就成了 5 张表了么，那么每个表的数据就变成 1/5 了。</p>
+<p>假设订单表一年有 1 亿条数据，此时 5 张表里每张表一年就 2000 万数据了。</p>
+<p>那么假设当前订单表里已经有 2000 万数据了，此时做了上述拆分，每个表里就只有 400 万数据了。</p>
+<p>而且每天新增 50 万数据的话，那么每个表才新增 10 万数据，这样是不是初步缓解了单表数据量过大影响系统性能的问题?</p>
+<p>另外就是每秒 1 万请求到 5 台数据库上，每台数据库就承载每秒 2000 的请求，是不是一下子把每台数据库服务器的并发请求降低到了安全范围内?</p>
+<p>这样，降低了数据库的高峰期负载，同时还保证了高峰期的性能。</p>
+<p><strong>大量分表来保证海量数据下的查询性能</strong></p>
+<p>但是上述的数据库架构还有一个问题，那就是单表数据量还是过大，现在订单表才分为了 5 张表，那么如果订单一年有 1 亿条，每个表就有 2000 万条，这也还是太大了。</p>
+<p>所以还应该继续分表，大量分表。比如可以把订单表一共拆分为 1024 张表，这样 1 亿数据量的话，分散到每个表里也就才 10 万量级的数据量，然后这上千张表分散在 5 台数据库里就可以了。</p>
+<p>在写入数据的时候，需要做两次路由，先对订单 id hash 后对数据库的数量取模，可以路由到一台数据库上，然后再对那台数据库上的表数量取模，就可以路由到数据库上的一个表里了。</p>
+<p>通过这个步骤，就可以让每个表里的数据量非常小，每年 1 亿数据增长，但是到每个表里才 10 万条数据增长，这个系统运行 10 年，每个表里可能才百万级的数据量。</p>
+<p>这样可以一次性为系统未来的运行做好充足的准备，看下面的图，一起来感受一下：</p>
+<p><a href="https://s2.51cto.com/oss/201902/27/82f9be8a6e606a787aed85a16b276271.jpg-wh_600x-s_1360230890.jpg" target="_blank" rel="noopener"><img src="https://s2.51cto.com/oss/201902/27/82f9be8a6e606a787aed85a16b276271.jpg-wh_600x-s_1360230890.jpg" alt=""></a></p>
+<p><strong>全局唯一 id 如何生成</strong></p>
+<p>在分库分表之后你必然要面对的一个问题，就是 id 咋生成?因为要是一个表分成多个表之后，每个表的 id 都是从 1 开始累加自增长，那肯定不对啊。</p>
+<p>举个例子，你的订单表拆分为了 1024 张订单表，每个表的 id 都从 1 开始累加，这个肯定有问题了!</p>
+<p>你的系统就没办法根据表主键来查询订单了，比如 id = 50 这个订单，在每个表里都有!</p>
+<p>所以此时就需要分布式架构下的全局唯一 id 生成的方案了，在分库分表之后，对于插入数据库中的核心 id，不能直接简单使用表自增 id，要全局生成唯一 id，然后插入各个表中，保证每个表内的某个 id，全局唯一。</p>
+<p>比如说订单表虽然拆分为了 1024 张表，但是 id = 50 这个订单，只会存在于一个表里。</p>
+<p>那么如何实现全局唯一 id 呢?有以下几种方案：</p>
+<p><strong>方案一：独立数据库自增 id</strong></p>
+<p>这个方案就是说你的系统每次要生成一个 id，都是往一个独立库的一个独立表里插入一条没什么业务含义的数据，然后获取一个数据库自增的一个 id。拿到这个 id 之后再往对应的分库分表里去写入。</p>
+<p>比如说你有一个 auto_id 库，里面就一个表，叫做 auto_id 表，有一个 id 是自增长的。</p>
+<p>那么你每次要获取一个全局唯一 id，直接往这个表里插入一条记录，获取一个全局唯一 id 即可，然后这个全局唯一 id 就可以插入订单的分库分表中。</p>
+<p>这个方案的好处就是方便简单，谁都会用。缺点就是单库生成自增 id，要是高并发的话，就会有瓶颈的，因为 auto_id 库要是承载个每秒几万并发，肯定是不现实的了。</p>
+<p><strong>方案二：UUID</strong></p>
+<p>这个每个人都应该知道吧，就是用 UUID 生成一个全局唯一的 id。</p>
+<p>好处就是每个系统本地生成，不要基于数据库来了。不好之处就是，UUID 太长了，作为主键性能太差了，不适合用于主键。</p>
+<p>如果你是要随机生成个什么文件名了，编号之类的，你可以用 UUID，但是作为主键是不能用 UUID 的。</p>
+<p><strong>方案三：获取系统当前时间</strong></p>
+<p>这个方案的意思就是获取当前时间作为全局唯一的 id。但是问题是，并发很高的时候，比如一秒并发几千，会有重复的情况，这个肯定是不合适的。</p>
+<p>一般如果用这个方案，是将当前时间跟很多其他的业务字段拼接起来，作为一个 id，如果业务上你觉得可以接受，那么也是可以的。</p>
+<p>你可以将别的业务字段值跟当前时间拼接起来，组成一个全局唯一的编号，比如说订单编号：时间戳 + 用户 id + 业务含义编码。</p>
+<p>方案四：SnowFlake 算法的思想分析</p>
+<p>SnowFlake 算法，是 Twitter 开源的分布式 id 生成算法。其核心思想就是：使用一个 64 bit 的 long 型的数字作为全局唯一 id。</p>
+<p>这 64 个 bit 中，其中 1 个 bit 是不用的，然后用其中的 41 bit 作为毫秒数，用 10 bit 作为工作机器 id，12 bit 作为序列号。</p>
+<p><a href="https://s5.51cto.com/oss/201902/27/a23a094ded06d3ef4f7fc16a0ebdd062.jpg-wh_600x-s_1032626538.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/oss/201902/27/a23a094ded06d3ef4f7fc16a0ebdd062.jpg-wh_600x-s_1032626538.jpg" alt=""></a></p>
+<p>给大家举个例子吧，比如下面那个 64 bit 的 long 型数字：</p>
+<ul>
+<li>第一个部分，是 1 个 bit：0，这个是无意义的。</li>
+<li>第二个部分是 41 个 bit：表示的是时间戳。</li>
+<li>第三个部分是 5 个 bit：表示的是机房 id，10001。</li>
+<li>第四个部分是 5 个 bit：表示的是机器 id，1 1001。</li>
+<li>第五个部分是 12 个 bit：表示的序号，就是某个机房某台机器上这一毫秒内同时生成的 id 的序号，0000 00000000。</li>
+</ul>
+<p><strong>①1 bit：是不用的，为啥呢?</strong></p>
+<p>因为二进制里第一个 bit 为如果是 1，那么都是负数，但是我们生成的 id 都是正数，所以第一个 bit 统一都是 0。</p>
+<p><strong>②41 bit：表示的是时间戳，单位是毫秒。</strong></p>
+<p>41 bit 可以表示的数字多达 2^41 - 1，也就是可以标识 2 ^ 41 - 1 个毫秒值，换算成年就是表示 69 年的时间。</p>
+<p><strong>③10 bit：记录工作机器 id，代表的是这个服务最多可以部署在 2^10 台机器上，也就是 1024 台机器。</strong></p>
+<p>但是 10 bit 里 5 个 bit 代表机房 id，5 个 bit 代表机器 id。意思就是最多代表 2 ^ 5 个机房(32 个机房)，每个机房里可以代表 2 ^ 5 个机器(32 台机器)。</p>
+<p><strong>④12 bit：这个是用来记录同一个毫秒内产生的不同 id。</strong></p>
+<p>12 bit 可以代表的最大正整数是 2 ^ 12 - 1 = 4096，也就是说可以用这个 12 bit 代表的数字来区分同一个毫秒内的 4096 个不同的 id。</p>
+<p>简单来说，你的某个服务假设要生成一个全局唯一 id，那么就可以发送一个请求给部署了 SnowFlake 算法的系统，由这个 SnowFlake 算法系统来生成唯一 id。</p>
+<p>这个 SnowFlake 算法系统首先肯定是知道自己所在的机房和机器的，比如机房 id = 17，机器 id = 12。</p>
+<p>接着 SnowFlake 算法系统接收到这个请求之后，首先就会用二进制位运算的方式生成一个 64 bit 的 long 型 id，64 个 bit 中的第一个 bit 是无意义的。</p>
+<p>接着 41 个 bit，就可以用当前时间戳(单位到毫秒)，然后接着 5 个 bit 设置上这个机房 id，还有 5 个 bit 设置上机器 id。</p>
+<p>最后再判断一下，当前这台机房的这台机器上这一毫秒内，这是第几个请求，给这次生成 id 的请求累加一个序号，作为最后的 12 个 bit。</p>
+<p>最终一个 64 个 bit 的 id 就出来了，类似于：</p>
+<p><a href="https://s5.51cto.com/oss/201902/27/b6b89e0253f950fe19c2ba05a3d55e59.jpg-wh_600x-s_943757648.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/oss/201902/27/b6b89e0253f950fe19c2ba05a3d55e59.jpg-wh_600x-s_943757648.jpg" alt=""></a></p>
+<p>这个算法可以保证说，一个机房的一台机器上，在同一毫秒内，生成了一个唯一的 id。可能一个毫秒内会生成多个 id，但是有最后 12 个 bit 的序号来区分开来。</p>
+<p>下面我们简单看看这个 SnowFlake 算法的一个代码实现，这就是个示例，大家如果理解了这个意思之后，以后可以自己尝试改造这个算法。</p>
+<p>总之就是用一个 64 bit 的数字中各个 bit 位来设置不同的标志位，区分每一个 id。</p>
+<p>SnowFlake 算法的实现代码如下：</p>
+<ol>
+<li>public class IdWorker { </li>
+<li>private long workerId; // 这个就是代表了机器id </li>
+<li>private long datacenterId; // 这个就是代表了机房id </li>
+<li>private long sequence; // 这个就是代表了一毫秒内生成的多个id的最新序号 </li>
+<li>public IdWorker(long workerId, long datacenterId, long sequence) { </li>
+<li>// sanity check  for workerId </li>
+<li>// 这儿不就检查了一下，要求就是你传递进来的机房id和机器id不能超过32，不能小于0 </li>
+<li><p>if (workerId &gt; maxWorkerId || workerId &lt; 0) { </p>
+</li>
+<li><p>throw new IllegalArgumentException( </p>
+</li>
+<li>String.format(“worker Id can’t be greater than %d or less than 0”,maxWorkerId)); </li>
+<li><p>} </p>
+</li>
+<li><p>if (datacenterId &gt; maxDatacenterId || datacenterId &lt; 0) { </p>
+</li>
+<li><p>throw new IllegalArgumentException( </p>
+</li>
+<li>String.format(“datacenter Id can’t be greater than %d or less than 0”,maxDatacenterId)); </li>
+<li>} </li>
+<li>this.workerId = workerId; </li>
+<li>this.datacenterId = datacenterId; </li>
+<li>this.sequence = sequence; </li>
+<li>} </li>
+<li>private long twepoch = 1288834974657L; </li>
+<li>private long workerIdBits = 5L; </li>
+<li><p>private long datacenterIdBits = 5L; </p>
+</li>
+<li><p>// 这个是二进制运算，就是5 bit最多只能有31个数字，也就是说机器id最多只能是32以内 </p>
+</li>
+<li>private long maxWorkerId = -1L ^ (-1L &lt;&lt; workerIdBits); </li>
+<li>// 这个是一个意思，就是5 bit最多只能有31个数字，机房id最多只能是32以内 </li>
+<li>private long maxDatacenterId = -1L ^ (-1L &lt;&lt; datacenterIdBits); </li>
+<li>private long sequenceBits = 12L; </li>
+<li>private long workerIdShift = sequenceBits; </li>
+<li>private long datacenterIdShift = sequenceBits + workerIdBits; </li>
+<li>private long timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits; </li>
+<li>private long sequenceMask = -1L ^ (-1L &lt;&lt; sequenceBits); </li>
+<li>private long lastTimestamp = -1L; </li>
+<li>public long getWorkerId(){ </li>
+<li>return workerId; </li>
+<li>} </li>
+<li>public long getDatacenterId() { </li>
+<li>return datacenterId; </li>
+<li>} </li>
+<li>public long getTimestamp() { </li>
+<li>return System.currentTimeMillis(); </li>
+<li>} </li>
+<li>// 这个是核心方法，通过调用nextId()方法，让当前这台机器上的snowflake算法程序生成一个全局唯一的id </li>
+<li>public synchronized long nextId() { </li>
+<li>// 这儿就是获取当前时间戳，单位是毫秒 </li>
+<li>long timestamp = timeGen(); </li>
+<li>if (timestamp &lt; lastTimestamp) { </li>
+<li>System.err.printf( </li>
+<li>“clock is moving backwards. Rejecting requests until %d.”, lastTimestamp); </li>
+<li>throw new RuntimeException( </li>
+<li>String.format(“Clock moved backwards. Refusing to generate id for %d milliseconds”, </li>
+<li>lastTimestamp - timestamp)); </li>
+<li><p>} </p>
+</li>
+<li><p>// 下面是说假设在同一个毫秒内，又发送了一个请求生成一个id </p>
+</li>
+<li>// 这个时候就得把seqence序号给递增1，最多就是4096 </li>
+<li><p>if (lastTimestamp == timestamp) { </p>
+</li>
+<li><p>// 这个意思是说一个毫秒内最多只能有4096个数字，无论你传递多少进来， </p>
+</li>
+<li>//这个位运算保证始终就是在4096这个范围内，避免你自己传递个sequence超过了4096这个范围 </li>
+<li>sequence = (sequence + 1) &amp; sequenceMask; </li>
+<li>if (sequence == 0) { </li>
+<li>timestamp = tilNextMillis(lastTimestamp); </li>
+<li><p>} </p>
+</li>
+<li><p>} else { </p>
+</li>
+<li>sequence = 0; </li>
+<li>} </li>
+<li>// 这儿记录一下最近一次生成id的时间戳，单位是毫秒 </li>
+<li>lastTimestamp = timestamp; </li>
+<li>// 这儿就是最核心的二进制位运算操作，生成一个64bit的id </li>
+<li>// 先将当前时间戳左移，放到41 bit那儿；将机房id左移放到5 bit那儿；将机器id左移放到5 bit那儿；将序号放最后12 bit </li>
+<li>// 最后拼接起来成一个64 bit的二进制数字，转换成10进制就是个long型 </li>
+<li>return ((timestamp - twepoch) &lt;&lt; timestampLeftShift) | </li>
+<li>(datacenterId &lt;&lt; datacenterIdShift) | </li>
+<li>(workerId &lt;&lt; workerIdShift) | sequence; </li>
+<li>} </li>
+<li><p>private long tilNextMillis(long lastTimestamp) { </p>
+</li>
+<li><p>long timestamp = timeGen(); </p>
+</li>
+<li><p>while (timestamp &lt;= lastTimestamp) { </p>
+</li>
+<li>timestamp = timeGen(); </li>
+<li>} </li>
+<li>return  timestamp; </li>
+<li>} </li>
+<li>private long timeGen(){ </li>
+<li>return System.currentTimeMillis(); </li>
+<li>} </li>
+<li>//—————测试————— </li>
+<li><p>public  static void main(String[] args) { </p>
+</li>
+<li><p>IdWorker worker = new IdWorker(1,1,1); </p>
+</li>
+<li><p>for (int i = 0; i &lt; 30; i++) { </p>
+</li>
+<li>System.out.println(worker.nextId()); </li>
+<li>} </li>
+<li>} </li>
+<li>} </li>
+</ol>
+<p>SnowFlake 算法一个小小的改进思路：其实在实际的开发中，这个SnowFlake算法可以做一点点改进。</p>
+<p>因为大家可以考虑一下，我们在生成唯一 id 的时候，一般都需要指定一个表名，比如说订单表的唯一 id。</p>
+<p>所以上面那 64 个 bit 中，代表机房的那 5 个 bit，可以使用业务表名称来替代，比如用 00001 代表的是订单表。</p>
+<p>因为其实很多时候，机房并没有那么多，所以那 5 个 bit 用做机房 id 可能意义不是太大。</p>
+<p>这样就可以做到，SnowFlake 算法系统的每一台机器，对一个业务表，在某一毫秒内，可以生成一个唯一的 id，一毫秒内生成很多 id，用最后 12 个 bit 来区分序号对待。</p>
+<p><strong>读写分离来支撑按需扩容以及性能提升</strong></p>
+<p>这个时候整体效果已经挺不错了，大量分表的策略保证可能未来 10 年，每个表的数据量都不会太大，这可以保证单表内的 SQL 执行效率和性能。</p>
+<p>然后多台数据库的拆分方式，可以保证每台数据库服务器承载一部分的读写请求，降低每台服务器的负载。</p>
+<p>但是此时还有一个问题，假如说每台数据库服务器承载每秒 2000 的请求，然后其中 400 请求是写入，1600 请求是查询。</p>
+<p>也就是说，增删改的 SQL 才占到了 20% 的比例，80% 的请求是查询。此时假如说随着用户量越来越大，又变成每台服务器承载 4000 请求了。</p>
+<p>那么其中 800 请求是写入，3200 请求是查询，如果说你按照目前的情况来扩容，就需要增加一台数据库服务器。</p>
+<p>但是此时可能就会涉及到表的迁移，因为需要迁移一部分表到新的数据库服务器上去，是不是很麻烦?</p>
+<p>其实完全没必要，数据库一般都支持读写分离，也就是做主从架构。</p>
+<p>写入的时候写入主数据库服务器，查询的时候读取从数据库服务器，就可以让一个表的读写请求分开落地到不同的数据库上去执行。</p>
+<p>这样的话，假如写入主库的请求是每秒 400，查询从库的请求是每秒 1600。</p>
+<p>那么图大概如下所示：</p>
+<p><a href="https://s1.51cto.com/oss/201902/27/25a528a9481d132c774be17ac2143833.jpg-wh_600x-s_561997955.jpg" target="_blank" rel="noopener"><img src="https://s1.51cto.com/oss/201902/27/25a528a9481d132c774be17ac2143833.jpg-wh_600x-s_561997955.jpg" alt=""></a></p>
+<p>写入主库的时候，会自动同步数据到从库上去，保证主库和从库数据一致。</p>
+<p>然后查询的时候都是走从库去查询的，这就通过数据库的主从架构实现了读写分离的效果了。</p>
+<p>现在的好处就是，假如说现在主库写请求增加到 800，这个无所谓，不需要扩容。然后从库的读请求增加到了 3200，需要扩容了。</p>
+<p>这时，你直接给主库再挂载一个新的从库就可以了，两个从库，每个从库支撑 1600 的读请求，不需要因为读请求增长来扩容主库。</p>
+<p>实际上线上生产你会发现，读请求的增长速度远远高于写请求，所以读写分离之后，大部分时候就是扩容从库支撑更高的读请求就可以了。</p>
+<p>而且另外一点，对同一个表，如果你既写入数据(涉及加锁)，还从该表查询数据，可能会牵扯到锁冲突等问题，无论是写性能还是读性能，都会有影响。</p>
+<p>所以一旦读写分离之后，对主库的表就仅仅是写入，没任何查询会影响他，对从库的表就仅仅是查询。</p>
+<p><strong>高并发下的数据库架构设计总结</strong></p>
+<p>从大的一个简化的角度来说，高并发的场景下，数据库层面的架构肯定是需要经过精心的设计的。</p>
+<p>尤其是涉及到分库来支撑高并发的请求，大量分表保证每个表的数据量别太大，读写分离实现主库和从库按需扩容以及性能保证。</p>
+<p>这篇文章就是从一个大的角度来梳理了一下思路，各位同学可以结合自己公司的业务和项目来考虑自己的系统如何做分库分表。</p>
+<p>另外就是，具体的分库分表落地的时候，需要借助数据库中间件来实现分库分表和读写分离，大家可以自己参考 Sharding-JDBC 或者 MyCAT 的官网即可，里面的文档都有详细的使用描述。</p>
+<p>中华石杉：十余年 BAT 架构经验，一线互联网公司技术总监。带领上百人团队开发过多个亿级流量高并发系统。现将多年工作中积累下的研究手稿、经验总结整理成文，倾囊相授。微信公众号：石杉的架构笔记(ID：shishan100)。</p>
+<p>原文地址：<a href="http://developer.51cto.com/art/201902/592573.htm" target="_blank" rel="noopener">http://developer.51cto.com/art/201902/592573.htm</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/28/边缘计算急需解决的难题/" rel="next" title="边缘计算急需解决的难题">
+                <i class="fa fa-chevron-left"></i> 边缘计算急需解决的难题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/IMG_0004.JPG"
+                alt="jianzhanger" />
+            
+              <p class="site-author-name" itemprop="name">jianzhanger</p>
+              <p class="site-description motion-element" itemprop="description">静以修身，俭以养德</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jianzhanger</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
