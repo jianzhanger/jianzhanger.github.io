@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="微服务," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Web应用架构受系统用户量、开发人员组织方式影响严重。过去二十年互联网迅速发展，Web架构也从单体式演进出微服务，背后还有比如 Martin Fowler 提出的理论支撑。虽然每个人都听说过微服务，但是很多人并不太清楚为什么要这么做，应该怎么做，怎么拆。要回答这个问题我认为需要从Web架构的演化历史的高度去理解这些架构设计中的取舍。">
+<meta name="keywords" content="微服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么会产生微服务架构，原来是这些原因">
+<meta property="og:url" content="http://yoursite.com/2019/09/05/为什么会产生微服务架构，原来是这些原因/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="Web应用架构受系统用户量、开发人员组织方式影响严重。过去二十年互联网迅速发展，Web架构也从单体式演进出微服务，背后还有比如 Martin Fowler 提出的理论支撑。虽然每个人都听说过微服务，但是很多人并不太清楚为什么要这么做，应该怎么做，怎么拆。要回答这个问题我认为需要从Web架构的演化历史的高度去理解这些架构设计中的取舍。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.51cto.com/oss/201908/30/21230bdbd5609561a1945c8d38de9407.jpg-wh_651x-s_2058415208.jpg">
+<meta property="og:image" content="https://s4.51cto.com/oss/201908/30/2866c3b93d40e872c7d0b87eae86818c.jpeg">
+<meta property="og:image" content="https://s1.51cto.com/oss/201908/30/6991bb2cfcd4a4f01f608c93946f394d.jpeg">
+<meta property="og:image" content="https://s3.51cto.com/oss/201908/30/27eb363289718a19d6bff867ada5165d.jpeg">
+<meta property="og:image" content="https://s3.51cto.com/oss/201908/30/da8b106ac753094d0f2e5f2e22ae64d0.jpeg">
+<meta property="og:image" content="https://s1.51cto.com/oss/201908/30/9ae13308538da58e862b784ca047f39b.jpeg">
+<meta property="og:image" content="https://s4.51cto.com/oss/201908/30/bfb91f55f8e0dbc2f3d5d491bfe904fa.jpeg">
+<meta property="og:updated_time" content="2019-09-05T09:02:00.485Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为什么会产生微服务架构，原来是这些原因">
+<meta name="twitter:description" content="Web应用架构受系统用户量、开发人员组织方式影响严重。过去二十年互联网迅速发展，Web架构也从单体式演进出微服务，背后还有比如 Martin Fowler 提出的理论支撑。虽然每个人都听说过微服务，但是很多人并不太清楚为什么要这么做，应该怎么做，怎么拆。要回答这个问题我认为需要从Web架构的演化历史的高度去理解这些架构设计中的取舍。">
+<meta name="twitter:image" content="https://s1.51cto.com/oss/201908/30/21230bdbd5609561a1945c8d38de9407.jpg-wh_651x-s_2058415208.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/05/为什么会产生微服务架构，原来是这些原因/"/>
+
+
+
+
+
+  <title>为什么会产生微服务架构，原来是这些原因 | jianzhanger 的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jianzhanger 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/05/为什么会产生微服务架构，原来是这些原因/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jianzhanger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_0004.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jianzhanger 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">为什么会产生微服务架构，原来是这些原因</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-05T16:58:58+08:00">
+                2019-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/转载/" itemprop="url" rel="index">
+                    <span itemprop="name">转载</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Web应用架构受系统用户量、开发人员组织方式影响严重。过去二十年互联网迅速发展，Web架构也从单体式演进出微服务，背后还有比如 Martin Fowler 提出的理论支撑。虽然每个人都听说过微服务，但是很多人并不太清楚为什么要这么做，应该怎么做，怎么拆。要回答这个问题我认为需要从Web架构的演化历史的高度去理解这些架构设计中的取舍。<br><a id="more"></a><br><a href="https://s1.51cto.com/oss/201908/30/21230bdbd5609561a1945c8d38de9407.jpg-wh_651x-s_2058415208.jpg" target="_blank" rel="noopener"><img src="https://s1.51cto.com/oss/201908/30/21230bdbd5609561a1945c8d38de9407.jpg-wh_651x-s_2058415208.jpg" alt=""></a></p>
+<p>首先我们改进系统架构的目的是为了满足系统可靠性、并发量以及快速开发的需求。所有的改进方案都是为了解决这其中一个或多个问题而产生的。</p>
+<p><strong>单体结构</strong></p>
+<p><img src="https://s4.51cto.com/oss/201908/30/2866c3b93d40e872c7d0b87eae86818c.jpeg" alt="为什么会产生微服务架构，原来是这些原因">  </p>
+<p>单体结构</p>
+<p>最开始Web服务器、数据库全部部署在同一台服务器上，这也是最简单的应用架构，通常公司早期项目都采用这种方式。在很长一段时间里单体结构可以满足系统快速开发与并发量的需求。当用户量越来越大，通常会数据库性能会成为系统瓶颈，此时可以将Web业务与数据库部署在不同服务器上，增强数据库服务器的配置并做读写分离等提高系统的吞吐量与可用性。</p>
+<p>与此同时也可以将业务系统等价部署在多台服务器上来提高系统吞吐量，但整体上这仍然是一个单体应用。</p>
+<p><img src="https://s1.51cto.com/oss/201908/30/6991bb2cfcd4a4f01f608c93946f394d.jpeg" alt="为什么会产生微服务架构，原来是这些原因">  </p>
+<p>单体等价部署</p>
+<p>随着用户、数据量进一步增大，单体应用的缺点会进一步显露出来，比如：</p>
+<ul>
+<li>耦合严重、复杂度高、可靠性差 ：单体应用越来越来很多业务会耦合在一起，一但某些模块出现Bug会影响整个系统正常运行，业务代码的耦合也会形成开发人员的依赖造成新业务难以推进</li>
+<li>增加技术债、部署困难效率差 ：技术债越来越多容易会造成“不坏不修“的囧境，已完成的代码难以被修改以防止系统某个地方意料之外的调用。同于由于代码量大导致应用全量部署困难</li>
+<li>系统吞吐量受限、阻碍技术进步 ：单体应用难以进一步扩展使系统吞吐量受限，同时单体应用要求使用统一技术平台或解决方案，要想引入新语言或框架会非常困难</li>
+</ul>
+<p><strong>拆分</strong></p>
+<p>应用规模越来越大，首先遇到瓶颈的可能就是数据库系统，面对数据库压力通常我们可以对数据库做拆分把负载分担到不同的服务器上来解决，通常数据库拆分有两种方案：</p>
+<ul>
+<li>垂直拆分：对不同的业务系统如账户、搜索、推荐系统使用不同的数据库</li>
+<li>水平拆分：对于大表，比如十亿百亿级别的，进行多表拆分</li>
+</ul>
+<p>数据库水平拆分与业务逻辑耦合紧密，需要具体问题具体分析，通常这是一个非常复杂的问题。后来人们引入 NoSQL、NewSQL 用分布式概念在数据库层屏蔽掉数据库的水平拆分，比如 NoSQL 的 MongoDB Sharding，NewSQL 的 TiDB。</p>
+<p>同样的在业务层上我们也可以通过垂直拆分和水平拆分将单体业务拆成不同的服务，服务之间通过约定好的协议通信，以提高人员开发效率，实现多机部署冗余部署来提高系统可用性与吞吐量。</p>
+<p><strong>微服务</strong></p>
+<p>我们都知道微服务是一种提倡将单一服务拆分成一组小服务、服务之间相互协调、配合，提高开发效率，最终为用户提供价值的思路。说到微服务那么这里面最重要的一个问题就是服务应该怎么拆。微服务作为 SOA(Service Oriented Architecture)思想的一种具体实践我们首先想到的就是按照不同的业务系统做垂直拆分，如下图所示：</p>
+<p><img src="https://s3.51cto.com/oss/201908/30/27eb363289718a19d6bff867ada5165d.jpeg" alt="为什么会产生微服务架构，原来是这些原因">  </p>
+<p>SOA垂直拆分</p>
+<p>按业务系统对单体应用做垂直拆分，不同的业务线完全可以独立配备产品经历与工程师同步开发维护，将不同业务线解耦出来有不同团队维护。但上图是一种理想情况，各系统拆分力度比较大，系统之间不需要更详细的通信。如果是被拆除出了的子系统之间有大量的数据交互与调用，网关模式便不是一种很好的实践，通常会将各业务子系统接入一个数据总线用 ESB(Enterprise Service Bus)模式来进行数据交互，各子系统与数据总线进行数据交换便需要对子系统做统一管理，这遍有了 服务治理 的概念，用一套统一的保准来处理各子系统的注册、权限、监控等，目前有很多 ESB 开源或闭源的解决方案，这里不再赘述。</p>
+<p>垂直拆分将各业务子系统解耦出来，但是每次请求在不同阶段遇到的瓶颈与负载是不一样的，因此我们对可以使用水平拆分的思路对服务进行拆分：</p>
+<p><img src="https://s3.51cto.com/oss/201908/30/da8b106ac753094d0f2e5f2e22ae64d0.jpeg" alt="为什么会产生微服务架构，原来是这些原因">  </p>
+<p>水平拆分</p>
+<p>首先用户请求通过http协议到达网关，网关将json数据格式转为protobuf，通过tcp长链接与服务层、数据层通信获取目标数据然后返回给用户。这样拆分加长了用户请求链路时延，但是如果服务全部部署在同一内网，而且使用protobuf格式通信那么这个时延在几十毫秒内是完全可以接受的。业务层与数据层完全解耦便可以轻松将不同类型的服务进入冗余部署，同时在不动业务层的同时修改它的数据存储方式。</p>
+<p>如果我们对系统即做垂直拆分也做水分拆分，那么就有了微服务的样子,</p>
+<p><img src="https://s1.51cto.com/oss/201908/30/9ae13308538da58e862b784ca047f39b.jpeg" alt="为什么会产生微服务架构，原来是这些原因">  </p>
+<p>水平拆分</p>
+<p>每级服务只能调用比他低级别的服务，如果搜索服务层只能掉账户接口层服务而不能调账户服务层接口，这样可以用来避免服务A调用服务B，而服务B同时又调用了服务A的循环调用问题。但是这样的拆分粒度仍然不够的，比如搜索系统和推荐系统都要调用账户系统的一些基础查询、修改逻辑，那么需要在搜索与推荐的服务层两次实现同样的代码吗，这样显然是不合理了，任何不能复用的设计显然都是有问题的。如果通过编写SDK库提供Jar包的模式去实现这个功能呢?，显然也存在问题比如推荐系统是Python实现，而搜索系统是Java实现的呢?所以这里我们将每个子系统可共用代码部分也单独抽取出来作为一个服务。</p>
+<p><img src="https://s4.51cto.com/oss/201908/30/bfb91f55f8e0dbc2f3d5d491bfe904fa.jpeg" alt="为什么会产生微服务架构，原来是这些原因">  </p>
+<p>水平拆分2</p>
+<p>这样拆分后的系统可以灵活部署，独立开发，并且各模块服务使用的技术栈相对独立不受限制。但是同时拆分也将系统的网络拓扑便的复杂，运维负担加重，服务间的依赖使得服务接口的调整成本非常高。服务增多的同时对服务治理的要求也更高，需要专门做服务的发现、注册、鉴权、监控等系统功能。</p>
+<p>原文地址：<a href="http://developer.51cto.com/art/201908/602206.htm" target="_blank" rel="noopener">http://developer.51cto.com/art/201908/602206.htm</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/微服务/" rel="tag"># 微服务</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/22/一个牛逼的创业公司后台技术栈搭建方案/" rel="next" title="一个牛逼的创业公司后台技术栈搭建方案">
+                <i class="fa fa-chevron-left"></i> 一个牛逼的创业公司后台技术栈搭建方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/05/我国信用国家标准现状/" rel="prev" title="我国信用国家标准现状">
+                我国信用国家标准现状 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/IMG_0004.JPG"
+                alt="jianzhanger" />
+            
+              <p class="site-author-name" itemprop="name">jianzhanger</p>
+              <p class="site-description motion-element" itemprop="description">静以修身，俭以养德</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jianzhanger</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
