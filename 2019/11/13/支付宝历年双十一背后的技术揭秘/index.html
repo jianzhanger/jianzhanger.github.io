@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="系统架构," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="自从有了双十一这个电商节日，很多技术人的生命轨迹都改变了，这种年度高并发大流量复杂业务场景的经典案例给技术和产品人提出了各种挑战，今天我们来看看支付宝双11的发展历程。">
+<meta name="keywords" content="系统架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="支付宝历年双十一背后的技术揭秘">
+<meta property="og:url" content="http://yoursite.com/2019/11/13/支付宝历年双十一背后的技术揭秘/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="自从有了双十一这个电商节日，很多技术人的生命轨迹都改变了，这种年度高并发大流量复杂业务场景的经典案例给技术和产品人提出了各种挑战，今天我们来看看支付宝双11的发展历程。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s5.51cto.com/oss/201911/13/dc081e027632092bd63f559e68e92042.jpeg-wh_651x-s_1585978336.jpeg">
+<meta property="og:image" content="https://s4.51cto.com/oss/201911/13/eafad29add4c24cc19f069b321e2cdfe.png-wh_600x-s_3759142671.png">
+<meta property="og:image" content="https://s2.51cto.com/oss/201911/13/361de3a4168d239f2353b845471e8e8d.png-wh_600x-s_380059391.png">
+<meta property="og:image" content="https://s4.51cto.com/oss/201911/13/27e4153b97e5fe41981986def69c8067.png-wh_600x-s_3541541919.png">
+<meta property="og:image" content="https://s1.51cto.com/oss/201911/13/0abaa4feaa22e775cede2022bf63c9ea.jpeg-wh_600x-s_2184699070.jpeg">
+<meta property="og:image" content="https://s5.51cto.com/oss/201911/13/c80475f6933a270fba89907c45e57654.jpeg-wh_600x-s_3586129784.jpeg">
+<meta property="og:image" content="https://s2.51cto.com/oss/201911/13/c948f3465da13e5fceff5a93d4b6b8d7.jpeg-wh_600x-s_3718143419.jpeg">
+<meta property="og:updated_time" content="2019-11-13T03:51:16.800Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="支付宝历年双十一背后的技术揭秘">
+<meta name="twitter:description" content="自从有了双十一这个电商节日，很多技术人的生命轨迹都改变了，这种年度高并发大流量复杂业务场景的经典案例给技术和产品人提出了各种挑战，今天我们来看看支付宝双11的发展历程。">
+<meta name="twitter:image" content="https://s5.51cto.com/oss/201911/13/dc081e027632092bd63f559e68e92042.jpeg-wh_651x-s_1585978336.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/13/支付宝历年双十一背后的技术揭秘/"/>
+
+
+
+
+
+  <title>支付宝历年双十一背后的技术揭秘 | jianzhanger 的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jianzhanger 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/13/支付宝历年双十一背后的技术揭秘/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jianzhanger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_0004.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jianzhanger 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">支付宝历年双十一背后的技术揭秘</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-13T11:46:55+08:00">
+                2019-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/转载/" itemprop="url" rel="index">
+                    <span itemprop="name">转载</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>自从有了双十一这个电商节日，很多技术人的生命轨迹都改变了，这种年度高并发大流量复杂业务场景的经典案例给技术和产品人提出了各种挑战，今天我们来看看支付宝双11的发展历程。<br><a id="more"></a><br>和过去10年一样，2019年天猫双11又创造了一个全新的纪录。这个数字背后，是数代支付宝工程师们殚精竭虑、不断突破技术难关。今天支付宝的同学给 MacTalk 提供了一个纪录片《一心一役》，是11位经历双11的技术同学口述实录，讲述这一路走来支付宝技术发展的隐秘往事，很多东西都是第一次披露，看得我大呼过瘾，同时推荐给大家。</p>
+<p>对于技术人员来说，维持双11全天24小时稳定流畅固然不易，但最为考验的时刻当属零点刚过，人们操起手机，刷新早已存好的购物车，点击支付的那一刻。</p>
+<p>11年，零点越来越平滑的双11购物背后，支付宝有过哪些不为人知的技术探索，他们是如何做到支撑这么庞大的交易数据呢？看看首次披露的文字版吧。</p>
+<h2 id="一、从外部瓶颈说起"><a href="#一、从外部瓶颈说起" class="headerlink" title="一、从外部瓶颈说起"></a>一、从外部瓶颈说起</h2><p>事情从一开始就显得不是很顺利。</p>
+<p>2011年的双十一，在高峰时期少数用户无法付款，经过调查发现，这是因为少数银行的网银系统在压力下出现故障。早年的支付宝交易，用户点击支付后需要从支付宝和银行的接口去付款，而早年这个接口的性能很差，每秒只能支持几十到上百笔交易，稳定性也比较差，一旦流量上来，容易发生故障。</p>
+<p>如果不解决这个问题，今后的每次大促都会出现无法付款的情况，极大影响用户体验。但是，这个问题单靠技术是很难解决的，银行对网银系统的演进有自己的规划，支付宝无法去干涉它们的系统。</p>
+<p>不过，聪明的运营人员想出了一个变通的办法。在2012年的双十一，支付宝通过活动吸引用户先充值后付款，让用户先将钱充值到支付宝余额上，到双十一直接从余额里面扣款就行，这样，外部的瓶颈就被转换到内部了。这样做效果非常显著，付款失败的问题大为缓解。</p>
+<p>然而，外部的瓶颈始终存在，面对每年翻倍提升的流量峰值，支付对外部的依赖始终是一个隐患，不知道什么时候就会爆发。</p>
+<p>解决这个问题最好的办法，就是不通过网银，让资金在内部的系统中流转，先充值后付款就是这个原理。那么，有没有一个方法，吸引用户把钱放到支付宝里呢？2013年6月，支付宝推出余额宝，歪打正着的解决了这个问题，到2014年底余额宝就吸引了1.85亿用户，在13年和14年的双十一，交易峰值也分别实现了4倍和3倍的增长。</p>
+<p>2018年5月，支付宝接入网联清算平台，同时在这些年里，银行也在大力提升自己的系统能力，中大型银行的网银系统支持的交易笔数已经达到2万笔/秒以上，外部问题基本得以解决。</p>
+<p>解决了外部瓶颈之后，支付峰值的数字能有多高，就看支付宝的系统如何化解一年比一年更凶猛的流量洪峰。</p>
+<h2 id="二、容量规划：三军未动粮草先行"><a href="#二、容量规划：三军未动粮草先行" class="headerlink" title="二、容量规划：三军未动粮草先行"></a>二、容量规划：三军未动粮草先行</h2><p>事实上，支持交易笔数峰值面临的首要问题，并不是设计一个完美支持横向扩展的架构，而是对可能的流量峰值进行准确估计，然后安排对应的机器和资源。如果不做估计，可能发生两种情况：预备资源过多，架构过度设计，造成资源浪费；预备资源过少，无法完美支持大促，造成部分支付排队或失败。每年双十一备战，负责大促的决策团队会根据历史数据、大促目标来拟定一个交易数值，然后将这个数值拆解为各个系统所需要应对的流量，从而进行系统容量规划。</p>
+<p>双11大促的场景指标一般包括交易创建数、收银台展现数、交易支付数。总的支付目标数已经有了，运维人员根据总tps/单机tps的算法计算出应用在每个指标下的单机能力，然后，参考历史活动数据，可以计算应用在不同场景链路下的单机tps。</p>
+<p>但是，这种做法人工干预较多，对于各个应用的容量预估的粒度比较粗，后来，支付宝又建设了容量分析平台，可以进行自动化的细粒度的容量分析。</p>
+<p>它的原理是，如果我们把一个链路理解为一个业务，链路根节点可以理解为业务的源头流量请求，每个链路上的节点（这里的节点包括应用、DB、tair等）都能计算出该节点调用次数相对于根节点流量的系数。因此，当业务源头的QPS确定时，就可以基于链路数据，计算出每个节点的QPS。</p>
+<p>2018年的双十一，支付宝还建设了智能容量模型，不但可以根据业务流量进行容量预估，还可以智能的产出应用资源部署方案，使得在该方案下，部署单元在承载给定业务流量时的容量水平处于目标范围。</p>
+<p><img src="https://s5.51cto.com/oss/201911/13/dc081e027632092bd63f559e68e92042.jpeg-wh_651x-s_1585978336.jpeg" alt="æ—¶ä»£è§è¯ï¼šæ”¯ä»˜å®æŠ€æœ¯åŒ11çºªå½•ç‰‡ã€Šä¸€å¿ƒä¸€å½¹ã€‹å…¨çƒé¦–å‘"></p>
+<p>智能容量模型是支付宝对AIOps探索的一部分，也是对数据技术和人工智能在系统中落地实践的一部分，这方面也是当前支付宝技术探索的方向之一。</p>
+<h2 id="三、LDC与弹性架构：大促最强武器"><a href="#三、LDC与弹性架构：大促最强武器" class="headerlink" title="三、LDC与弹性架构：大促最强武器"></a>三、LDC与弹性架构：大促最强武器</h2><p>对流量进行预估并进行合理的容量规划之后，接下来就看我们的架构是否能支持流量峰值了。</p>
+<p>首先需要说明的是，流量高峰涉及到一个系统的方方面面，支付宝的整个系统极其复杂，而且面向toC和toB都推出了很多业务，即使只关注核心支付系统，也包括支付清算、账务、核算等子系统。</p>
+<p>系统部分组件由通用型的中间件提供支撑，如负载均衡中间件LVS/Spanner、阿里巴巴的分布式缓存中间件Tair等，其它则由支付宝自研的SOFAStack金融级分布式中间件负责。</p>
+<p>支付峰值的本质是一个高并发问题，互联网公司解决高并发的思路是横向扩展水平拆分，用分布式的方式来应对流量洪峰，支付宝也不例外。支付宝很早完成了服务化架构和核心数据库的水平拆分，成功应对了前几年的双十一。</p>
+<p><img src="https://s4.51cto.com/oss/201911/13/eafad29add4c24cc19f069b321e2cdfe.png-wh_600x-s_3759142671.png" alt="时代见证：支付宝技术双11纪录片《一心一役》全球首发" title="时代见证：支付宝技术双11纪录片《一心一役》全球首发"></p>
+<p>分布式系统示意图</p>
+<p>这个架构的问题是，所有子应用都需要访问所有数据库分库，但是数据库连接是有限的。当时主流的商业数据库，连接都不是共享的，就是说一个事务必须独占一个连接。而连接却又是数据库非常宝贵的资源，不能无限增加。当时的支付宝，面临的问题是不能再对应用集群扩容，因为每加一台机器，就需要在每个数据分库上新增若干连接，而此时几个核心数据库的连接数已经到达上限。应用不能扩容，意味着支付宝系统的容量定格了，不能再有任何业务量增长，别说大促，很可能再过一段时间连日常业务也支撑不了了。</p>
+<p>这个问题迫在眉睫，从2013年开始，支付宝开始新一轮的架构改造，实施单元化的LDC逻辑数据中心，双十一的流量峰值，终于还是成功的扛下来了。</p>
+<p>一个单元，是一个五脏俱全的缩小版整站，它是全能的，因为部署了所有应用；但它不是全量的，因为只能操作一部分数据。这样，只要将数据分区增加单元，就可以提升整个系统的处理性能上限。</p>
+<p><img src="https://s2.51cto.com/oss/201911/13/361de3a4168d239f2353b845471e8e8d.png-wh_600x-s_380059391.png" alt="æ—¶ä»£è§è¯ï¼šæ”¯ä»˜å®æŠ€æœ¯åŒ11çºªå½•ç‰‡ã€Šä¸€å¿ƒä¸€å½¹ã€‹å…¨çƒé¦–å‘"></p>
+<p>单元化示意图</p>
+<p>但是，并不是所有的数据都能拆分，比如部分底层数据是全局数据，所有单元的应用都需要访问。并且，支付宝经过近十年建设，有些架构也并不能很好的拆分成单元。在这个前提下，支付宝设计了CRG的单元化架构，既能利用单元化的优点，也能支持现有的架构。</p>
+<p><strong>1、RZone（Region Zone）：</strong>最符合理论上单元定义的zone，每个RZone都是自包含的，拥有自己的数据，能完成所有业务。</p>
+<p><strong>2、GZone（Global Zone）：</strong>部署了不可拆分的数据和服务，这些数据或服务可能会被RZone依赖。GZone在全局只有一组，数据仅有一份。</p>
+<p><strong>3、CZone（City Zone）：</strong>同样部署了不可拆分的数据和服务，也会被RZone依赖。跟GZone不同的是，CZone中的数据或服务会被RZone频繁访问，每一笔业务至少会访问一次；而GZone被RZone访问的频率则低的多。CZone是为了解决异地延迟问题而特别设计的。</p>
+<p><img src="https://s4.51cto.com/oss/201911/13/27e4153b97e5fe41981986def69c8067.png-wh_600x-s_3541541919.png" alt="æ—¶ä»£è§è¯ï¼šæ”¯ä»˜å®æŠ€æœ¯åŒ11çºªå½•ç‰‡ã€Šä¸€å¿ƒä¸€å½¹ã€‹å…¨çƒé¦–å‘"></p>
+<p>CRG架构示意图</p>
+<p>关于支付宝单元化和LDC的更多信息可查看 这篇文章 。</p>
+<p>实施了LDC之后，系统容量实现水平扩展，顺利支持了2013年及之后的双十一流量洪峰，并且系统不再受到单点故障限制，经过完善之后还做到异地多活，最终形成了三地五中心的金融级架构。</p>
+<p>理论上，只要无限扩展LDC的计算资源，就可以应对无限大的流量，但是，这样做的话，大部分机器只有在大促时才能派上用场，平时就是闲置的，造成资源浪费。最好能做到平时用少量资源支持常规流量，大促时经过容量规划，提前启用部分空闲或第三方资源应对高峰流量，这就是弹性架构的由来。</p>
+<p>2016年，支付宝开始为大促进行弹性架构的改造。弹性架构基于业务链路，因为大促时只有部分链路的流量激增，因此只需要针对大促关键链路进行弹性扩容即可。</p>
+<p>弹性架构涉及到多个层面的改造，首先是弹性机房和弹性单元，需要在LDC逻辑机房架构上按照业务纬度继续切片，保证单片业务可以独立逻辑单元部署，并保持与非弹性单元的联通性，并且可随时弹出和回收。</p>
+<p><img src="https://s1.51cto.com/oss/201911/13/0abaa4feaa22e775cede2022bf63c9ea.jpeg-wh_600x-s_2184699070.jpeg" alt="æ—¶ä»£è§è¯ï¼šæ”¯ä»˜å®æŠ€æœ¯åŒ11çºªå½•ç‰‡ã€Šä¸€å¿ƒä¸€å½¹ã€‹å…¨çƒé¦–å‘"></p>
+<p>其次是弹性存储，包括流水型数据和状态型数据的弹性。流水型数据包括支付订单，为了支持这些数据的弹性，创建了弹性位+弹性UID，然后路由根据弹性UID将订单分配至弹性单元中进行处理。状态型存储比如用户的账户余额，进行整体弹出，具体实现方式是通过DB层的主备切换，将主库压力分流至备库。</p>
+<p>然后是中间件层面的改造，包括路由、RPC、消息队列、流量管理等等。应用层面也需要进行相应的改造，因为每个弹性单元需要做到独立逻辑单元部署，因此需要从服务到数据进行梳理并剥离，同时添加弹性id等弹性逻辑处理。</p>
+<p>除了这些之外，还需要对运维平台、压测工具进行相应的改造。</p>
+<p>2016年弹性架构上线后，成功支撑了当年双十一，满足大促要求和预定目标，节省了机房物理资源，成为应对大促类流量洪峰最有力的武器。</p>
+<p>弹性架构里的弹性单元都是新增的集群，但其实还可以进一步的提高资源利用率。方法就是离在线混部技术，因为有些集群是用作离线的大数据分析，但并不是全天24小时都满负荷工作，当没有任务时，集群资源利用率极低。如果将离线的应用和在线的业务应用部署在一起，让大促高峰时段能够利用这些资源，就可以减少大促期间采购的资源，进一步节省成本。混部技术需要运维的分时调度配合，在不同的时段将资源分配给不同的应用。</p>
+<p>从2017年起，支付宝开始尝试离在线混部和分时调度技术，在大促时利用离线技术所使用的集群资源，大大提升了集群资源利用率。</p>
+<h2 id="四、百万支付：解决数据库扩展瓶颈"><a href="#四、百万支付：解决数据库扩展瓶颈" class="headerlink" title="四、百万支付：解决数据库扩展瓶颈"></a>四、百万支付：解决数据库扩展瓶颈</h2><p>2016年的双十一，交易笔数峰值达到12万笔每秒，这场高并发之战仍在继续。前面提到了很多应对大促的技术手段，但其实漏掉了一个最重要的部分，那就是数据库。在流量洪峰时，受到压力最大的就是数据库。这是因为，在前台我们看到是一个成功交易，但拆解之后，一个交易可能平均要产生数百甚至上千个请求，数据库的压力要远远大于我们所能看到的数字。</p>
+<p>从最开始，数据库就一直是支付宝系统的瓶颈之一，在之前，其实已经配合架构改造对数据库做了诸多升级，除了上面提过的弹性化的改造，还包括：</p>
+<p><strong>1. 分库分表，</strong>将原有的交易账户库分离为交易库和账户库，并通过分布式事务解决数据一致性问题。</p>
+<p><strong>2. 数据库水平拆分</strong>，将所有的用户按照1%粒度分为100份，配合单元化的逻辑隔离。</p>
+<p><strong>3. 数据库读写分离、多点写入、数据复制</strong>，通过这些方式，可以大大提升性能。</p>
+<p>早年支付宝采用的商业数据库能进行的改进是有极限的，为了成本考虑，不可能为了一年仅仅几天的大促活动去采购额外的数据库系统和设备。</p>
+<p>早在2014年的双十一，支付宝自研数据库OceanBase就开始承担10%双十一核心交易流量，随后一步步承担交易、支付、账务等核心系统的100%流量，经受住了极端条件下的严苛考验。</p>
+<p>OceanBase从第一天开始，就计划成为一个分布式的关系数据库，也就是天然支持大规模和高并发的场景。但是，支付宝本身的用户体量太大，再加上双十一所面临的的系统压力太大，到2017年双十一的时候，即使采用了额外的弹性库，数据库CPU压力也接近上限，成为继续扩容的瓶颈所在。</p>
+<p>2018年的双十一，支付宝在内部提出了百万支付架构，意思是这套架构可以支持百万笔/秒量级的系统压力。而这套架构的核心，就是OceanBase 2.0分布式分区方案。</p>
+<p>过去架构下的DB扩展，由于DB单机存在极限，且一个UID最多对应一台机器，所以这里的扩展能力是通过DB新增集群，应用加数据源来实现的。这就会带来一系列的问题，比如应用的内存增长、多数据源导致弹出弹回费时费力、多个DB集群的日常维护成本高等。为解决这个问题，考虑让DB也能像应用一样可以动态扩容，且必须突破一个UID最多一台机器的限制，从而能达到应用和DB同步扩容，不用增加新DB集群就能达到新的容量支撑能力。</p>
+<p>由此，基于DB的分区功能，将DB的扩展性大大增强，避免了必须增加集群来扩容的尴尬。同时对应用进行了相关的升级改造，如全站流水号架构的升级，系列中间件的改造，以及任务捞取场景的改造等。</p>
+<p><img src="https://s5.51cto.com/oss/201911/13/c80475f6933a270fba89907c45e57654.jpeg-wh_600x-s_3586129784.jpeg" alt="æ—¶ä»£è§è¯ï¼šæ”¯ä»˜å®æŠ€æœ¯åŒ11çºªå½•ç‰‡ã€Šä¸€å¿ƒä¸€å½¹ã€‹å…¨çƒé¦–å‘"></p>
+<p>OceanBase分区架构</p>
+<p>传统数据库弹性架构，将数据进行物理拆分到不同机器，业务在数据访问/研发/后期维护及数据配套设施上非常繁琐；同时拆分后资源很难快速回收，且数据拆分及聚合无法实现业务无损。相比于传统数据库的弹性架构，OceanBase 2.0架构完全不侵入业务，内部通过分区实现数据分片的自组织及负载均衡，通过生成列及分区规则实现自动路由，通过分区聚合（partition_group）消除分布式事务性能开销以提升性能，从而实现无损线性伸缩。另数据分片间share_nothing的架构，实现分片故障隔离及单点故障消除的高可用架构。</p>
+<p>2018年双十一，OceanBase 2.0成功上线，并支持了交易和支付的全部流量。并且，基于OceanBase2.0分区方案的这套架构可以轻松扩展到支持百万级交易，关于应对流量洪峰的战役暂时告一段落。</p>
+<h2 id="五、技术保障：大促技术标准化"><a href="#五、技术保障：大促技术标准化" class="headerlink" title="五、技术保障：大促技术标准化"></a>五、技术保障：大促技术标准化</h2><p>双十一是新技术的演练场，那么怎么确定这些技术能有效支撑流量高峰呢？特别在支付宝，涉及到人们的资金安全，一旦发生问题后果极其严重，更是要慎之又慎。</p>
+<p>2014年，支付宝上线了全链路压测，成为系统化技术验证的神器；从2017年起，支付宝开始打造自动化和智能化的技术风险防控体系；2018年的双十一，大促中控上线，大促相关的技术开始走向标准化。</p>
+<p><img src="https://s2.51cto.com/oss/201911/13/c948f3465da13e5fceff5a93d4b6b8d7.jpeg-wh_600x-s_3718143419.jpeg" alt="æ—¶ä»£è§è¯ï¼šæ”¯ä»˜å®æŠ€æœ¯åŒ11çºªå½•ç‰‡ã€Šä¸€å¿ƒä¸€å½¹ã€‹å…¨çƒé¦–å‘"></p>
+<p>大促中控示意图</p>
+<p>大促中控也就是一站式的大促保障解决方案，它的目的，就是将之前大促的经验沉淀下来，形成套路和规范，最终向无人值守方向发展，搞大促不需要技术人再熬夜了。</p>
+<p>有了大促中控，可以进行自动化的无损压测，线上压测能得到想要的结果的同时，不影响正在进行的业务。它的核心技术能力是对环境、机器、线程的隔离，以及在压测异常时的智能熔断。</p>
+<p>压测并不是万能的，有些问题可能在压测中难以暴露，从2018年起，支付宝还展开了红蓝攻防演练，为了在大促峰值出现异常时，检查应急策略、组织保障、响应速度是否到位，以及验证新技术的稳定性是否达标。</p>
+<p>对于大促中的资金安全，支付宝自研了实时的资金核对系统，实现峰值的资金安全实时验证，验证每一笔资金准确无误。</p>
+<p>当所有技术准备就绪并不是就可以了，每次大促之前还有很多配置需要切换，一旦出错就会造成严重影响，因此支付宝打造了面向终态的技术风险巡检能力，在大促前一天进行成百上千的配置自动化检查，确认所有系统进入大促状态，确保万无一失。</p>
+<p>随着时钟渐渐指向零点，大促一触即发。</p>
+<h2 id="六、未来可期，我们一路同行"><a href="#六、未来可期，我们一路同行" class="headerlink" title="六、未来可期，我们一路同行"></a>六、未来可期，我们一路同行</h2><p>总结起来，双十一流量峰值考验的是架构的可伸缩性、数据库的承载能力、运维的强大调度能力，以及完善的技术保障能力。为了确保大促顺利完成，需要做的技术准备也远远不只文中提到的，诸如全链路压测这样的幕后功臣还有很多，由于篇幅所限，这里就不再一一介绍了。</p>
+<p>支付宝也在持续更新着自己的技术装备库。今年的双十一，支付宝也有几项新能力得到实战检验：OceanBase 2.2上线，该版本在TPC-C基准测试中取得第一名，平稳支撑了新大促；自研的Service Mesh 首次登上大促舞台，目前已经 100% 覆盖支付宝核心支付链路，是业界最大的 Service Mesh 集群。</p>
+<p>随着普惠金融的落地，以及万物互联的发展，支付平台面临的流量压力会进一步提升。现在我们看到的峰值，未来也许稀松平常；未来的峰值，也许比今天还要高几个量级。支付峰值这场战役仍会继续下去，其中的技术也将不断的更新进化，未来双十一的技术之战将更加精彩。</p>
+<p>双十一，不仅仅是购物节，还是推动互联网技术发展的动力。期待 2020。</p>
+<p>原文地址：<a href="http://news.51cto.com/art/201911/605871.htm" target="_blank" rel="noopener">http://news.51cto.com/art/201911/605871.htm</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/系统架构/" rel="tag"># 系统架构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/13/这一次，彻底弄懂“秒杀系统”/" rel="next" title="这一次，彻底弄懂“秒杀系统”">
+                <i class="fa fa-chevron-left"></i> 这一次，彻底弄懂“秒杀系统”
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/14/互联网公司中所谓中台是如何定义的/" rel="prev" title="互联网公司中所谓中台是如何定义的">
+                互联网公司中所谓中台是如何定义的 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/IMG_0004.JPG"
+                alt="jianzhanger" />
+            
+              <p class="site-author-name" itemprop="name">jianzhanger</p>
+              <p class="site-description motion-element" itemprop="description">静以修身，俭以养德</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、从外部瓶颈说起"><span class="nav-number">1.</span> <span class="nav-text">一、从外部瓶颈说起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、容量规划：三军未动粮草先行"><span class="nav-number">2.</span> <span class="nav-text">二、容量规划：三军未动粮草先行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、LDC与弹性架构：大促最强武器"><span class="nav-number">3.</span> <span class="nav-text">三、LDC与弹性架构：大促最强武器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、百万支付：解决数据库扩展瓶颈"><span class="nav-number">4.</span> <span class="nav-text">四、百万支付：解决数据库扩展瓶颈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、技术保障：大促技术标准化"><span class="nav-number">5.</span> <span class="nav-text">五、技术保障：大促技术标准化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、未来可期，我们一路同行"><span class="nav-number">6.</span> <span class="nav-text">六、未来可期，我们一路同行</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jianzhanger</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

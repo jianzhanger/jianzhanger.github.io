@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="中台," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者：葛零零链接：https://www.zhihu.com/question/57717433/answer/758931676来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。   2010年的中国（深圳）IT领袖峰会上，BAT三家的当家人发表了对于云计算的看法：  李彦宏：云计算是旧瓶装新酒。马化腾：云计算需要到“阿凡达”时代才能实现，现在说确实太早了！马云：如果">
+<meta name="keywords" content="中台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="互联网公司中所谓中台是如何定义的（续）">
+<meta property="og:url" content="http://yoursite.com/2020/05/14/互联网公司中所谓中台是如何定义的（续）/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="作者：葛零零链接：https://www.zhihu.com/question/57717433/answer/758931676来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。   2010年的中国（深圳）IT领袖峰会上，BAT三家的当家人发表了对于云计算的看法：  李彦宏：云计算是旧瓶装新酒。马化腾：云计算需要到“阿凡达”时代才能实现，现在说确实太早了！马云：如果">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-2c31963876b046dddb3d3c1edcb2b830_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/50/v2-514ae13206549eaf2686f0b5aa7066e2_hd.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/50/v2-d58471591218ca4af9094763bf407cda_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/50/v2-a4b5d629e8f7c9fb3def6dd7d914a908_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-287c6b67dcf91d3fb272908c4578b5ac_hd.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/50/v2-64ece36629f46556bc1f35aefad7e21b_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-f6f46afe8f72d9645492b5a4560f2767_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-4b06dc56fd326446ef8b40d906842f9d_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-4b06dc56fd326446ef8b40d906842f9d_720w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/50/v2-38059e6963927d7c9853fd7f0168cb21_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-6b45bfca195bd974074b7caca1b25171_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/50/v2-df4deb36ac64c2afdf9b76399e732c08_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-866c3d35f7e2efe20c24a8a5be471a53_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-866c3d35f7e2efe20c24a8a5be471a53_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-c2c8eb740ceb025c2f9daa7ce82c5bc4_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-c2c8eb740ceb025c2f9daa7ce82c5bc4_720w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/50/v2-38e829af865de16c5943061870e657d8_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-621b9eac3be771114c58e781c45bcd4f_hd.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/50/v2-4c54b5e282d035d68a11ab28b1f6f695_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/50/v2-669dbd7cee0a44d3558bf0c6fdc99e6e_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-a4f2d4add7fce49efee470684bc287d3_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-a4f2d4add7fce49efee470684bc287d3_720w.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-04fe878685a57b8cdc0615950d9c82f6_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-dff16877ddbf6d349771bcb4cb3cb784_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/50/v2-62847acdd0beff758926bef9abb306d1_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-93c017709a7fc95598fcf03115ad676d_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-16a565282cf12fe33bb78ac19b65b91d_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-16a565282cf12fe33bb78ac19b65b91d_720w.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-d96d7bff03bdd0140f805767d37391e6_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-b8bcb93360679c403482e5f7d2de8172_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-5dc60e2d6ec81d580549fdd9d83bb33d_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-158645173f7c0fe126f9ddfca2c7e5ed_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-158645173f7c0fe126f9ddfca2c7e5ed_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/50/v2-cb0c5125965c678d815343ee1331dc8f_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-bd1dcbb0b2ba63a46de14b349ec610eb_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-55a0bb8d96d761f6a3da6dcbd96530e4_hd.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/50/v2-a9b35f052a8e783a8170736c08b8162e_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/50/v2-e4b74a65bc427856374c30a48750a7a2_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-e204fedbc694964454a8e12aa0d31c9a_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-e204fedbc694964454a8e12aa0d31c9a_720w.jpg">
+<meta property="og:updated_time" content="2020-05-14T09:11:42.655Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="互联网公司中所谓中台是如何定义的（续）">
+<meta name="twitter:description" content="作者：葛零零链接：https://www.zhihu.com/question/57717433/answer/758931676来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。   2010年的中国（深圳）IT领袖峰会上，BAT三家的当家人发表了对于云计算的看法：  李彦宏：云计算是旧瓶装新酒。马化腾：云计算需要到“阿凡达”时代才能实现，现在说确实太早了！马云：如果">
+<meta name="twitter:image" content="https://pic2.zhimg.com/50/v2-2c31963876b046dddb3d3c1edcb2b830_hd.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/14/互联网公司中所谓中台是如何定义的（续）/"/>
+
+
+
+
+
+  <title>互联网公司中所谓中台是如何定义的（续） | jianzhanger 的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jianzhanger 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/14/互联网公司中所谓中台是如何定义的（续）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jianzhanger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_0004.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jianzhanger 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">互联网公司中所谓中台是如何定义的（续）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-14T16:45:32+08:00">
+                2020-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/转载/" itemprop="url" rel="index">
+                    <span itemprop="name">转载</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作者：葛零零<br>链接：<a href="https://www.zhihu.com/question/57717433/answer/758931676" target="_blank" rel="noopener">https://www.zhihu.com/question/57717433/answer/758931676</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。  </p>
+<p>2010年的中国（深圳）IT领袖峰会上，BAT三家的当家人发表了对于云计算的看法：</p>
+<blockquote>
+<p>李彦宏：云计算是旧瓶装新酒。<br>马化腾：云计算需要到“阿凡达”时代才能实现，现在说确实太早了！<br>马云：如果我们不做云计算，将来会死掉。<br><a id="more"></a><br><img src="https://pic2.zhimg.com/50/v2-2c31963876b046dddb3d3c1edcb2b830_hd.jpg" alt=""><!--![](https://pic2.zhimg.com/80/v2-2c31963876b046dddb3d3c1edcb2b830_720w.jpg)--></p>
+</blockquote>
+<p>2010年中国（深圳）IT领袖峰会</p>
+<p>现在来看，你是不是觉得9年前马云的眼光极其地超前？</p>
+<p>2015年，阿里彷佛又再次超前般地开启了对于企业战略管理模式的大变革。在2015年年末，阿里巴巴集团进行了一次组织架构大调整，将搜索事业部、共享业务平台、数据技术、产品部提出来，组成了“中台事业群”，并喊出“小前台，大中台”的管理模式。前台作为一线业务，更敏捷更快速适应市场；中台集合整个集团的数字、运营、产品、技术能力，对各业务前台形成强力支撑。随后的几年，中台建设的理念也越来越被业界所关注。就在今年的5月2日，还有消息传出称阿里正在拆分“大中台”模式。随后，阿里回应称此消息为假消息。这一回应也进一步催生了”中台“架构思想的火热讨论。</p>
+<p>如果说“阿里做云计算是怕死掉”，那么15年的阿里集团选择大力建设中台，也是怕“死”掉吗？</p>
+<h2 id="一、中台从何而来？"><a href="#一、中台从何而来？" class="headerlink" title="一、中台从何而来？"></a>一、中台从何而来？</h2><h2 id="1、阿里中台——来自最成功游戏公司Supercell的启发"><a href="#1、阿里中台——来自最成功游戏公司Supercell的启发" class="headerlink" title="1、阿里中台——来自最成功游戏公司Supercell的启发"></a>1、阿里中台——来自最成功游戏公司Supercell的启发</h2><p>阿里算是最早提出中台建设的互联网企业了。据说阿里中台的架构思想是起源于马云在2015年中的一次商务拜访。当时，马云带队阿里一行高管前往北欧芬兰一家名为Supercell的游戏公司进行考察（号称是世界上最成功的移动游戏公司）。该公司里，5-7个员工就可以组成一个独立的开发团队，称之为cell。小团队自己决定做什么样的产品，然后推出市场，观察市场反馈。反馈不好的游戏则会被毫不犹豫地砍掉。这样的开发模式使得Supercell公司开发的游戏大获成功。而这一切成功的背后，是Supercell的强大的中台的支撑。</p>
+<blockquote>
+<p>Supercell的中台，指的是公司将游戏开发过程中公共和通用的游戏素材和算法整合起来，并积累了非常科学的研发工具和框架体系，构建了一个功能非常强大的中台。这样强大的中台可以支持若干个小团队在短时间内开发出一款新的游戏。  </p>
+</blockquote>
+<p><img src="https://pic4.zhimg.com/50/v2-514ae13206549eaf2686f0b5aa7066e2_hd.jpg" alt=""><!--![](https://pic4.zhimg.com/80/v2-514ae13206549eaf2686f0b5aa7066e2_720w.jpg)--></p>
+<p>每一次遭遇到项目失败，Supercell全公司都会开香槟庆祝自己得到了教训和成长</p>
+<p>有了中台的支撑，Supercell的“细胞”才可以非常灵活地运作，形成高效的散兵作战模式。</p>
+<p>团队开发的游戏大受欢迎，那很好。游戏失败了？没关系，反正试错的成本很低，直接放弃就好了。</p>
+<p>成立9年来，Supercell只正式发布过5款游戏，你会觉得他们是效率低下吗？（之后的2016年6月，腾讯以86 亿美元收购了员工不超过200人的Supercell公司84.3%的股权，每位员工人均贡献值超过3.54亿人民币）</p>
+<p>那时的阿里巴巴内部也在酝酿一项改革，整合产品技术和数据能力，帮助整个公司拥有快速创新的能力。这家北欧企业的管理理念，和马云正在构思的事情，不谋而合。也许正是此次拜访，加速催化了阿里巴巴中台架构的改革进程。</p>
+<h2 id="2、阿里共享事业部——阿里中台的雏形"><a href="#2、阿里共享事业部——阿里中台的雏形" class="headerlink" title="2、阿里共享事业部——阿里中台的雏形"></a>2、阿里共享事业部——阿里中台的雏形</h2><p>时间回到2008年，阿里当时成立了天猫事业部，没过多久便与淘宝事业部并驾齐驱。为此同时支持着淘宝和天猫的业务的淘宝的技术团队却颇感压力。2009年，“共享事业部”应运而生，主要成员来自于之前的淘宝技术团队，在组织架构上与淘宝、天猫同级别。集团希望把淘宝、天猫两个平台中公共通用的业务功能沉淀到共享事业部，避免功能的重复建设和维护，更合理地利用技术资源。2010年吸睛的聚划算出现后，各平台纷纷接入。集团规定接入“聚划算”必须通过共享业务事业部，从而奠定了共享事业部成为今天阿里集团的核心业务平台。</p>
+<h2 id="3、口碑——资源整合的再次实践"><a href="#3、口碑——资源整合的再次实践" class="headerlink" title="3、口碑——资源整合的再次实践"></a>3、口碑——资源整合的再次实践</h2><p>2015年6月，阿里集团宣布和蚂蚁金服集团共同拿出60亿元合资成立一家本地生活服务平台：口碑。新口碑将整合阿里集团以及蚂蚁金服集团所有能够利用的资源，成为阿里在O2O领域最强有力的工具。此次组织架构调整为其资源整合提供了基础，阿里集团将和蚂蚁金服集团形成统一的中台体系。通过统一的中台体系，双方不仅可以共享技术资源和团队资源、避免重复开发，而且在商家信息和用户数据等维度可以全方面打通。</p>
+<h2 id="4、中台：一个解决问题的方案"><a href="#4、中台：一个解决问题的方案" class="headerlink" title="4、中台：一个解决问题的方案"></a>4、中台：一个解决问题的方案</h2><p>回头再看马云在2015年中对Supercell的游戏公司的拜访，与其说阿里中台的架构思想是起源于Supercell成功的启发，不如说这只是一次阿里中台架构思想的在某公司实际运作的一次巧合印证而已。从09年的共享事业部、到10年聚划算的接入方式、再到15年阿里集团和蚂蚁金服的合作共享，阿里中台的产生，并不完全只是一种自顶向下的战略设计而已，而更多的是因为当公司业务在发展到达某一阶段后，组织不断膨胀、遇到瓶颈，为求下一步发展、解决不断暴露的问题和障碍而不得不提出的一个解决方案。同样理念的一个解决方案，我们可以在“美军作战阵型”的演变历程中看到：美军在二战时，以军来为单位作战；越战时，以营为单位作战；而到了中东战斗时，则以7人或者11人的极小班排作战了，因为当时有了“强大的军事指挥中台”这样的解决方案。</p>
+<h2 id="二、中台建设的跟随者们"><a href="#二、中台建设的跟随者们" class="headerlink" title="二、中台建设的跟随者们"></a>二、中台建设的跟随者们</h2><p>腾讯、百度、京东，都在18年开始了中台建设的跟随。</p>
+<h2 id="1、腾讯：技术委员会"><a href="#1、腾讯：技术委员会" class="headerlink" title="1、腾讯：技术委员会"></a>1、腾讯：技术委员会</h2><p>在阿里提出中台战略的近3年后，2018年十一长假前夕，腾讯终于公布了时隔6年的历史上第三次组织架构调整，在原有7大事业群的基础上进行重组整合，新成立了云与智慧产业事业群（CSIG）、平台与内容事业群（PCG），调整为新的6大事业群。而6大事业群紧紧围绕的，正是技术委员会充当“技术中台”角色。</p>
+<p><img src="https://pic1.zhimg.com/50/v2-d58471591218ca4af9094763bf407cda_hd.jpg" alt=""><!--![](https://pic1.zhimg.com/80/v2-d58471591218ca4af9094763bf407cda_720w.jpg)--></p>
+<p>2018年9月，腾讯公布了时隔6年的历史上第三次组织架构调整</p>
+<h2 id="2、百度：技术平台"><a href="#2、百度：技术平台" class="headerlink" title="2、百度：技术平台"></a>2、百度：技术平台</h2><p>同年12月18日，百度集团进行了一次大的架构调整，由百度创始人、董事长李彦宏发信宣布：”百度将打造AI时代最领先的技术平台，实现前端业务和技术平台的资源高效统筹及组织全面协同。”</p>
+<p><img src="https://pic4.zhimg.com/50/v2-a4b5d629e8f7c9fb3def6dd7d914a908_hd.jpg" alt=""><!--![](https://pic4.zhimg.com/80/v2-a4b5d629e8f7c9fb3def6dd7d914a908_720w.jpg)--></p>
+<p>2018年12月18日，百度集团进行了一次大的架构调整</p>
+<h2 id="3、京东：前中后台"><a href="#3、京东：前中后台" class="headerlink" title="3、京东：前中后台"></a>3、京东：前中后台</h2><p>3天后的12月21日，京东集团人力资源部发布关于京东商城组织架构调整的公告，公告内容称：“在新的组织架构下，京东商城将围绕以客户为中心，划分为前中后台。中台为前台业务运营和创新提供专业能力的共享平台职能。”</p>
+<p><img src="https://pic2.zhimg.com/50/v2-287c6b67dcf91d3fb272908c4578b5ac_hd.jpg" alt=""><!--![](https://pic2.zhimg.com/80/v2-287c6b67dcf91d3fb272908c4578b5ac_720w.jpg)--></p>
+<p>2018年12月21日，京东商城组织架构调整划分为前中后台</p>
+<p>各大互联网企业对于中台建设趋之若鹜，我们不禁要问，中台建设能解决多少问题？</p>
+<h2 id="三、中台解决了什么痛点？"><a href="#三、中台解决了什么痛点？" class="headerlink" title="三、中台解决了什么痛点？"></a>三、中台解决了什么痛点？</h2><h2 id="1、痛点一：企业前方市场与企业内部支撑的冲突"><a href="#1、痛点一：企业前方市场与企业内部支撑的冲突" class="headerlink" title="1、痛点一：企业前方市场与企业内部支撑的冲突"></a>1、痛点一：企业前方市场与企业内部支撑的冲突</h2><p>用户和用户的需求永远是善变的。依稀记得“80后是垮掉的一代”的说法的你，现在看到的却是“被10后毁掉的90后父母”的感叹。主流用户的变化，不会因为某个年代人的话语权高低而稳定下来。而即便是同年代的用户，在随着现代社会发展和各行各业互联网服务的滋养中又进化细分成了出不同的支流，需求全然不同，呈现场景化、碎片化的特征。为了不被善变的用户所抛弃，企业不得不跟随着用户，为了满足用户而尽可能积极地响应用户需求的变化，发展新业务、提供新服务。这就给企业的前方业务端提出了挑战，必须做到快速响应、灵活运转。但要作为一个能承接大量新业务和新服务的大体量企业，业务想要做到量大又灵活，必定需要靠企业内部科学有序体系的稳定支撑。所以，企业前方市场总是会趋于变化无序，而企业内部支撑总归要趋于稳定有序，两者必定冲突。</p>
+<p><img src="https://pic1.zhimg.com/50/v2-64ece36629f46556bc1f35aefad7e21b_hd.jpg" alt=""><!--![](https://pic1.zhimg.com/80/v2-64ece36629f46556bc1f35aefad7e21b_720w.jpg)--></p>
+<p>企业前方市场与企业内部支撑的冲突</p>
+<h2 id="2、痛点二：前台与后台的冲突"><a href="#2、痛点二：前台与后台的冲突" class="headerlink" title="2、痛点二：前台与后台的冲突"></a>2、痛点二：前台与后台的冲突</h2><p>企业前方市场和企业内部支撑的冲突，必定带来在系统层级上的前台和后台的冲突。</p>
+<blockquote>
+<p>前台：企业前方市场的管理平台，是企业的终端用户直接使用或交互的系统。比如像微信、QQ、淘宝这样的APP；<br>后台：企业内部支撑的管理平台，是企业管理核心能力的系统。比如像企业ERP管理平台、企业财务管理平台等系统；</p>
+</blockquote>
+<p>前台是对接用户的，所以系统需要快速响应前端用户的需求，快速创新、快速迭代。简而言之，快速建设、错了就推翻重来、不能耗费太大成本。</p>
+<p>后台是企业对内的，为了支撑前台越来越多的业务，后台系统不断地建设，系统不断庞大起来。所以后台系统需要扎实稳定，建成之后往往不能随意改动。简而言之，是需要耗费大力成本建设的基础能力、不能轻易推翻、改动成本极大。</p>
+<p>前台系统和后台系统的特点决定了，两者的冲突不可避免。</p>
+<p><img src="https://pic2.zhimg.com/50/v2-f6f46afe8f72d9645492b5a4560f2767_hd.jpg" alt=""><!--![](https://pic2.zhimg.com/80/v2-f6f46afe8f72d9645492b5a4560f2767_720w.jpg)--></p>
+<p>前台系统和后台系统的冲突</p>
+<h2 id="3、痛点三：大企业的通病（各占山头、重复建设）"><a href="#3、痛点三：大企业的通病（各占山头、重复建设）" class="headerlink" title="3、痛点三：大企业的通病（各占山头、重复建设）"></a>3、痛点三：大企业的通病（各占山头、重复建设）</h2><p>企业发展到一定程度，组织架构和层级必然不断膨胀扩张。各大事业部下各大部门，就像一个小型组织一样，各占山头，势必会出现屁股决定脑袋的现象：这事就算对公司有好处，但对我们部门KPI没好处啊，那我不做。</p>
+<p><img src="https://pic3.zhimg.com/50/v2-4b06dc56fd326446ef8b40d906842f9d_hd.jpg" alt=""><img src="https://pic3.zhimg.com/80/v2-4b06dc56fd326446ef8b40d906842f9d_720w.jpg" alt=""></p>
+<p>大企业内部各处都是墙</p>
+<p>大企业内部各处都是墙——部门墙、业务墙、数据墙。更不用说那些一味的内部赛马的绩效考核机制，势必更加加剧部门间的相互封闭。而一些原本可以快速提供的用户服务，却需要多重对接，无法快速拿出产品方案，耗费很大的成本和极长的时间。一个原本可以共用的服务，被不同部门重复建设。</p>
+<h2 id="四、怎么理解中台？"><a href="#四、怎么理解中台？" class="headerlink" title="四、怎么理解中台？"></a>四、怎么理解中台？</h2><p>在我看来，中台理念正是为了解决企业发展的痛点而生。中台在冲突的企业前台和后台之间搭起桥梁。这条桥梁，连接了技术和场景。这条桥梁上还安了缓冲带，灵活和稳定、快和慢、低成本和高成本，都将在这里得到缓冲和过度。这条桥梁，还能穿透企业内部封得死死的部门墙、业务墙和数据墙，将为企业生态带来不一样的新面貌。</p>
+<p><img src="https://pic4.zhimg.com/50/v2-38059e6963927d7c9853fd7f0168cb21_hd.jpg" alt=""><!--![](https://pic4.zhimg.com/80/v2-38059e6963927d7c9853fd7f0168cb21_720w.jpg)--></p>
+<p>笔者理解的中台：</p>
+<blockquote>
+<p>中台就像是一条“安了缓冲带的桥梁”，连接了灵活的前台和稳定的后台的同时，穿透了企业内部部门墙等隔阂。它的核心是企业基础服务能力，目标是支持前台小成本地快速创新迭代，运用后台技术手段（微服务架构、DevOps基础设施和公共服务设施等），提供可以供前台复用的公用能力。</p>
+</blockquote>
+<h2 id="五、中台有哪些类型？"><a href="#五、中台有哪些类型？" class="headerlink" title="五、中台有哪些类型？"></a>五、中台有哪些类型？</h2><p>引用王健老师在《当我们谈中台时，我们在谈些什么| 白话中台战略》一文中提到的关于中台看法的描写：</p>
+<blockquote>
+<p>在有些人眼里：中台就是技术平台，像微服务开发框架、Devops平台、PaaS平台，容器云之类的，人们都叫它“技术中台”。<br>在有些人眼里：中台就是微服务业务平台，像最常见的什么用户中心，订单中心，各种微服务集散地，人们都叫它“业务中台”。<br>在有些人眼里：中台应该是组织的事情，这类组织中台在企业中主要起到投资评估与投后管理的作用，类似于企业内部资源调度中心和内部创新孵化组织，人们叫它“组织中台”。</p>
+</blockquote>
+<p>这些人眼里的中台可能都对，但也可能不够准确或完整。我们来看看目前都出现了哪些对中台的分类：  </p>
+<p><img src="https://pic3.zhimg.com/50/v2-6b45bfca195bd974074b7caca1b25171_hd.jpg" alt=""><!--![](https://pic3.zhimg.com/80/v2-6b45bfca195bd974074b7caca1b25171_720w.jpg)--></p>
+<p>目前都出现了哪些对中台的分类</p>
+<p>可见，从业务特征、场景应用、技术特征、组织职能等维度出发，中台彷佛可以运用的地方有很多，好像一盘大棋的感觉。那中台的实际模样会是什么样？</p>
+<h2 id="六、各大企业是怎么做中台建设的？"><a href="#六、各大企业是怎么做中台建设的？" class="headerlink" title="六、各大企业是怎么做中台建设的？"></a>六、各大企业是怎么做中台建设的？</h2><p>再来看看各大企业对于建设中台的对外呈现：</p>
+<h2 id="1、互联网企业"><a href="#1、互联网企业" class="headerlink" title="1、互联网企业"></a>1、互联网企业</h2><h3 id="1）阿里云——业务数据双中台"><a href="#1）阿里云——业务数据双中台" class="headerlink" title="1）阿里云——业务数据双中台"></a>1）阿里云——业务数据双中台</h3><p><img src="https://pic4.zhimg.com/50/v2-df4deb36ac64c2afdf9b76399e732c08_hd.jpg" alt=""><!--![](https://pic4.zhimg.com/80/v2-df4deb36ac64c2afdf9b76399e732c08_720w.jpg)--></p>
+<p>2018云栖大会上海峰会——钟华（古谦）分享《企业核心业务数字化转型最佳实践》</p>
+<p>阿里云中台主要由业务中台和数字中台并肩构成了双中台，并肩支撑所有前台业务。</p>
+<h3 id="2）阿里巴巴——移动中台"><a href="#2）阿里巴巴——移动中台" class="headerlink" title="2）阿里巴巴——移动中台"></a>2）阿里巴巴——移动中台</h3><p><img src="https://pic3.zhimg.com/50/v2-866c3d35f7e2efe20c24a8a5be471a53_hd.jpg" alt=""><img src="https://pic3.zhimg.com/80/v2-866c3d35f7e2efe20c24a8a5be471a53_720w.jpg" alt=""></p>
+<p>2018年云栖大会杭州站——泠茗分享《数字化转型 移动化先行 云栖大会上发布了哪些移动研发新利器》</p>
+<p>阿里巴巴的移动中台，构建在业务数据双中台之上，作为连接层对接最前方的用户流量。</p>
+<h3 id="3）阿里巴巴——技术中台"><a href="#3）阿里巴巴——技术中台" class="headerlink" title="3）阿里巴巴——技术中台"></a>3）阿里巴巴——技术中台</h3><p><img src="https://pic3.zhimg.com/50/v2-c2c8eb740ceb025c2f9daa7ce82c5bc4_hd.jpg" alt=""><img src="https://pic3.zhimg.com/80/v2-c2c8eb740ceb025c2f9daa7ce82c5bc4_720w.jpg" alt=""></p>
+<p>《阿里技术手册-研发篇》</p>
+<p>阿里技术中台将各种技术中间件等能力进行整合包装，过滤掉技术细节，向前台、业务中台、数据中台提供简单一致、易于使用的应用技术基础设施的能力接口。</p>
+<h3 id="4）腾讯——数据中台和技术中台"><a href="#4）腾讯——数据中台和技术中台" class="headerlink" title="4）腾讯——数据中台和技术中台"></a>4）腾讯——数据中台和技术中台</h3><p><img src="https://pic4.zhimg.com/50/v2-38e829af865de16c5943061870e657d8_hd.jpg" alt=""><!--![](https://pic4.zhimg.com/80/v2-38e829af865de16c5943061870e657d8_720w.jpg)--></p>
+<p>2019腾讯全球数字生态大会 腾讯高级执行副总裁、云与智慧产业事业群总裁汤道生分享</p>
+<p>今年5月21日，汤道生在2019腾讯全球数字生态大会展示腾讯的开放中台能力：数据中台（用户中台、内容中台、应用中台等）和技术中台（通信中台、AI中台、安全中台等），将腾讯定位为是“数字化助手”，提供工具、做好连接、建设生态。</p>
+<h3 id="5）百度——搜索中台"><a href="#5）百度——搜索中台" class="headerlink" title="5）百度——搜索中台"></a>5）百度——搜索中台</h3><p><img src="https://pic2.zhimg.com/50/v2-621b9eac3be771114c58e781c45bcd4f_hd.jpg" alt=""><!--![](https://pic2.zhimg.com/80/v2-621b9eac3be771114c58e781c45bcd4f_720w.jpg)--></p>
+<p>infoQ采访——百度垂直行业 &amp;amp; 阿拉丁架构技术负责人张安站分享系统架构图</p>
+<p>百度垂直行业 &amp; 阿拉丁架构技术负责人张安站在infoQ采访中分享百度中台的技术思路：提供完备的通用能力定制能力、灵活的可定制业务框架、可以复用的业务组件、完备的文档教程、面向全流程开发效能提升的完整自动化工具链。</p>
+<h3 id="6）京东——数据中台"><a href="#6）京东——数据中台" class="headerlink" title="6）京东——数据中台"></a>6）京东——数据中台</h3><p><img src="https://pic1.zhimg.com/50/v2-4c54b5e282d035d68a11ab28b1f6f695_hd.jpg" alt=""><!--![](https://pic1.zhimg.com/80/v2-4c54b5e282d035d68a11ab28b1f6f695_720w.jpg)--></p>
+<p>2019大数据产业峰会 京东集团副总裁、京东零售技术与数据中台负责人黎科峰分享</p>
+<p>京东数据中台负责人黎科峰在峰会上分享京东数据中台：数据中台的核心包括数据基础层、数据服务层、数据应用层。除了技术之外，数据中台建设更重要的是一种协作意识和组织能力。因此京东在建设数据中台的过程中提出了共建、共享、标准化三个关键理念。</p>
+<h2 id="2、金融行业企业"><a href="#2、金融行业企业" class="headerlink" title="2、金融行业企业"></a>2、金融行业企业</h2><p>早在2005年起，国内银行就已经开始了一波“流程银行”的建设，按“以客户为中心，再造业务流程、实现有效风险管控”，把银行内部机构按职责分成前台、中台、后台。但这里的银行中台主要是针对业务流程的这一环节，还未真正实现公共服务和业务能力的共享复用，银行内部依然存在着各渠道系统的重复模块和重复数据体系。</p>
+<p>随着中台建设最先在各头部互联网企业中纷纷开展、并引发了社会广泛关注，作为和互联网行业并驾齐驱的金融行业里，“客户响应不迅速、业务创新不明显、内部协同不顺畅”等各种声音也同样在推动着金融企业的数字化转型。中台战略理念对于金融企业的影响也逐渐显现。</p>
+<h3 id="1）广发银行——业务中台"><a href="#1）广发银行——业务中台" class="headerlink" title="1）广发银行——业务中台"></a>1）广发银行——业务中台</h3><p><img src="https://pic4.zhimg.com/50/v2-669dbd7cee0a44d3558bf0c6fdc99e6e_hd.jpg" alt=""><!--![](https://pic4.zhimg.com/80/v2-669dbd7cee0a44d3558bf0c6fdc99e6e_720w.jpg)--></p>
+<p>广发银行业务中台整体架构</p>
+<p>来自中国电子银行网报道，广发银行在“2018中国金融科技创新榜”参赛活动中展示其企业的业务中台：广发银行科技部门2017年底开始引入企业金融云技术和开源框架，使用分布式架构和服务化，以“业务建模标准化、分析设计标准化、能力输出标准化”的高标准高要求，组建中台产品团队和中台能力团队，按业务领域构建了互联网业务中台（包括交易中心、用户中心、账户中心、权益中心、营销中心、支付中心、产品中心、清算中心等），为客户提供可伸缩的系统性能体验，为渠道提供可复用的服务能力。</p>
+<h3 id="2）中国平安——智能认知能力中台-“平安π”"><a href="#2）中国平安——智能认知能力中台-“平安π”" class="headerlink" title="2）中国平安——智能认知能力中台 “平安π”"></a>2）中国平安——智能认知能力中台 “平安π”</h3><p><img src="https://pic3.zhimg.com/50/v2-a4f2d4add7fce49efee470684bc287d3_hd.jpg" alt=""><img src="https://pic3.zhimg.com/80/v2-a4f2d4add7fce49efee470684bc287d3_720w.jpg" alt=""></p>
+<p>平安智能认知能力中台 ：平安π</p>
+<p>2019年4月，平安科技的平安智能认知团队正式推出全新品牌LOGO——平安π。平安π通过“综合身份核验平台”和“感知物联融合平台”两大平台，向下融合多种视觉、听觉的算法能力，向上提供业务赋能（云服务和端服务）。平安π从单一的算法服务升级到“云+端”的多维服务，有效结合了算法、数据、设备，以满足“金融开户、社保养老金、考生报名、游戏实名”等细分领域和细分场景的服务能力。</p>
+<h3 id="3）海通证券——-数据中台、技术中台、业务中台三元统一"><a href="#3）海通证券——-数据中台、技术中台、业务中台三元统一" class="headerlink" title="3）海通证券—— 数据中台、技术中台、业务中台三元统一"></a>3）海通证券—— 数据中台、技术中台、业务中台三元统一</h3><p><img src="https://pic2.zhimg.com/50/v2-04fe878685a57b8cdc0615950d9c82f6_hd.jpg" alt=""><!--![](https://pic2.zhimg.com/80/v2-04fe878685a57b8cdc0615950d9c82f6_720w.jpg)--></p>
+<p>海通证券股份有限公司副总裁毛宇星分享</p>
+<p>海通证券股份有限公司副总裁毛宇星近期在《金融电子化》中分享了金融企业中进行大中台战略的必然性：</p>
+<p>大中台满足了金融企业不同渠道、不同客户联动的内在需求，实现了金融企业前后台速度适配，是金融企业规模化演进的必然结果。金融企业需要把握业务、技术和数据这三要素的有机统一，以“数据中台”为基础、“技术中台”为关键、“业务中台”为根本，实现大中台战略的三元统一，共同支撑前台。</p>
+<p>“数据中台”整合前后台技术系统数据，提供数据存储、数据模型和服务封装，全面支持前台和后台各种个性化数据服务需要；</p>
+<p>“技术中台”通过标准化、构件化赋能灵活多变的前台技术系统，提高研发效率；</p>
+<p>“业务中台”保持业务思维，坚持为前台服务的基本导向，实现业务运营、合规风控等职能；  </p>
+<p><img src="https://pic2.zhimg.com/50/v2-dff16877ddbf6d349771bcb4cb3cb784_hd.jpg" alt=""><!--![](https://pic2.zhimg.com/80/v2-dff16877ddbf6d349771bcb4cb3cb784_720w.jpg)--></p>
+<p>海通证券大中台战略的三元统一 ： “数据中台”、“技术中台”、“业务中台”</p>
+<h3 id="4）恒生电子-——-数据中台-技术中台-业务中台-行业级业务中台"><a href="#4）恒生电子-——-数据中台-技术中台-业务中台-行业级业务中台" class="headerlink" title="4）恒生电子 —— 数据中台+技术中台+业务中台+行业级业务中台"></a>4）恒生电子 —— 数据中台+技术中台+业务中台+行业级业务中台</h3><p><img src="https://pic4.zhimg.com/50/v2-62847acdd0beff758926bef9abb306d1_hd.jpg" alt=""><!--![](https://pic4.zhimg.com/80/v2-62847acdd0beff758926bef9abb306d1_720w.jpg)--></p>
+<p>恒生电子大中台规划</p>
+<p>作为金融ISV龙头的恒生电子，也在今年推出了大中台规划，以“稳后台、大中台、敏前台”为架构，提出“数据中台+技术中台+业务中台+行业级业务中台”的中台战略。该规划不仅涉及了公司级的中台，同时还将中台战略延伸至行业级（行业级业务中台）。</p>
+<p>数据中台：为全领域数据的共享能力中心，旨在提供数据采集、数据模型、数据计算、数据治理、数据资产、数据服务等全链路的一站式产品、技术、方法论的服务，构建面向数据应用的数据智能平台。数据中台助力资本市场数字化升级，应用“传统业务数仓”、“用户大数据”、“投研大数据”三类数据资产，实现从“看数”到“用数”再到“创造新业务”的价值升级。（恒生公司首席架构师、数据中台发展部经理章乐焱分享）</p>
+<p>技术中台：今年5月16日，恒生电子联手蚂蚁金服、阿里云共同发布“技术中台JRES 3.0”，包含“混合云管控平台、应用服务开发平台、开发效能平台、统一的运维监控平台、数字化运用平台”五大部分，可实现券商企业多个垂直系统的打通，提供完整的金融企业级应用开发套件，通过模块化组件响应客户需求。（恒生公司总裁刘曙峰分享）</p>
+<p>业务中台：业务中台沉淀公司业务能力，聚集“用户、账户、产品、支付”等基础类服务，通过组件接口的方式输出给各类应用。业务中台打通现有的业务条线，利用已有的数据为客户提供针对性的服务，并形成更多的客户数据，从而让服务更加“智能”，更加贴近客户需求。（恒生公司副总裁张国强分享）</p>
+<p>行业级业务中台：面向行业企业推出的业务中台能力，助力券商、银行等金融行业企业客户，依托业务中台搭建起企业差异化的核心竞争力。</p>
+<h2 id="3、2B中台能力企业"><a href="#3、2B中台能力企业" class="headerlink" title="3、2B中台能力企业"></a>3、2B中台能力企业</h2><h3 id="1）云徙科技——数字中台"><a href="#1）云徙科技——数字中台" class="headerlink" title="1）云徙科技——数字中台"></a>1）云徙科技——数字中台</h3><p><img src="https://pic2.zhimg.com/50/v2-93c017709a7fc95598fcf03115ad676d_hd.jpg" alt=""><!--![](https://pic2.zhimg.com/80/v2-93c017709a7fc95598fcf03115ad676d_720w.jpg)--></p>
+<p>2019中国IT市场年会，云徙科技CEO包志刚分享</p>
+<p>云徙科技推出的数字中台，为基于互联网架构的“业务+数据双中台”，打造企业营销、交易、服务的一站式营销闭环，实现数据驱动业务运营，支撑快速业务创新。其业务中台采用先进的互联网架构，沉淀关键业务能力； 其数据中台由阿里大数据技术加持，消除数据孤岛。</p>
+<p>云徙科技CEO包志刚在2019中国IT市场年会上分享：“中台首先是一个服务，第二是一个技术，第三是它是一种组织，第四更是一种能力，中台连接前台的变与后台的不变。”</p>
+<h3 id="2）浪潮——企业数据中台产品"><a href="#2）浪潮——企业数据中台产品" class="headerlink" title="2）浪潮——企业数据中台产品"></a>2）浪潮——企业数据中台产品</h3><p><img src="https://pic3.zhimg.com/50/v2-16a565282cf12fe33bb78ac19b65b91d_hd.jpg" alt=""><img src="https://pic3.zhimg.com/80/v2-16a565282cf12fe33bb78ac19b65b91d_720w.jpg" alt=""></p>
+<p>浪潮的企业数据中台产品</p>
+<p>浪潮的企业数据中台产品：提供从数据治理、数据模型搭建、数据资产管理到数据服务的一站式全链路解决方案。</p>
+<h3 id="3）袋鼠云——企业级一站式数字中台产品"><a href="#3）袋鼠云——企业级一站式数字中台产品" class="headerlink" title="3）袋鼠云——企业级一站式数字中台产品"></a>3）袋鼠云——企业级一站式数字中台产品</h3><p><img src="https://pic2.zhimg.com/50/v2-d96d7bff03bdd0140f805767d37391e6_hd.jpg" alt=""><!--![](https://pic2.zhimg.com/80/v2-d96d7bff03bdd0140f805767d37391e6_720w.jpg)--></p>
+<p>袋鼠云企业级一站式数字中台产品</p>
+<p>袋鼠云公司创始团队主要来自阿里，公司推出了企业级一站式数字中台产品，基于阿里巴巴十年数据经验沉淀与分布式数据计算引擎技术， 帮助企业构建数据共享能力中心（数据计算引擎、数据开发平台、数据科学平台、数据资产平台和数据服务引擎），实现数据中台落地，加速释放数据价值。</p>
+<h3 id="4）端点科技——企业中台产品（业务中台和数据中台）"><a href="#4）端点科技——企业中台产品（业务中台和数据中台）" class="headerlink" title="4）端点科技——企业中台产品（业务中台和数据中台）"></a>4）端点科技——企业中台产品（业务中台和数据中台）</h3><p><img src="https://pic2.zhimg.com/50/v2-b8bcb93360679c403482e5f7d2de8172_hd.jpg" alt=""><!--![](https://pic2.zhimg.com/80/v2-b8bcb93360679c403482e5f7d2de8172_720w.jpg)--></p>
+<p>端点科技的企业中台产品</p>
+<p>端点科技的企业中台产品：将企业的核心能力以数字化形式沉淀到平台，形成以服务为中心，以业务中台和数据中台构建起数据闭环运转的运营体系，供企业更高效地进行业务探索和创新，以数字化资产的形态构建企业差异化的核心竞争力。</p>
+<h2 id="七、用什么原则建设中台？"><a href="#七、用什么原则建设中台？" class="headerlink" title="七、用什么原则建设中台？"></a>七、用什么原则建设中台？</h2><p>可以看到，包含互联网企业在内的各大企业都开始风风火火地进入了中台建设，那么企业在建设中台应该符合哪些原则呢？以下是笔者个人从产品思维出发，思考的对于建设中台的几点原则：</p>
+<h2 id="1、通用"><a href="#1、通用" class="headerlink" title="1、通用"></a>1、通用</h2><p>标准统一，实现数据打通、可通用性。数据打通是需要整合企业内部被“部门墙”割裂的数据。</p>
+<p><img src="https://pic2.zhimg.com/50/v2-5dc60e2d6ec81d580549fdd9d83bb33d_hd.jpg" alt=""><!--![](https://pic2.zhimg.com/80/v2-5dc60e2d6ec81d580549fdd9d83bb33d_720w.jpg)--></p>
+<p>标准统一，实现数据打通</p>
+<p>不过，数据究竟要打通到什么程度，每个企业可能有不同的做法。</p>
+<p>比如，扎克伯格在3月7日发布文章《以私域为中心的社交网络愿景》中正式提出将打通Facebook旗下App，将实现Whatsapp上可以接收Facebook、Instagram的信息。而马化腾在18年11月第五届世界互联网大会的论坛上则说：“我们要从用户的角度来考虑，把个人信息和数据保护放在优先地位，而不能套用其它公司的做法，把数据直接去任意打通。”他强调腾讯不会任意打通数据，技术中台会打通，但数据中台会特别谨慎。</p>
+<h2 id="2、组件化"><a href="#2、组件化" class="headerlink" title="2、组件化"></a>2、组件化</h2><p>中台提供的服务最好以组件化的方式让业务端可以即取即用。组件化设计可以避免系统间耦合性大，牵一发而动全身。这需要针对共用服务进行抽象设计。通过抽象出的组件化服务提供，前台业务端可以以组合挑选的方式“按需取件”，减少重复建设得以实现。</p>
+<p><img src="https://pic3.zhimg.com/50/v2-158645173f7c0fe126f9ddfca2c7e5ed_hd.jpg" alt=""><img src="https://pic3.zhimg.com/80/v2-158645173f7c0fe126f9ddfca2c7e5ed_720w.jpg" alt=""></p>
+<p>服务组件化，前台业务“按需取件”</p>
+<h2 id="3、可复用"><a href="#3、可复用" class="headerlink" title="3、可复用"></a>3、可复用</h2><p>中台提供的服务是应该可以即取即用的。不仅如此，这次用完，下次还来。业务A用了，业务B也来用。一个中台提供出的公用服务的价值高低，是“可用”和“可复用”的区别。</p>
+<p><img src="https://pic1.zhimg.com/50/v2-cb0c5125965c678d815343ee1331dc8f_hd.jpg" alt=""><!--![](https://pic1.zhimg.com/80/v2-cb0c5125965c678d815343ee1331dc8f_720w.jpg)--></p>
+<p>服务可复用</p>
+<p>服务的高复用是对技术层级上针对共用服务的抽象设计能力的一大考验，需要尽可能近地靠近业务、靠近用户。</p>
+<h2 id="4、可共用"><a href="#4、可共用" class="headerlink" title="4、可共用"></a>4、可共用</h2><p>基础服务有了，那通过中台向前台提供“相应的服务”还是提供“一揽子的服务”？取决于服务提供的可开放共用的程度。就像我们看到，各大互联网决定中台建设的开始，总是要伴随企业层级的组织架构的调整。虽然各部门权限、各业务属权，恐怕不是一句“开放共享”的愿景就能完全解决和无差别共用的，但是通过开放共享实现“可共用”的目标终究是中台建设的原则。</p>
+<p><img src="https://pic2.zhimg.com/50/v2-bd1dcbb0b2ba63a46de14b349ec610eb_hd.jpg" alt=""><!--![](https://pic2.zhimg.com/80/v2-bd1dcbb0b2ba63a46de14b349ec610eb_720w.jpg)--></p>
+<p>通过开放共享实现“可共用”</p>
+<h2 id="5、灵活扩展"><a href="#5、灵活扩展" class="headerlink" title="5、灵活扩展"></a>5、灵活扩展</h2><p>在一揽子的服务都可输出后，业务量可能会短时间大大激增。能扛得住大流量高峰时期的高并发、高可用将成为一个大挑战。底层的可灵活扩展能力将非常重要。企业应当应用DevOps、Docker等先进的开发技术理念，在中台建设前就开启数字化的技术转型。</p>
+<p><img src="https://pic2.zhimg.com/50/v2-55a0bb8d96d761f6a3da6dcbd96530e4_hd.jpg" alt=""><!--![](https://pic2.zhimg.com/80/v2-55a0bb8d96d761f6a3da6dcbd96530e4_720w.jpg)--></p>
+<p>灵活扩展应对业务量激增</p>
+<h2 id="八、所有企业都应该建设中台吗？"><a href="#八、所有企业都应该建设中台吗？" class="headerlink" title="八、所有企业都应该建设中台吗？"></a>八、所有企业都应该建设中台吗？</h2><p>问这个问题前，还不如我们思考一下，什么样的企业才适合建设中台？以下是笔者个人的观点：</p>
+<h2 id="1、业务规模达到一定程度"><a href="#1、业务规模达到一定程度" class="headerlink" title="1、业务规模达到一定程度"></a>1、业务规模达到一定程度</h2><p>使用中台意味着企业拥有可沉淀的一定量级的IT资产，企业要充分复用这些IT资产才可以突破当前瓶颈、更高效的赋能业务。但只有企业的业务规模和业务价值达到一定程度才能具备沉淀实施的条件，否则就是杀鸡却用宰牛刀。比如运营商、保险、银行、金融等拥有大量数据的传统国企和BAT这类大互联网公司，它们不仅拥有丰富的数据资产，而且IT规模足够大，建设中台是它们进行企业升级的绝佳方案。</p>
+<p><img src="https://pic1.zhimg.com/50/v2-a9b35f052a8e783a8170736c08b8162e_hd.jpg" alt=""><!--![](https://pic1.zhimg.com/80/v2-a9b35f052a8e783a8170736c08b8162e_720w.jpg)--></p>
+<p>业务规模达到一定程度</p>
+<h2 id="2、已经实践了“系统化、中心化、平台化”"><a href="#2、已经实践了“系统化、中心化、平台化”" class="headerlink" title="2、已经实践了“系统化、中心化、平台化”"></a>2、已经实践了“系统化、中心化、平台化”</h2><p>“系统化、中心化、平台化、中台化”，是一个企业在数字化道路上行进的路线。如果一个企业已经成功地实践了“系统化、中心化、平台化”的过程，并比较饱和状态地支撑了前台业务，那么这个企业也许是可以开始考虑向下一步“中台化”的迈进了。</p>
+<p><img src="https://pic4.zhimg.com/50/v2-e4b74a65bc427856374c30a48750a7a2_hd.jpg" alt=""><!--![](https://pic4.zhimg.com/80/v2-e4b74a65bc427856374c30a48750a7a2_720w.jpg)--></p>
+<p>已经实践了“系统化、中心化、平台化”</p>
+<h2 id="3、有魄力做组织架构重构"><a href="#3、有魄力做组织架构重构" class="headerlink" title="3、有魄力做组织架构重构"></a>3、有魄力做组织架构重构</h2><p>中台一定是企业级别的开放共享，否则它将只是某一个事业部或分公司旗下的功能平台而已。我们看到，阿里、腾讯、京东和百度，在开始决定中台建设之际，对于企业层级的组织架构大调整同时发生了，各部门权限和各业务属权发生了大震动。有魄力做组织架构重构的企业，才更适合快速高效地做中台建设。</p>
+<p><img src="https://pic3.zhimg.com/50/v2-e204fedbc694964454a8e12aa0d31c9a_hd.jpg" alt=""><img src="https://pic3.zhimg.com/80/v2-e204fedbc694964454a8e12aa0d31c9a_720w.jpg" alt=""></p>
+<p>有魄力做组织架构重构</p>
+<p>笔者认为，上述的3个条件，是一个企业开启自我中台建设成功的必要充分条件，缺一不可！</p>
+<p>当然，自觉不适合中台建设的企业，也不会就此错过中台带来的好处。不少企业已经开始推出toB的中台产品，未来可能就能像我们用toB的平台产品一样，我们也能低成本地使用中台产品。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>放到现在是不是可以理解了，当初说“云计算不做会死”的马云，其实是因为当初的阿里遇到了别人还没有遇到的时代难题。而为什么后面慢慢又涌现了众多跟随者呢？那是因为跟随者们也在后来遇到了这些难题。</p>
+<p>我们应该感谢，好在有了像阿里这样大企业，当它们发展得越超前，它们才能首当其冲、早早地遭遇到后来者暂且还遇不到的问题和症结，从而在提前感知风险的警觉中先行地实践起变革。对于其他企业来说，旁观后再看齐和跟随，也是一种成本低廉的试错方式。</p>
+<p>中台到底是什么呢？可能根本不那么重要，想作为一个不被善变的用户和市场抛弃的企业，想方设法持续提高企业对于⽤户善变的响应能力才是最重要的。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/中台/" rel="tag"># 中台</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/14/互联网公司中所谓中台是如何定义的/" rel="next" title="互联网公司中所谓中台是如何定义的">
+                <i class="fa fa-chevron-left"></i> 互联网公司中所谓中台是如何定义的
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/20/一文详解微服务架构/" rel="prev" title="一文详解微服务架构">
+                一文详解微服务架构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/IMG_0004.JPG"
+                alt="jianzhanger" />
+            
+              <p class="site-author-name" itemprop="name">jianzhanger</p>
+              <p class="site-description motion-element" itemprop="description">静以修身，俭以养德</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、中台从何而来？"><span class="nav-number">1.</span> <span class="nav-text">一、中台从何而来？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、阿里中台——来自最成功游戏公司Supercell的启发"><span class="nav-number">2.</span> <span class="nav-text">1、阿里中台——来自最成功游戏公司Supercell的启发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、阿里共享事业部——阿里中台的雏形"><span class="nav-number">3.</span> <span class="nav-text">2、阿里共享事业部——阿里中台的雏形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、口碑——资源整合的再次实践"><span class="nav-number">4.</span> <span class="nav-text">3、口碑——资源整合的再次实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、中台：一个解决问题的方案"><span class="nav-number">5.</span> <span class="nav-text">4、中台：一个解决问题的方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、中台建设的跟随者们"><span class="nav-number">6.</span> <span class="nav-text">二、中台建设的跟随者们</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、腾讯：技术委员会"><span class="nav-number">7.</span> <span class="nav-text">1、腾讯：技术委员会</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、百度：技术平台"><span class="nav-number">8.</span> <span class="nav-text">2、百度：技术平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、京东：前中后台"><span class="nav-number">9.</span> <span class="nav-text">3、京东：前中后台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、中台解决了什么痛点？"><span class="nav-number">10.</span> <span class="nav-text">三、中台解决了什么痛点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、痛点一：企业前方市场与企业内部支撑的冲突"><span class="nav-number">11.</span> <span class="nav-text">1、痛点一：企业前方市场与企业内部支撑的冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、痛点二：前台与后台的冲突"><span class="nav-number">12.</span> <span class="nav-text">2、痛点二：前台与后台的冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、痛点三：大企业的通病（各占山头、重复建设）"><span class="nav-number">13.</span> <span class="nav-text">3、痛点三：大企业的通病（各占山头、重复建设）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、怎么理解中台？"><span class="nav-number">14.</span> <span class="nav-text">四、怎么理解中台？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、中台有哪些类型？"><span class="nav-number">15.</span> <span class="nav-text">五、中台有哪些类型？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、各大企业是怎么做中台建设的？"><span class="nav-number">16.</span> <span class="nav-text">六、各大企业是怎么做中台建设的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、互联网企业"><span class="nav-number">17.</span> <span class="nav-text">1、互联网企业</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）阿里云——业务数据双中台"><span class="nav-number">17.1.</span> <span class="nav-text">1）阿里云——业务数据双中台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）阿里巴巴——移动中台"><span class="nav-number">17.2.</span> <span class="nav-text">2）阿里巴巴——移动中台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3）阿里巴巴——技术中台"><span class="nav-number">17.3.</span> <span class="nav-text">3）阿里巴巴——技术中台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4）腾讯——数据中台和技术中台"><span class="nav-number">17.4.</span> <span class="nav-text">4）腾讯——数据中台和技术中台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5）百度——搜索中台"><span class="nav-number">17.5.</span> <span class="nav-text">5）百度——搜索中台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6）京东——数据中台"><span class="nav-number">17.6.</span> <span class="nav-text">6）京东——数据中台</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、金融行业企业"><span class="nav-number">18.</span> <span class="nav-text">2、金融行业企业</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）广发银行——业务中台"><span class="nav-number">18.1.</span> <span class="nav-text">1）广发银行——业务中台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）中国平安——智能认知能力中台-“平安π”"><span class="nav-number">18.2.</span> <span class="nav-text">2）中国平安——智能认知能力中台 “平安π”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3）海通证券——-数据中台、技术中台、业务中台三元统一"><span class="nav-number">18.3.</span> <span class="nav-text">3）海通证券—— 数据中台、技术中台、业务中台三元统一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4）恒生电子-——-数据中台-技术中台-业务中台-行业级业务中台"><span class="nav-number">18.4.</span> <span class="nav-text">4）恒生电子 —— 数据中台+技术中台+业务中台+行业级业务中台</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、2B中台能力企业"><span class="nav-number">19.</span> <span class="nav-text">3、2B中台能力企业</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）云徙科技——数字中台"><span class="nav-number">19.1.</span> <span class="nav-text">1）云徙科技——数字中台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）浪潮——企业数据中台产品"><span class="nav-number">19.2.</span> <span class="nav-text">2）浪潮——企业数据中台产品</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3）袋鼠云——企业级一站式数字中台产品"><span class="nav-number">19.3.</span> <span class="nav-text">3）袋鼠云——企业级一站式数字中台产品</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4）端点科技——企业中台产品（业务中台和数据中台）"><span class="nav-number">19.4.</span> <span class="nav-text">4）端点科技——企业中台产品（业务中台和数据中台）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、用什么原则建设中台？"><span class="nav-number">20.</span> <span class="nav-text">七、用什么原则建设中台？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、通用"><span class="nav-number">21.</span> <span class="nav-text">1、通用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、组件化"><span class="nav-number">22.</span> <span class="nav-text">2、组件化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、可复用"><span class="nav-number">23.</span> <span class="nav-text">3、可复用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、可共用"><span class="nav-number">24.</span> <span class="nav-text">4、可共用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、灵活扩展"><span class="nav-number">25.</span> <span class="nav-text">5、灵活扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、所有企业都应该建设中台吗？"><span class="nav-number">26.</span> <span class="nav-text">八、所有企业都应该建设中台吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、业务规模达到一定程度"><span class="nav-number">27.</span> <span class="nav-text">1、业务规模达到一定程度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、已经实践了“系统化、中心化、平台化”"><span class="nav-number">28.</span> <span class="nav-text">2、已经实践了“系统化、中心化、平台化”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、有魄力做组织架构重构"><span class="nav-number">29.</span> <span class="nav-text">3、有魄力做组织架构重构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">30.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jianzhanger</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

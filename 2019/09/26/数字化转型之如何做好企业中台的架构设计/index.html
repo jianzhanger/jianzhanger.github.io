@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="系统架构,中台," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="数字化转型其实是将数字技术应用集成到企业内部的管理领域和外部变化的商业环境中去，从而对整个业务价值链产生决定性的改变。那么数字技术如何帮助企业进行数字化转型呢？那就要从中台开始谈起。">
+<meta name="keywords" content="系统架构,中台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字化转型之如何做好企业中台的架构设计">
+<meta property="og:url" content="http://yoursite.com/2019/09/26/数字化转型之如何做好企业中台的架构设计/index.html">
+<meta property="og:site_name" content="jianzhanger 的博客">
+<meta property="og:description" content="数字化转型其实是将数字技术应用集成到企业内部的管理领域和外部变化的商业环境中去，从而对整个业务价值链产生决定性的改变。那么数字技术如何帮助企业进行数字化转型呢？那就要从中台开始谈起。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.51cto.com/oss/201909/26/a30510ce88f2765bab5d4d57f012861c.png-wh_651x-s_3947689263.png">
+<meta property="og:image" content="https://s2.51cto.com/oss/201909/26/5674e7aa1fd83131f168d61ea32bec7e.png-wh_600x-s_2163741704.png">
+<meta property="og:image" content="https://s5.51cto.com/oss/201909/26/ed886ccb701900e2210cf2a8350cb708.png-wh_600x-s_1434045332.png">
+<meta property="og:image" content="https://s2.51cto.com/oss/201909/26/85904b103fb3cb56df9afc98ed8dd223.jpeg">
+<meta property="og:image" content="https://s5.51cto.com/oss/201909/26/1e9a02eda0b2eb2e62e0f75881df45cf.png-wh_600x-s_1635521403.png">
+<meta property="og:updated_time" content="2019-09-26T06:44:09.681Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数字化转型之如何做好企业中台的架构设计">
+<meta name="twitter:description" content="数字化转型其实是将数字技术应用集成到企业内部的管理领域和外部变化的商业环境中去，从而对整个业务价值链产生决定性的改变。那么数字技术如何帮助企业进行数字化转型呢？那就要从中台开始谈起。">
+<meta name="twitter:image" content="https://s2.51cto.com/oss/201909/26/a30510ce88f2765bab5d4d57f012861c.png-wh_651x-s_3947689263.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/26/数字化转型之如何做好企业中台的架构设计/"/>
+
+
+
+
+
+  <title>数字化转型之如何做好企业中台的架构设计 | jianzhanger 的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jianzhanger 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/数字化转型之如何做好企业中台的架构设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jianzhanger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_0004.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jianzhanger 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数字化转型之如何做好企业中台的架构设计</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-26T14:38:13+08:00">
+                2019-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/转载/" itemprop="url" rel="index">
+                    <span itemprop="name">转载</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>数字化转型其实是将数字技术应用集成到企业内部的管理领域和外部变化的商业环境中去，从而对整个业务价值链产生决定性的改变。那么数字技术如何帮助企业进行数字化转型呢？那就要从中台开始谈起。<br><a id="more"></a></p>
+<h2 id="一、什么是中台"><a href="#一、什么是中台" class="headerlink" title="一、什么是中台"></a><strong>一、什么是中台</strong></h2><p>中台是一个新的概念，但却是一个旧有的名词，只是在新时期我们赋予其新的内涵。这是因为在数字经济时代，IT建设方式发生了较大变化，为快速响应需求，我们需要用创新思想来建设IT。</p>
+<p><strong>传统的IT建设方式</strong></p>
+<p><strong>用创新思想来建设IT</strong></p>
+<p>大规划、大建设、大发展</p>
+<p>强大的服务能力，前端轻量化部署</p>
+<p>注重标准化体系建设，不考虑个性化体验</p>
+<p>大平台，轻部署</p>
+<p>用大系统替代分散系统实现整合</p>
+<p>总体规划，快速应用，快速迭代</p>
+<p>重业务支撑，过度强调数据应用的完整和全面</p>
+<p>数据标准统一，复用率高</p>
+<p>用户需要通过不同的入口访问IT系统</p>
+<p>用户有更多的入口接触访问到IT系统</p>
+<p>中台，通过对业务、数据和技术的抽象，对服务能力进行重用，构建企业级的服务能力，消除企业内部各业务部门、各级分公司间的壁垒，适应企业特别是大型企业集团业务多元化的发展战略。基于中台，我们可快速构建面向最终客户的前台应用，从而满足各种个性化特征的前台需求，为企业的数字化转型提供明确的道路。</p>
+<p><strong>中台定义：</strong></p>
+<ol>
+<li>中台是一种企业级能力复用平台，具有一种共性能力，支持了多个业务。核心是“功能复用”，构建“大中台，小前台”来满足业务快速扩展的需求；</li>
+</ol>
+<p>2.主要职责是汇总所有业务数据，协同各个业务单元，提炼业务的共性需求，支撑前、后台业务的快速发展；</p>
+<p>3.沉淀了大量的用户行为数据（包含非体系内用户），为大数据智能算法的新的商业模式奠定了基础；</p>
+<p>4.作为业务服务的提供方，不需要依赖业务的稳定性，而是需要不断为新业务提供能力支持。</p>
+<h2 id="二、中台与前台、后台的关系"><a href="#二、中台与前台、后台的关系" class="headerlink" title="二、中台与前台、后台的关系"></a><strong>二、中台与前台、后台的关系</strong></h2><p>要了解中台，首先要了解前台与后台各指什么：</p>
+<p><strong>前台</strong>：由各类前台系统组成的前端平台。前台是系统的前端平台，是直接与终端用户进行交互的应用层。每个前台系统就是一个用户触点，即企业的最终用户直接使用或交互的系统，是企业与最终用户的交点。举例来说，我们日常使用的APP、H5端、PC端以及小程序都属于前台系统。</p>
+<p><strong>后台</strong>：由后台系统组成的后端平台。后台是指系统的后端平台，终端用户无法感知其存在。后台的价值是存储和计算企业的核心数据（数据+计算），例如财务系统，产品系统，客户管理系统，物流管理系统等，这类系统构成了企业的后台。</p>
+<p>基础设施和计算平台作为企业的核心计算资源，也属于后台的一部分。但后台并不为前台而生，由于前端的变化需要后端的变化来支撑，因此对后台的快速应变产生要求。但是，后台设立目标不是服务于前台，后台的价值是存储和计算企业的核心数据，是提升后端数据的安全稳定及系统的管理效率。</p>
+<p>此时的前台和后台就像是两个不同转速的齿轮，前台由于要快速响应前端用户的需求，讲究的是快速创新迭代，所以要求转速越快越好；⽽后台由于⾯对的是相对稳定的后端资源，⽽且往往系统陈旧复杂，甚至还受到法律法规审计等相关合规约束，所以是稳定至上，越稳定越好， 转速也自然是越慢越好。所以，随着企业业务的不断发展，这种“前台+后台”的齿轮速率“匹配失衡”的问题就逐步显现出来。</p>
+<p><img src="https://s2.51cto.com/oss/201909/26/a30510ce88f2765bab5d4d57f012861c.png-wh_651x-s_3947689263.png" alt=""></p>
+<p>为了改变这个矛盾的局面，适应需求的快速迭代，“中台”由此诞生，中台系统犹如齿轮，带动前、后台系统飞速转动。我们可以将后台的逻辑层拆出来，形成「前台（应用层）-中台（逻辑层）-后台（数据层）」的产品架构。在这一产品架构下，当前台需求来临时，中台能快速的进行响应，从而提升了研发效率，降低了创新成本。</p>
+<h2 id="三、中台的分类"><a href="#三、中台的分类" class="headerlink" title="三、中台的分类"></a><strong>三、中台的分类</strong></h2><p><img src="https://s2.51cto.com/oss/201909/26/5674e7aa1fd83131f168d61ea32bec7e.png-wh_600x-s_2163741704.png" alt=""></p>
+<p>中台是从多个相似的前台业务应用共享的需求中产生的，因此最先提出的中台是业务中台，数据是从业务系统产生的，而业务系统也需要数据分析的结果，那么是否可以把业务系统的数据存储和计算能力抽离，由单独的数据处理平台提供存储和计算能力？这样不仅可以简化业务系统本身的复杂性，还可以让各个系统采用更合适的技术，专注做本省擅长的事。这个专用的数据处理平台即数据中台。</p>
+<p>当然还有技术中台，提供简单一致的应用接口，把各种技术中间件的能力进行整合和包装，对业务提供统一的技术支持和输出。最后就是组织中台了，但组织架构的调整是一个很大的问题，典型的组织架构就包括：直线职能型（U）、事业部型（M）、矩阵型、网络型、平台型，还不算各种组合和变体；如果结合经营模式，还需要了解大家常常提到的阿米巴经营模式以及海尔的自主经营体……所以，这些肯定不是这一篇文章就可以讲清楚的，所以本文着重讲讲业务中台和数据中台。</p>
+<h2 id="四、业务中台与数据中台"><a href="#四、业务中台与数据中台" class="headerlink" title="四、业务中台与数据中台"></a><strong>四、业务中台与数据中台</strong></h2><p>业务中台是阿里巴巴首先提出的企业IT业务架构的转型之道。站在阿里巴巴全局的角度来看，业务中台是从整体战略、业务支撑、连接消费者和业务创新等方面进行统筹规划的。阿里的业务中台更多关注如何支撑业务和为业务服务。</p>
+<p><img src="https://s5.51cto.com/oss/201909/26/ed886ccb701900e2210cf2a8350cb708.png-wh_600x-s_1434045332.png" alt=""></p>
+<p>阿里通过阿里云平台将技术中台进行部署，对集团内共享业务单元（中台）提供支撑，并最终对前台各业务线提供服务化的能力输出。</p>
+<p>业务中台说白了就是将业务与业务逻辑进行隔离，通过制定标准和规范，清楚的描述自己有哪些服务、数据和功能，以减少沟通成本，提升协作效率，让任何一条业务线都具备整个公司的核心能力，向各业务方提供能够快速，低成本创新的能力。</p>
+<p>从技术角度看，做中台是为了搭建一个灵活快速应对变化的架构，更快实现前端提的需求，避免高度复用的功能重复建设，这是敏捷开发、提高效率的地方。从业务角度看，借助中台沉淀能力，可以支持快速创新，让研发更灵活，业务更敏捷，以应对未来不可预知的市场变化。退一万步讲，有些功能其他业务板块已经做好了，那么底层只要组合一下即可，更加灵活和快速。</p>
+<p>接下来谈下数据中台是什么？数据中台与数据仓库的区别？数据中台与业务中台如何融合？</p>
+<p>所谓数据中台，即实现数据的分层与水平解耦，沉淀公共的数据能力，它可分为三层，数据模型、数据服务与数据开发。通过数据建模实现跨域数据整合和知识沉淀；通过数据服务实现对于数据的封装和开放，快速、灵活满足上层应用的要求；通过数据开发工具满足个性化数据和应用的需要，见下图（以某运营商为例）：</p>
+<p><img src="https://s2.51cto.com/oss/201909/26/85904b103fb3cb56df9afc98ed8dd223.jpeg" alt=""></p>
+<p><strong>1、数据模型</strong></p>
+<p>数据模型是分层次的，以前叫作数据仓库模型。这里概括为三层，基础模型一般是关系建模，主要实现数据的标准化，我们叫作“书同文、车同轨”。融合模型一般是维度建模，主要实现跨越数据的整合，整合的形式可以是汇总、关联，也包括解析，挖掘模型其实是偏应用的，但如果用的人多了，你也可以把挖掘模型作为企业的知识沉淀到中台，比如客户浏览偏好分析的模型具有很大的共性，就应该有人把它规整到中台模型，以便开放给其他人使用，中台的中是相对的，没有绝对的标准。</p>
+<p><strong>2、数据服务</strong></p>
+<p>将数据模型按照应用要求做了服务封装，就构成了数据服务，这个跟业务中台中的服务概念是完全相同的，只是数据封装比一般的功能封装要难一点，毕竟OLTP功能的变化有限，而数据分析受市场因素的影响很大，变化更快，导致服务封装的难度变大。随着企业大数据运营的深入，各类大数据应用层出不穷，对于数据服务的需求非常迫切，大数据如果不服务化，就无法规模化，也无法满足内外大数据服务的要求。</p>
+<p><strong>3、数据开发</strong></p>
+<p>只有数据模型和数据服务还是远远不够的，因为再好的现成数据和服务也往往无法满足前端个性化的要求，这时候就得授人以鱼不如授人以渔了，数据中台的最后一层就是数据开发，其按照开发难度也分为三个层次，最简单的是提供标签库（DMP），用户可以基于标签的组装快速形成营销客户群，一般面向业务人员;其次是提供数据开发平台，用户可以基于该平台访问到所有的数据并进行可视化开发，一般面向SQL开发人员，最后就是提供应用环境和组件，让技术人员可以自主打造个性化数据产品，以上层层递进，满足不同层次人员的要求。</p>
+<h2 id="五、中台背后的思考"><a href="#五、中台背后的思考" class="headerlink" title="五、中台背后的思考"></a><strong>五、中台背后的思考</strong></h2><p>企业中台的建设是一个系统性工程，不会一步到位更不可能一蹴而就，我们看到阿里巴巴的中台建设很成功，也听到不同的成功案例，但别人的成功并不意味着自己的成功。企业中台的落地，背后是治理，是企业架构的与时俱进和不断迭代。</p>
+<p><img src="https://s5.51cto.com/oss/201909/26/1e9a02eda0b2eb2e62e0f75881df45cf.png-wh_600x-s_1635521403.png" alt=""></p>
+<p><strong>1、战略对齐</strong></p>
+<p>确保业务战略和IT战略的对齐，IT对企业战略、业务输出结构性支撑和技术支撑。</p>
+<p><strong>2、企业架构</strong></p>
+<p>企业架构需要洞悉环境与产业变迁，预见企业运营发展，建立科学合理的业务架构和IT架构，治理IT资产和业务的关系以及与组织的关系，从而保证IT对齐战略，成为战略的执行基础。</p>
+<p><strong>3、可复用</strong></p>
+<p>基础服务有了，那通过中台向前台提供“相应的服务”还是提供“一揽子的服务”？取决于服务提供的可开放共用的程度。就像我们看到，各大互联网决定中台建设的开始，总是要伴随企业层级的组织架构的调整。破除部门墙、业务墙、数据墙，通过开放共享实现“可复用”的目标终究是中台建设的原则。</p>
+<p><strong>4、灵活扩展</strong></p>
+<p>在一揽子的中台服务都可输出后，业务量可能会短时间大大激增。能否扛得住大流量高峰时期的高并发、高可用将成为一个大挑战。底层的可灵活扩展能力将非常重要。企业应当应用DevOps、Docker、微服务等先进的开发技术理念，在中台建设前就开启数字化的技术转型。</p>
+<h2 id="六、企业中台的未来展望"><a href="#六、企业中台的未来展望" class="headerlink" title="六、企业中台的未来展望"></a><strong>六、企业中台的未来展望</strong></h2><p>中台的成长离不开前台业务的创新，只有不断进行业务迭代和试错更新，对中台提出新的挑战和更高要求，才会让中台做得更好。另一方面，中台也需要有自己的产品化、平台化建设思考，并作为新业务的孵化器。</p>
+<p>中台还需要建设成为开放的体系。开放不仅是对企业内部开放，也要对企业外部开放。通过中台建设，企业可以将自有的中台系统变为开放式平台，从而为其他企业充分提供第三方的数据和服务。再者，中台本身通过开放也可以利用和集成第三方的数据和服务，通过开放的API，支持更多的个性化需求和定制化扩展。</p>
+<p>“没有最好，只有最合适”！最合适的企业中台一定是当你深入了解业务、产品、系统、组织，而且不仅了解今天在哪里，还要了解过去是怎么演变而来，未来又会怎么演化，只有当你了解这所有的东西之后，才能做出最好的企业中台架构设计。</p>
+<p>原文地址：<a href="http://developer.51cto.com/art/201909/603564.htm" target="_blank" rel="noopener">http://developer.51cto.com/art/201909/603564.htm</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/系统架构/" rel="tag"># 系统架构</a>
+          
+            <a href="/tags/中台/" rel="tag"># 中台</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/26/经典面试题：用户反映你开发的网站访问很慢可能会是什么原因/" rel="next" title="经典面试题：用户反映你开发的网站访问很慢可能会是什么原因">
+                <i class="fa fa-chevron-left"></i> 经典面试题：用户反映你开发的网站访问很慢可能会是什么原因
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/13/这一次，彻底弄懂“秒杀系统”/" rel="prev" title="这一次，彻底弄懂“秒杀系统”">
+                这一次，彻底弄懂“秒杀系统” <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/IMG_0004.JPG"
+                alt="jianzhanger" />
+            
+              <p class="site-author-name" itemprop="name">jianzhanger</p>
+              <p class="site-description motion-element" itemprop="description">静以修身，俭以养德</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是中台"><span class="nav-number">1.</span> <span class="nav-text">一、什么是中台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、中台与前台、后台的关系"><span class="nav-number">2.</span> <span class="nav-text">二、中台与前台、后台的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、中台的分类"><span class="nav-number">3.</span> <span class="nav-text">三、中台的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、业务中台与数据中台"><span class="nav-number">4.</span> <span class="nav-text">四、业务中台与数据中台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、中台背后的思考"><span class="nav-number">5.</span> <span class="nav-text">五、中台背后的思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、企业中台的未来展望"><span class="nav-number">6.</span> <span class="nav-text">六、企业中台的未来展望</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jianzhanger</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
